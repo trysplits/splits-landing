@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.classList.add('js');</script>
+<meta charset="UTF-8" />
+<title>Splits — Bill Splitting App | Split Any Bill Fairly with AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Split any bill with AI. Snap a receipt, share a link — everyone claims what they had. Tax &amp; tip divided proportionally. No app download required for friends." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://trysplits.com" />
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Splits" />
+<meta property="og:title" content="Splits — Bill Splitting App" />
+<meta property="og:description" content="Split any bill with AI. Snap a receipt, share a link — everyone claims what they had. Tax &amp; tip divided proportionally. No app download required for friends." />
+<meta property="og:url" content="https://trysplits.com" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="https://trysplits.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Splits — Split any bill fairly with AI" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Splits — Bill Splitting App" />
+<meta name="twitter:description" content="Snap a receipt, share a link — everyone claims what they had. No app needed for friends." />
+<meta name="twitter:image" content="https://trysplits.com/og-image.png" />
+<meta name="twitter:image:alt" content="Splits — Split any bill fairly with AI" />
+
+<!-- Favicon / app icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#2D8B57" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Splits",
+    "url": "https://trysplits.com",
+    "description": "Split any bill with AI. Snap a receipt, share a link — everyone claims what they had."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Splits",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "iOS, Android",
+    "description": "AI-powered bill splitting app. Snap a receipt photo, share a link, and each person claims what they had. Tax and tip are split proportionally. Friends need no app — just a browser link.",
+    "url": "https://trysplits.com",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "AI-powered receipt scanning",
+      "Shareable link — no app required for friends",
+      "Proportional tax and tip splitting",
+      "Real-time claim tracking dashboard",
+      "Shared item auto-division"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Splits",
+    "url": "https://trysplits.com",
+    "logo": "https://trysplits.com/favicon.svg",
+    "description": "Splits helps groups split bills fairly using AI-powered receipt scanning and shareable claim links."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do my friends need to download the app to split the bill?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nope! Only the person who paid needs the app. Everyone else just opens a link in their browser, enters their name, and taps what they had. No download required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the AI read receipts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Splits uses advanced AI to extract every item, quantity, price, tax amount, and total from your receipt photo. It works in 2–5 seconds and handles most North American receipt formats."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are tax and tip calculated when splitting a bill?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tax and tip are split proportionally based on what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. No more equal splits on unequal orders."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens with shared appetizers or items split between people?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If multiple people claim the same item (like a shared plate of nachos), the cost is automatically divided equally among everyone who claimed it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Splits free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Splits is free to use. Optional premium features are planned for the future, but the core split experience will always be free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What payment methods are supported for paying people back?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Splits shows each person what they owe and suggests payment via Venmo, Cash App, Zelle, or Apple Pay. In-app payments are coming soon."
+        }
+      }
+    ]
+  }
+]
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --green: #2D8B57;
+  --green-dark: #1B6B3A;
+  --green-400: #4ABA6E;
+  --green-200: #A8DBBA;
+  --green-50: #E8F5EC;
+  --bg: #FAFBF8;
+  --surface: #FFFFFF;
+  --muted: #F3F4F6;
+  --border: #E5E7EB;
+  --text: #1A1A2E;
+  --t2: #6B7280;
+  --t3: #9CA3AF;
+  --error: #EF4444;
+
+  --p-blue: #3B82F6;   --p-blue-bg: #DBEAFE;
+  --p-pink: #EC4899;   --p-pink-bg: #FCE7F3;
+  --p-amber: #F59E0B;  --p-amber-bg: #FEF3C7;
+  --p-purple: #8B5CF6; --p-purple-bg: #EDE9FE;
+  --p-orange: #F97316; --p-orange-bg: #FFEDD5;
+  --p-teal: #14B8A6;   --p-teal-bg: #CCFBF1;
+
+  --container: 1140px;
+  --radius-btn: 10px;
+  --radius-card: 12px;
+  --radius-input: 8px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-size: 18px; line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── TYPE ───────────────────────────────────────────────────── */
+h1, h2, h3 { margin: 0; font-weight: 600; color: var(--text); }
+.eyebrow {
+  font-size: 12px; font-weight: 600;
+  color: var(--green); letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hero-title {
+  font-size: 56px; font-weight: 700;
+  letter-spacing: -2px; line-height: 1.05;
+  color: var(--text);
+  text-wrap: balance;
+}
+.h2 {
+  font-size: 36px; font-weight: 600;
+  letter-spacing: -1px; line-height: 1.15;
+  text-wrap: balance;
+}
+.h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
+.body { font-size: 18px; line-height: 1.6; color: var(--t2); }
+.body-tight { font-size: 16px; line-height: 1.55; color: var(--t2); }
+.caption { font-size: 12px; color: var(--t3); }
+.label { font-size: 14px; font-weight: 500; }
+
+/* ── BUTTONS ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; height: 48px; padding: 0 22px;
+  border-radius: var(--radius-btn);
+  font-size: 15px; font-weight: 600; letter-spacing: -0.1px;
+  border: none; cursor: pointer; white-space: nowrap;
+  transition: background 160ms ease, transform 160ms ease, color 160ms ease;
+}
+.btn-primary { background: var(--green); color: #fff; }
+.btn-primary:hover { background: var(--green-dark); transform: scale(1.02); }
+.btn-secondary {
+  background: transparent; color: var(--green);
+  border: 1px solid var(--green);
+}
+.btn-secondary:hover { background: var(--green-50); }
+.btn-ghost { background: transparent; color: var(--green); }
+.btn-ghost:hover { text-decoration: underline; }
+.btn-sm { height: 40px; padding: 0 16px; font-size: 14px; }
+
+/* ── NAV ────────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  height: 64px;
+  background: rgba(250, 251, 248, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid transparent;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+.nav.scrolled { border-bottom-color: var(--border); }
+.nav-inner {
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.lockup { display: inline-flex; align-items: center; gap: 10px; }
+.lockup .icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(145deg, #2D8B57 0%, #1B6B3A 100%);
+  position: relative; flex-shrink: 0;
+}
+.lockup .icon::before, .lockup .icon::after {
+  content: ""; position: absolute;
+  width: 7px; height: 16px; border-radius: 4px;
+  background: #fff; top: 8px;
+}
+.lockup .icon::before { left: 8px; }
+.lockup .icon::after  { left: 17px; opacity: 0.6; }
+.wordmark {
+  font-size: 22px; font-weight: 600; letter-spacing: -1px; line-height: 1;
+}
+.wordmark .spl { color: var(--text); }
+.wordmark .its { color: var(--green); }
+
+.nav-links {
+  display: flex; align-items: center; gap: 28px;
+}
+.nav-links a.anchor {
+  font-size: 14px; font-weight: 500; color: var(--t2);
+  transition: color 140ms ease;
+}
+.nav-links a.anchor:hover { color: var(--text); }
+.menu-btn {
+  display: none;
+  background: transparent; border: none; padding: 8px;
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .nav-links .anchor, .nav-links .btn { display: none; }
+  .menu-btn { display: inline-flex; }
+}
+
+/* ── HERO ───────────────────────────────────────────────────── */
+.hero {
+  padding: 80px 0 100px;
+  position: relative; overflow: hidden;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.hero-copy { max-width: 540px; }
+.hero-copy .eyebrow { display: block; margin-bottom: 20px; }
+.hero-copy .hero-title { margin-bottom: 24px; }
+.hero-copy .body { max-width: 520px; margin-bottom: 36px; }
+
+.waitlist-form {
+  display: flex; gap: 8px;
+  max-width: 460px; margin-bottom: 24px;
+}
+.waitlist-form input[type="email"] {
+  flex: 1; height: 48px; padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  font-family: inherit; font-size: 15px; color: var(--text);
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.waitlist-form input[type="email"]:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(45, 139, 87, 0.12);
+}
+.waitlist-form input.invalid {
+  border-color: var(--error);
+}
+.waitlist-success {
+  display: none;
+  height: 48px; padding: 0 20px;
+  border-radius: var(--radius-input);
+  background: var(--green-50);
+  color: var(--green-dark);
+  font-weight: 500; font-size: 15px;
+  align-items: center; gap: 8px;
+  max-width: 460px;
+  animation: fade-up 320ms ease;
+}
+.waitlist-success.show { display: inline-flex; }
+.waitlist-form.hidden { display: none; }
+
+.social-proof {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; color: var(--t2);
+}
+.social-proof .dot { color: var(--green); }
+
+/* Hero mockup column */
+.hero-mock-wrap {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 640px;
+}
+.hero-mock {
+  transform: rotate(2.5deg);
+  animation: float 4s ease-in-out infinite;
+}
+.hero-mock-wrap .float-bubble {
+  position: absolute;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--text);
+  z-index: 5;
+}
+.hero-mock-wrap .bubble-1 {
+  top: 8%; left: -8%;
+  animation: float 5s ease-in-out infinite;
+}
+.hero-mock-wrap .bubble-2 {
+  bottom: 12%; right: -4%;
+  animation: float 4.5s ease-in-out 1s infinite;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px; font-weight: 500;
+  color: var(--green);
+}
+.bubble-1 .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--p-pink);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(2.5deg); }
+  50% { transform: translateY(-6px) rotate(2.5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-mock, .hero-mock-wrap .float-bubble { animation: none; }
+}
+@media (max-width: 768px) {
+  .hero-mock, .hero-mock-wrap .float-bubble { animation: none !important; }
+}
+
+@media (max-width: 960px) {
+  .hero { padding: 48px 0 64px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-title { font-size: 36px; letter-spacing: -1.2px; }
+  .hero-mock-wrap { min-height: 580px; }
+  .hero-mock { transform: rotate(0deg); }
+  .hero-mock-wrap .bubble-1 { left: -4px; }
+  .hero-mock-wrap .bubble-2 { right: -4px; }
+}
+
+/* ── PHONE FRAME (reusable) ─────────────────────────────────── */
+.phone {
+  width: 320px;
+  height: 660px;
+  background: #1A1A2E;
+  border-radius: 44px;
+  padding: 8px;
+  position: relative;
+  flex-shrink: 0;
+}
+.phone-screen {
+  width: 100%; height: 100%;
+  background: var(--bg);
+  border-radius: 36px;
+  overflow: hidden;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+.phone-notch {
+  position: absolute;
+  top: 8px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 28px;
+  background: #1A1A2E;
+  border-radius: 18px;
+  z-index: 10;
+}
+.phone-status {
+  height: 48px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 26px 4px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  letter-spacing: -0.2px;
+  flex-shrink: 0;
+}
+.phone-status .status-icons {
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.phone-status .status-icons svg { display: block; }
+
+.phone-sm { width: 260px; height: 540px; border-radius: 36px; padding: 6px; }
+.phone-sm .phone-screen { border-radius: 30px; }
+.phone-sm .phone-notch { width: 90px; height: 22px; top: 6px; }
+.phone-sm .phone-status { height: 40px; font-size: 12px; padding: 0 22px 3px; }
+
+/* ── HERO PHONE — CLAIM SCREEN ──────────────────────────────── */
+.claim-web-chrome {
+  background: #F2F1ED;
+  border-bottom: 0.5px solid var(--border);
+  padding: 4px 12px 10px;
+  flex-shrink: 0;
+}
+.claim-url {
+  height: 32px; border-radius: 10px;
+  background: #fff; border: 0.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 0 12px;
+  font-size: 12px; color: var(--text);
+}
+.claim-url .lock {
+  width: 9px; height: 11px; flex-shrink: 0;
+}
+.claim-url .path { color: var(--t3); }
+
+.claim-header {
+  padding: 16px 20px 12px;
+  flex-shrink: 0;
+}
+.claim-header .place { font-size: 12px; color: var(--t3); margin-bottom: 4px; letter-spacing: 0.2px; }
+.claim-header .you {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500;
+}
+.claim-header .you-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--p-blue);
+}
+.claim-header .you-name { color: var(--text); }
+.claim-header .you-sub { color: var(--t3); font-weight: 400; }
+.claim-header .who-list {
+  display: flex; gap: -4px; margin-top: 12px;
+}
+.claim-header .avatar-stack {
+  display: flex;
+}
+.claim-header .avatar-stack .av {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600;
+  border: 2px solid var(--bg);
+  margin-left: -6px;
+}
+.claim-header .avatar-stack .av:first-child { margin-left: 0; }
+
+.claim-items {
+  flex: 1;
+  overflow: hidden;
+  padding: 8px 16px 120px;
+}
+.claim-section-title {
+  font-size: 11px; font-weight: 600;
+  color: var(--t3);
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 12px 4px 8px;
+}
+.claim-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 8px;
+  border-radius: 10px;
+}
+.claim-row + .claim-row { border-top: 0.5px solid var(--border); }
+.claim-row .check {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1.5px solid var(--border);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; background: #fff;
+}
+.claim-row.mine .check {
+  background: var(--green); border-color: var(--green);
+}
+.claim-row.theirs .check {
+  border: none;
+}
+.claim-row.theirs .check.pink { background: var(--p-pink-bg); }
+.claim-row.theirs .check.amber { background: var(--p-amber-bg); }
+.claim-row.theirs .check .initial {
+  font-size: 10px; font-weight: 700;
+}
+.claim-row.theirs .check.pink .initial { color: var(--p-pink); }
+.claim-row.theirs .check.amber .initial { color: var(--p-amber); }
+.claim-row .check svg { display: block; }
+.claim-row .item-name {
+  flex: 1; font-size: 14px; color: var(--text); font-weight: 500;
+}
+.claim-row.theirs .item-name { color: var(--t2); font-weight: 400; }
+.claim-row .item-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--text); font-weight: 500;
+}
+.claim-row.theirs .item-price { color: var(--t3); }
+
+.claim-bottom {
+  position: absolute; left: 8px; right: 8px; bottom: 8px;
+  background: #fff;
+  border-radius: 24px 24px 30px 30px;
+  border-top: 0.5px solid var(--border);
+  padding: 18px 22px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.claim-bottom .label-stack { display: flex; flex-direction: column; gap: 2px; }
+.claim-bottom .lbl { font-size: 11px; color: var(--t3); letter-spacing: 0.4px; text-transform: uppercase; }
+.claim-bottom .amt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px; font-weight: 600; color: var(--text);
+  letter-spacing: -0.5px;
+}
+.claim-bottom .pay-btn {
+  height: 38px; padding: 0 16px;
+  background: var(--green); color: #fff;
+  border: none; border-radius: 10px;
+  font-size: 13px; font-weight: 600;
+}
+
+/* ── DASHBOARD PHONE (right side in showcase) ──────────────── */
+.dash-header { padding: 8px 20px 16px; flex-shrink: 0; }
+.dash-back {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 13px; color: var(--t2); font-weight: 500;
+}
+.dash-title { font-size: 22px; font-weight: 600; margin-top: 12px; letter-spacing: -0.5px; }
+.dash-sub { font-size: 13px; color: var(--t3); margin-top: 2px; }
+
+.progress-ring-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px 0 16px;
+}
+.progress-ring {
+  width: 140px; height: 140px; position: relative;
+}
+.progress-ring svg { transform: rotate(-90deg); display: block; }
+.progress-ring .pct {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 26px; font-weight: 600; color: var(--text);
+  letter-spacing: -0.5px;
+}
+.progress-ring .pct-sub { font-family: 'Inter'; font-size: 11px; color: var(--t3); margin-top: 2px; font-weight: 500; }
+
+.dash-totals {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  padding: 0 16px 12px;
+}
+.dash-total-card {
+  background: #fff; border: 0.5px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+}
+.dash-total-card .l { font-size: 10px; color: var(--t3); letter-spacing: 0.6px; text-transform: uppercase; }
+.dash-total-card .v { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 600; margin-top: 4px; letter-spacing: -0.3px; }
+.dash-total-card .v.green { color: var(--green); }
+
+.dash-participants { padding: 4px 16px; flex: 1; overflow: hidden; }
+.dash-participants .sec {
+  font-size: 10px; font-weight: 600; color: var(--t3);
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 12px 4px 8px;
+}
+.p-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 4px;
+}
+.p-card + .p-card { border-top: 0.5px solid var(--border); }
+.p-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; flex-shrink: 0;
+}
+.p-card .p-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.p-card .p-meta { font-size: 11px; color: var(--t3); margin-top: 1px; }
+.p-card .p-info { flex: 1; }
+.p-card .p-amount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 600;
+}
+.p-card .p-amount.pending { color: var(--t3); font-weight: 500; }
+.p-card .p-status {
+  font-size: 10px; padding: 2px 8px; border-radius: 999px;
+  background: var(--green-50); color: var(--green-dark); font-weight: 600;
+  margin-left: 6px;
+}
+.p-card .p-status.pending { background: var(--muted); color: var(--t2); }
+
+/* ── HOW IT WORKS ───────────────────────────────────────────── */
+section { scroll-margin-top: 80px; }
+.section { padding: 100px 0; }
+.section-head {
+  text-align: center;
+  margin: 0 auto 64px;
+  max-width: 640px;
+}
+.section-head .h2 { margin-bottom: 14px; }
+
+.steps {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px; position: relative;
+}
+.step {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.step-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--green); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 600;
+  margin-bottom: 28px;
+  z-index: 3; position: relative;
+}
+.step .h3 { margin: 24px 0 10px; }
+.step .body-tight { max-width: 280px; }
+.step-phone {
+  width: 180px; height: 320px;
+  background: #1A1A2E;
+  border-radius: 26px;
+  padding: 5px;
+  margin-bottom: 4px;
+}
+.step-phone-screen {
+  width: 100%; height: 100%;
+  background: var(--bg);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+
+/* Step 1: camera viewfinder */
+.viewfinder {
+  flex: 1; background: #1A1A2E;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.viewfinder .vf-corner {
+  position: absolute; width: 22px; height: 22px;
+  border: 2px solid #fff;
+}
+.viewfinder .vf-corner.tl { top: 32px; left: 24px; border-right: none; border-bottom: none; }
+.viewfinder .vf-corner.tr { top: 32px; right: 24px; border-left: none; border-bottom: none; }
+.viewfinder .vf-corner.bl { bottom: 80px; left: 24px; border-right: none; border-top: none; }
+.viewfinder .vf-corner.br { bottom: 80px; right: 24px; border-left: none; border-top: none; }
+.viewfinder .receipt {
+  width: 92px; background: #FAFBF8;
+  border-radius: 4px;
+  padding: 10px 8px;
+  font-size: 7px; line-height: 1.4;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  transform: rotate(-3deg);
+}
+.viewfinder .receipt-line {
+  display: flex; justify-content: space-between;
+  border-bottom: 0.5px dashed #ddd;
+  padding: 2px 0;
+}
+.viewfinder .receipt-line.head { justify-content: center; font-weight: 700; font-size: 8px; margin-bottom: 4px; border: none; }
+.viewfinder .receipt-line.total { font-weight: 700; border: none; border-top: 1px solid #1A1A2E; margin-top: 4px; padding-top: 4px; }
+.viewfinder .shutter {
+  position: absolute; bottom: 22px; left: 50%;
+  transform: translateX(-50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+}
+.viewfinder .shutter::after {
+  content: ""; width: 34px; height: 34px;
+  border-radius: 50%; background: #fff;
+}
+
+/* Step 2: share screen */
+.share-step { padding: 16px 14px; }
+.share-step .top { font-size: 11px; font-weight: 600; color: var(--text); margin-bottom: 14px; }
+.share-step .top-meta { font-size: 9px; color: var(--t3); font-weight: 400; margin-top: 2px; }
+.share-step .qr {
+  width: 112px; height: 112px;
+  background: #fff; border: 0.5px solid var(--border);
+  border-radius: 8px;
+  margin: 0 auto 10px;
+  display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(7, 1fr);
+  padding: 12px; gap: 1px;
+}
+.share-step .qr .qcell { background: var(--text); border-radius: 1px; }
+.share-step .qr .qcell.off { background: transparent; }
+.share-step .link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--text);
+  background: var(--muted);
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.share-step .share-buttons {
+  display: flex; gap: 6px; justify-content: center;
+}
+.share-step .sb {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--muted); border: 0.5px solid var(--border);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.share-step .sb svg { width: 18px; height: 18px; }
+
+/* Step 3: claim mini */
+.claim-step { padding: 14px 12px; overflow: hidden; }
+.claim-step .top { font-size: 10px; color: var(--t3); margin-bottom: 4px; letter-spacing: 0.3px;}
+.claim-step .title { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+.claim-step .row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.claim-step .row .ck {
+  width: 14px; height: 14px; border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.claim-step .row.mine .ck { background: var(--green); }
+.claim-step .row.mine .ck svg { display: block; }
+.claim-step .row .ck.blank { border: 1.2px solid var(--border); background: #fff; }
+.claim-step .row .ck.pink { background: var(--p-pink-bg); }
+.claim-step .row .ck.amber { background: var(--p-amber-bg); }
+.claim-step .row .ck.purple { background: var(--p-purple-bg); }
+.claim-step .row .n {
+  flex: 1; font-size: 9px; color: var(--text); font-weight: 500;
+}
+.claim-step .row.theirs .n { color: var(--t2); }
+.claim-step .row .pr { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--t2); }
+
+.step-connector {
+  position: absolute;
+  top: 24px;
+  left: calc(16.67% + 32px);
+  right: calc(16.67% + 32px);
+  height: 1px;
+  background-image: linear-gradient(to right, var(--green-200) 0 6px, transparent 6px 12px);
+  background-size: 12px 1px;
+  z-index: 1;
+}
+
+@media (max-width: 960px) {
+  .section { padding: 64px 0; }
+  .steps { grid-template-columns: 1fr; gap: 48px; }
+  .step-connector { display: none; }
+  .h2 { font-size: 28px; letter-spacing: -0.6px; }
+  .section-head { margin-bottom: 40px; }
+}
+
+/* ── APP PREVIEW ────────────────────────────────────────────── */
+.preview-phones {
+  display: flex; gap: 32px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 64px;
+  flex-wrap: wrap;
+}
+.preview-phones .phone:nth-child(1) { transform: rotate(-2deg); }
+.preview-phones .phone:nth-child(2) { transform: rotate(2deg); }
+
+.feature-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1000px; margin: 0 auto;
+}
+.feature-mini {
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 10px;
+}
+.feature-mini .icon-wrap {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--green-50);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.feature-mini .ft-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.feature-mini .ft-body { font-size: 14px; color: var(--t2); line-height: 1.5; }
+
+@media (max-width: 768px) {
+  .feature-row { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .preview-phones .phone:nth-child(1),
+  .preview-phones .phone:nth-child(2) { transform: none; }
+}
+
+/* ── FEATURES GRID ─────────────────────────────────────────── */
+.features-bg { background: var(--surface); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.fcard {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+.fcard:hover { border-color: var(--green-200); transform: translateY(-2px); }
+.fcard .ficon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--green-50);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+.fcard .h3 { margin-bottom: 8px; }
+.fcard p { margin: 0; font-size: 15px; color: var(--t2); line-height: 1.55; }
+
+@media (max-width: 900px) {
+  .features-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .features-grid { grid-template-columns: 1fr; }
+}
+
+/* ── TESTIMONIALS ──────────────────────────────────────────── */
+.tcards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.tcard {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.tcard .quote {
+  font-size: 17px; line-height: 1.5;
+  color: var(--text); font-weight: 500;
+  letter-spacing: -0.2px;
+  text-wrap: pretty;
+}
+.tcard .person {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: auto;
+}
+.tcard .pav {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600;
+}
+.tcard .pn { font-size: 14px; font-weight: 500; color: var(--text); }
+.tcard .pr { font-size: 12px; color: var(--t3); }
+
+@media (max-width: 900px) {
+  .tcards {
+    grid-template-columns: 1fr;
+    overflow-x: auto;
+    grid-auto-flow: column;
+    grid-auto-columns: 86%;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+    margin: 0 -24px;
+    padding-left: 24px; padding-right: 24px;
+  }
+  .tcard { scroll-snap-align: start; }
+}
+
+/* ── FAQ ────────────────────────────────────────────────────── */
+.faq {
+  max-width: 760px; margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 0.5px solid var(--border);
+}
+.faq-item:first-child { border-top: 0.5px solid var(--border); }
+.faq-q {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px;
+  padding: 24px 8px;
+  background: transparent; border: none;
+  text-align: left;
+  font-size: 17px; font-weight: 500; color: var(--text);
+  letter-spacing: -0.2px;
+}
+.faq-q .chev {
+  flex-shrink: 0; width: 20px; height: 20px;
+  color: var(--green);
+  transition: transform 240ms ease;
+}
+.faq-item.open .faq-q .chev { transform: rotate(180deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 280ms ease;
+}
+.faq-a-inner {
+  padding: 0 8px 24px;
+  font-size: 16px; line-height: 1.6;
+  color: var(--t2);
+  max-width: 620px;
+}
+.faq-item.open .faq-a { max-height: 320px; }
+
+/* ── FINAL CTA ─────────────────────────────────────────────── */
+.final-cta {
+  background: var(--green-50);
+  padding: 96px 0;
+  text-align: center;
+}
+.final-cta .inner { max-width: 540px; margin: 0 auto; }
+.final-cta .h2 { margin-bottom: 14px; }
+.final-cta .body { margin-bottom: 32px; }
+.final-cta .waitlist-form { margin: 0 auto 14px; }
+.final-cta .waitlist-success { margin: 0 auto; }
+.final-cta .fine { font-size: 13px; color: var(--t3); }
+.final-cta input[type="email"] { background: #fff; }
+
+@media (max-width: 768px) {
+  .final-cta { padding: 72px 0; }
+}
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+footer {
+  background: #1A1A2E;
+  color: #9CA3AF;
+  padding: 64px 0 32px;
+}
+footer .container { padding: 0 24px; }
+.foot-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+}
+.foot-brand .wordmark .spl { color: #fff; }
+.foot-brand .wordmark .its { color: var(--green-400); }
+.foot-brand .lockup .icon { width: 28px; height: 28px; }
+.foot-brand .lockup .icon::before,
+.foot-brand .lockup .icon::after {
+  width: 6px; height: 14px; top: 7px;
+}
+.foot-brand .lockup .icon::before { left: 7px; }
+.foot-brand .lockup .icon::after  { left: 15px; }
+.foot-brand .tagline {
+  font-size: 14px; color: #9CA3AF; margin-top: 16px;
+  max-width: 240px;
+}
+.foot-col h4 {
+  font-size: 13px; font-weight: 600; color: #fff;
+  margin: 0 0 16px; letter-spacing: 0.2px;
+}
+.foot-col ul { list-style: none; padding: 0; margin: 0; }
+.foot-col li { margin-bottom: 12px; }
+.foot-col a {
+  color: #9CA3AF; font-size: 14px;
+  transition: color 140ms ease;
+}
+.foot-col a:hover { color: #fff; }
+.foot-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 24px;
+  flex-wrap: wrap; gap: 16px;
+}
+.foot-bottom .copy { font-size: 13px; color: #6B7280; }
+.foot-bottom .social {
+  display: flex; gap: 16px;
+}
+.foot-bottom .social a {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #9CA3AF;
+  transition: color 140ms ease, background 140ms ease;
+}
+.foot-bottom .social a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+@media (max-width: 768px) {
+  .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; text-align: left; }
+  .foot-bottom { justify-content: center; text-align: center; }
+}
+@media (max-width: 480px) {
+  .foot-grid { grid-template-columns: 1fr; }
+}
+
+/* ── SCROLL ANIMATIONS ─────────────────────────────────────── */
+/* Default state is visible — animation only adds polish when it runs */
+.reveal.in { animation: revealUp 600ms ease both; }
+.reveal.d1.in { animation-delay: 100ms; }
+.reveal.d2.in { animation-delay: 200ms; }
+.reveal.d3.in { animation-delay: 300ms; }
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal.in { animation: none; }
+}
+
+/* ── UTILITIES ─────────────────────────────────────────────── */
+.center { text-align: center; }
+.hide-desktop { display: none; }
+@media (max-width: 768px) {
+  .hide-mobile { display: none; }
+  .hide-desktop { display: initial; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav class="nav" id="nav" data-screen-label="Nav">
+  <div class="nav-inner">
+    <a href="#top" class="lockup" aria-label="Splits home">
+      <span class="icon" aria-hidden="true"></span>
+      <span class="wordmark"><span class="spl">spl</span><span class="its">its</span></span>
+    </a>
+    <div class="nav-links">
+      <a class="anchor" href="#how-it-works">How it works</a>
+      <a class="anchor" href="#features">Features</a>
+      <a class="anchor" href="#faq">FAQ</a>
+      <a class="btn btn-primary btn-sm" href="#cta">Join waitlist</a>
+      <button class="menu-btn" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<section id="top" class="hero" data-screen-label="01 Hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal">No more awkward bill math</span>
+        <h1 class="hero-title reveal d1">Split the bill in 60 seconds</h1>
+        <p class="body reveal d2">
+          Snap a photo of the receipt, share a link, everyone claims their items.
+          Tax and tip split fairly — no app needed for your friends.
+        </p>
+
+        <!-- PRE-LAUNCH: waitlist -->
+        <form class="waitlist-form reveal d3" id="hero-form" novalidate>
+          <input type="email" name="email" placeholder="Enter your email" aria-label="Email address" required />
+          <button type="submit" class="btn btn-primary">Join waitlist</button>
+        </form>
+        <div class="waitlist-success" id="hero-success" role="status">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9.5l3.2 3L14 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          You're on the list! 🎉 We'll notify you when Splits launches.
+        </div>
+        <!-- POST-LAUNCH: swap above with store badges
+        <div class="store-badges">
+          <a href="#"><img src="appstore.svg" alt="Download on the App Store" /></a>
+          <a href="#"><img src="googleplay.svg" alt="Get it on Google Play" /></a>
+        </div>
+        -->
+
+        <div class="social-proof reveal d3" style="margin-top: 20px;">
+          <span class="dot">🎉</span>
+          <span><strong style="color: var(--text); font-weight: 600;">1,200+</strong> people on the waitlist</span>
+        </div>
+      </div>
+
+      <div class="hero-mock-wrap">
+        <div class="float-bubble bubble-1" aria-hidden="true">
+          <span class="dot"></span>
+          <span>María claimed 4 items</span>
+        </div>
+        <div class="float-bubble bubble-2" aria-hidden="true">$52.30</div>
+
+        <div class="phone hero-mock" aria-hidden="true">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-status">
+              <span>9:41</span>
+              <span class="status-icons">
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 7.5l2-1.5 2 2 3-3 3 2.5L14 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a8 8 0 0 1 12 0M3 7a5 5 0 0 1 8 0M5.5 9a2 2 0 0 1 3 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="1" y="1" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1"/><rect x="3" y="3" width="13" height="4" rx="0.6" fill="currentColor"/><path d="M20 4v2" stroke="currentColor" stroke-linecap="round"/></svg>
+              </span>
+            </div>
+
+            <div class="claim-web-chrome">
+              <div class="claim-url">
+                <svg class="lock" viewBox="0 0 11 13" fill="none"><rect x="1" y="6" width="9" height="6" rx="1.2" stroke="#6B7280" stroke-width="1.2"/><path d="M3 6V4a2.5 2.5 0 0 1 5 0v2" stroke="#6B7280" stroke-width="1.2"/></svg>
+                <span>trysplits.com</span>
+                <span class="path">/s/earls-abc123</span>
+              </div>
+            </div>
+
+            <div class="claim-header">
+              <div class="place">EARL'S KITCHEN · TUE, MAY 12</div>
+              <div class="you">
+                <span class="you-dot"></span>
+                <span class="you-name">You're claiming as Antonio</span>
+              </div>
+              <div class="who-list">
+                <div class="avatar-stack">
+                  <div class="av" style="background: var(--p-blue-bg); color: #1E40AF;">A</div>
+                  <div class="av" style="background: var(--p-pink-bg); color: #9D174D;">M</div>
+                  <div class="av" style="background: var(--p-amber-bg); color: #92400E;">C</div>
+                  <div class="av" style="background: var(--p-purple-bg); color: #6D28D9;">S</div>
+                </div>
+                <div style="margin-left: 10px; font-size: 12px; color: var(--t3); display: inline-flex; align-items: center;">+ 4 claiming</div>
+              </div>
+            </div>
+
+            <div class="claim-items">
+              <div class="claim-section-title">Tap what you had</div>
+
+              <div class="claim-row mine">
+                <div class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.2 2L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="item-name">Truffle fries</div>
+                <div class="item-price">$12.00</div>
+              </div>
+
+              <div class="claim-row mine">
+                <div class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.2 2L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="item-name">Bavette steak</div>
+                <div class="item-price">$32.00</div>
+              </div>
+
+              <div class="claim-row theirs">
+                <div class="check pink"><span class="initial">M</span></div>
+                <div class="item-name">Burrata salad</div>
+                <div class="item-price">$18.00</div>
+              </div>
+
+              <div class="claim-row theirs">
+                <div class="check amber"><span class="initial">C</span></div>
+                <div class="item-name">Margherita pizza</div>
+                <div class="item-price">$22.00</div>
+              </div>
+
+              <div class="claim-row mine">
+                <div class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.2 2L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="item-name">Old Fashioned</div>
+                <div class="item-price">$14.00</div>
+              </div>
+
+              <div class="claim-row theirs">
+                <div class="check pink"><span class="initial">M</span></div>
+                <div class="item-name">Glass of Malbec</div>
+                <div class="item-price">$13.00</div>
+              </div>
+            </div>
+
+            <div class="claim-bottom">
+              <div class="label-stack">
+                <span class="lbl">Your total</span>
+                <span class="amt">$52.30</span>
+              </div>
+              <button class="pay-btn">Done</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ────────────────────────────────────────── -->
+<section id="how-it-works" class="section" data-screen-label="02 How it works">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="h2">How it works</h2>
+      <p class="body">From receipt to split in three taps</p>
+    </div>
+
+    <div class="steps">
+      <div class="step-connector hide-mobile" aria-hidden="true"></div>
+
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-phone">
+          <div class="step-phone-screen">
+            <div class="viewfinder">
+              <div class="vf-corner tl"></div>
+              <div class="vf-corner tr"></div>
+              <div class="vf-corner bl"></div>
+              <div class="vf-corner br"></div>
+              <div class="receipt">
+                <div class="receipt-line head">EARL'S</div>
+                <div class="receipt-line"><span>FRIES</span><span>12.00</span></div>
+                <div class="receipt-line"><span>STEAK</span><span>32.00</span></div>
+                <div class="receipt-line"><span>SALAD</span><span>18.00</span></div>
+                <div class="receipt-line"><span>PIZZA</span><span>22.00</span></div>
+                <div class="receipt-line"><span>OLD F.</span><span>14.00</span></div>
+                <div class="receipt-line"><span>WINE</span><span>13.00</span></div>
+                <div class="receipt-line total"><span>TOTAL</span><span>121.00</span></div>
+              </div>
+              <div class="shutter"></div>
+            </div>
+          </div>
+        </div>
+        <h3 class="h3">Snap the receipt</h3>
+        <p class="body-tight">Take a photo and AI reads every item, price, tax, and tip in seconds.</p>
+      </div>
+
+      <div class="step reveal d1">
+        <div class="step-num">2</div>
+        <div class="step-phone">
+          <div class="step-phone-screen">
+            <div class="share-step">
+              <div class="top">Share this split
+                <div class="top-meta">Earl's · 6 items · $121.00</div>
+              </div>
+              <div class="qr" id="qr">
+                <!-- QR generated by JS for variety; fallback pattern -->
+              </div>
+              <div class="link">trysplits.com/s/earls-abc123</div>
+              <div class="share-buttons">
+                <div class="sb"><svg viewBox="0 0 24 24" fill="none"><path d="M20 12c0-4.4-3.6-8-8-8s-8 3.6-8 8c0 1.5.4 2.9 1.1 4.1L4 20l4-1.1c1.2.7 2.6 1.1 4 1.1 4.4 0 8-3.6 8-8z" stroke="#2D8B57" stroke-width="1.5"/></svg></div>
+                <div class="sb"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8 6 8-6M4 7h16v10H4z" stroke="#2D8B57" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                <div class="sb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v12m0 0l-4-4m4 4l4-4M5 19h14" stroke="#2D8B57" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="h3">Share a link</h3>
+        <p class="body-tight">Send to your group chat. Friends open it in any browser — no app download needed.</p>
+      </div>
+
+      <div class="step reveal d2">
+        <div class="step-num">3</div>
+        <div class="step-phone">
+          <div class="step-phone-screen">
+            <div class="claim-step">
+              <div class="top">EARL'S · $121.00</div>
+              <div class="title">Tap your items</div>
+              <div class="row mine">
+                <span class="ck"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 4.7l1.6 1.6L7 2.7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="n">Fries</span><span class="pr">12.00</span>
+              </div>
+              <div class="row mine">
+                <span class="ck"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 4.7l1.6 1.6L7 2.7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="n">Steak</span><span class="pr">32.00</span>
+              </div>
+              <div class="row theirs"><span class="ck pink"></span><span class="n">Salad</span><span class="pr">18.00</span></div>
+              <div class="row theirs"><span class="ck amber"></span><span class="n">Pizza</span><span class="pr">22.00</span></div>
+              <div class="row mine">
+                <span class="ck"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 4.7l1.6 1.6L7 2.7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="n">Old Fashioned</span><span class="pr">14.00</span>
+              </div>
+              <div class="row theirs"><span class="ck purple"></span><span class="n">Malbec</span><span class="pr">13.00</span></div>
+              <div style="margin-top: 12px; padding: 8px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 9px; color: var(--t3); text-transform: uppercase; letter-spacing: 0.5px;">Your total</span>
+                <span class="mono" style="font-size: 13px; font-weight: 600; color: var(--text);">$52.30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="h3">Everyone claims their items</h3>
+        <p class="body-tight">Each person taps what they had. Tax and tip split proportionally. Done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── APP PREVIEW ─────────────────────────────────────────── -->
+<section class="section" style="padding-top: 0;" data-screen-label="03 App preview">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="h2">See it in action</h2>
+      <p class="body">The creator sees a live dashboard. Friends see a simple claim screen.</p>
+    </div>
+
+    <div class="preview-phones reveal d1">
+      <!-- Dashboard -->
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-status">
+            <span>9:41</span>
+            <span class="status-icons">
+              <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 7.5l2-1.5 2 2 3-3 3 2.5L14 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a8 8 0 0 1 12 0M3 7a5 5 0 0 1 8 0M5.5 9a2 2 0 0 1 3 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="1" y="1" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1"/><rect x="3" y="3" width="13" height="4" rx="0.6" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <div class="dash-header">
+            <div class="dash-back">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L4.5 7 9 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Splits</span>
+            </div>
+            <div class="dash-title">Earl's Kitchen</div>
+            <div class="dash-sub">Tue, May 12 · 5 people invited</div>
+          </div>
+
+          <div class="progress-ring-wrap">
+            <div class="progress-ring">
+              <svg width="140" height="140" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="60" stroke="#F3F4F6" stroke-width="10" fill="none"/>
+                <circle cx="70" cy="70" r="60" stroke="#2D8B57" stroke-width="10" fill="none"
+                  stroke-linecap="round"
+                  stroke-dasharray="376.99" stroke-dashoffset="120.6"/>
+              </svg>
+              <div class="pct">
+                68%
+                <span class="pct-sub">claimed</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-totals">
+            <div class="dash-total-card">
+              <div class="l">Claimed</div>
+              <div class="v green">$82.30</div>
+            </div>
+            <div class="dash-total-card">
+              <div class="l">Remaining</div>
+              <div class="v">$38.70</div>
+            </div>
+          </div>
+
+          <div class="dash-participants">
+            <div class="sec">Participants</div>
+            <div class="p-card">
+              <div class="p-avatar" style="background: var(--p-blue-bg); color: #1E40AF;">A</div>
+              <div class="p-info">
+                <div class="p-name">Antonio</div>
+                <div class="p-meta">3 items · just now</div>
+              </div>
+              <span class="p-amount">$52.30</span>
+            </div>
+            <div class="p-card">
+              <div class="p-avatar" style="background: var(--p-pink-bg); color: #9D174D;">M</div>
+              <div class="p-info">
+                <div class="p-name">María</div>
+                <div class="p-meta">2 items · 1m ago</div>
+              </div>
+              <span class="p-amount">$30.00</span>
+            </div>
+            <div class="p-card">
+              <div class="p-avatar" style="background: var(--p-amber-bg); color: #92400E;">C</div>
+              <div class="p-info">
+                <div class="p-name">Carlos</div>
+                <div class="p-meta">Not yet claimed</div>
+              </div>
+              <span class="p-amount pending">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compact claim phone (reuses the hero claim look but not rotated) -->
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-status">
+            <span>9:41</span>
+            <span class="status-icons">
+              <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 7.5l2-1.5 2 2 3-3 3 2.5L14 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a8 8 0 0 1 12 0M3 7a5 5 0 0 1 8 0M5.5 9a2 2 0 0 1 3 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="1" y="1" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1"/><rect x="3" y="3" width="13" height="4" rx="0.6" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <div class="claim-web-chrome">
+            <div class="claim-url">
+              <svg class="lock" viewBox="0 0 11 13" fill="none"><rect x="1" y="6" width="9" height="6" rx="1.2" stroke="#6B7280" stroke-width="1.2"/><path d="M3 6V4a2.5 2.5 0 0 1 5 0v2" stroke="#6B7280" stroke-width="1.2"/></svg>
+              <span>trysplits.com</span><span class="path">/s/earls-abc123</span>
+            </div>
+          </div>
+          <div class="claim-header">
+            <div class="place">EARL'S KITCHEN · TUE, MAY 12</div>
+            <div class="you">
+              <span class="you-dot"></span>
+              <span class="you-name">Claiming as Sofia</span>
+            </div>
+          </div>
+          <div class="claim-items">
+            <div class="claim-section-title">Tap what you had</div>
+            <div class="claim-row mine">
+              <div class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.2 2L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="item-name">Burrata salad</div>
+              <div class="item-price">$18.00</div>
+            </div>
+            <div class="claim-row" style="border: none;">
+              <div class="check" style="border: 1.5px solid var(--border);"></div>
+              <div class="item-name" style="color: var(--text); font-weight: 500;">Margherita pizza</div>
+              <div class="item-price">$22.00</div>
+            </div>
+            <div class="claim-row theirs">
+              <div class="check pink"><span class="initial">M</span></div>
+              <div class="item-name">Truffle fries</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="claim-row theirs">
+              <div class="check amber"><span class="initial">A</span></div>
+              <div class="item-name">Bavette steak</div>
+              <div class="item-price">$32.00</div>
+            </div>
+            <div class="claim-row">
+              <div class="check" style="border: 1.5px solid var(--border);"></div>
+              <div class="item-name" style="color: var(--text); font-weight: 500;">Glass of Malbec</div>
+              <div class="item-price">$13.00</div>
+            </div>
+          </div>
+          <div class="claim-bottom">
+            <div class="label-stack">
+              <span class="lbl">Your total</span>
+              <span class="amt">$22.40</span>
+            </div>
+            <button class="pay-btn">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-row reveal d2">
+      <div class="feature-mini">
+        <div class="icon-wrap">📸</div>
+        <div class="ft-title">AI-powered scanning</div>
+        <div class="ft-body">Receipt read in under 5 seconds.</div>
+      </div>
+      <div class="feature-mini">
+        <div class="icon-wrap">🔗</div>
+        <div class="ft-title">No app for friends</div>
+        <div class="ft-body">Works in any mobile browser.</div>
+      </div>
+      <div class="feature-mini">
+        <div class="icon-wrap">⚡</div>
+        <div class="ft-title">Real-time updates</div>
+        <div class="ft-body">See claims as they happen.</div>
+      </div>
+      <div class="feature-mini">
+        <div class="icon-wrap">💰</div>
+        <div class="ft-title">Fair math</div>
+        <div class="ft-body">Tax and tip split proportionally.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES GRID ───────────────────────────────────────── -->
+<section id="features" class="section features-bg" data-screen-label="04 Features">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="h2">Everything you need to split fairly</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="fcard reveal">
+        <div class="ficon">📸</div>
+        <h3 class="h3">Smart receipt scanning</h3>
+        <p>AI extracts every item, quantity, and price. Handles multi-item lines, tax, and tip automatically.</p>
+      </div>
+      <div class="fcard reveal d1">
+        <div class="ficon">🔗</div>
+        <h3 class="h3">Shareable link</h3>
+        <p>One unique link per split. Share via WhatsApp, iMessage, or QR code. No app install required.</p>
+      </div>
+      <div class="fcard reveal d2">
+        <div class="ficon">✋</div>
+        <h3 class="h3">Self-claim</h3>
+        <p>Everyone picks their own items. Shared appetizers? Claimed by multiple people and auto-divided.</p>
+      </div>
+      <div class="fcard reveal">
+        <div class="ficon">📊</div>
+        <h3 class="h3">Live dashboard</h3>
+        <p>Watch in real-time as friends join and claim. See who's missing. Send nudge reminders.</p>
+      </div>
+      <div class="fcard reveal d1">
+        <div class="ficon">👥</div>
+        <h3 class="h3">Friends &amp; history</h3>
+        <p>Build your split circle. See past splits, pending balances, and who owes what.</p>
+      </div>
+      <div class="fcard reveal d2">
+        <div class="ficon">🇺🇸</div>
+        <h3 class="h3">Built for the US</h3>
+        <p>Handles state sales tax, tipping culture (18–25%), and US payment methods: Venmo, Cash App, Zelle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS (post-launch — toggle via .show-testimonials on <body>) ── -->
+<section class="section" data-screen-label="05 Testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="h2">People love Splits</h2>
+      <p class="body">Early testers from our private beta</p>
+    </div>
+
+    <div class="tcards">
+      <div class="tcard reveal">
+        <p class="quote">"Finally! No more Venmo-requesting everyone and doing math in my notes app."</p>
+        <div class="person">
+          <div class="pav" style="background: var(--p-pink-bg); color: #9D174D;">M</div>
+          <div>
+            <div class="pn">María G.</div>
+            <div class="pr">Brooklyn, NY</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal d1">
+        <p class="quote">"The link sharing is genius. My friends don't need to download anything."</p>
+        <div class="person">
+          <div class="pav" style="background: var(--p-amber-bg); color: #92400E;">C</div>
+          <div>
+            <div class="pn">Carlos R.</div>
+            <div class="pr">Austin, TX</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal d2">
+        <p class="quote">"Used it for a group dinner of 12. Took 2 minutes. Incredible."</p>
+        <div class="person">
+          <div class="pav" style="background: var(--p-purple-bg); color: #6D28D9;">S</div>
+          <div>
+            <div class="pn">Sofia C.</div>
+            <div class="pr">San Francisco, CA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ─────────────────────────────────────────────────── -->
+<section id="faq" class="section features-bg" data-screen-label="06 FAQ">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="h2">Questions?</h2>
+    </div>
+
+    <div class="faq" id="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Do my friends need to download the app?</span>
+          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Nope! Only the person who paid needs the app. Everyone else just opens a link in their browser, enters their name, and taps what they had.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>How does the AI read receipts?</span>
+          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">We use advanced AI to extract every item, quantity, price, tax amount, and total from your receipt photo. It works in 2–5 seconds and handles most North American receipt formats.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>How are tax and tip calculated?</span>
+          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Tax and tip are split proportionally based on what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. No more equal splits on unequal orders.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>What about shared items like appetizers?</span>
+          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">If multiple people claim the same item (like a shared plate of nachos), the cost is automatically divided equally among everyone who claimed it.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Is Splits free?</span>
+          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Splits is free to use. We plan to offer optional premium features in the future, but the core split experience will always be free.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>What payment methods are supported?</span>
+          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">For now, Splits shows each person what they owe and suggests payment via Venmo, Cash App, Zelle, or Apple Pay. In-app payments are coming soon.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ───────────────────────────────────────────── -->
+<section id="cta" class="final-cta" data-screen-label="07 Final CTA">
+  <div class="container">
+    <div class="inner">
+      <h2 class="h2 reveal">Stop doing bill math</h2>
+      <p class="body reveal d1">Join the waitlist and be first to try Splits.</p>
+
+      <form class="waitlist-form reveal d2" id="cta-form" novalidate>
+        <input type="email" name="email" placeholder="Enter your email" aria-label="Email address" required />
+        <button type="submit" class="btn btn-primary">Join waitlist</button>
+      </form>
+      <div class="waitlist-success" id="cta-success" role="status">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9.5l3.2 3L14 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        You're on the list! 🎉 We'll notify you when Splits launches.
+      </div>
+
+      <p class="fine reveal d2" style="margin-top: 18px;">Free. No credit card required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer data-screen-label="08 Footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="lockup">
+          <span class="icon" aria-hidden="true"></span>
+          <span class="wordmark"><span class="spl">spl</span><span class="its">its</span></span>
+        </span>
+        <p class="tagline">Split bills fairly. Snap, claim, done.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="copy">© 2026 Splits. All rights reserved.</span>
+      <div class="social" aria-label="Social links">
+        <a href="#" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M12.2 1.5h2.3l-5 5.7L15.4 14.5h-4.6L7.3 9.9 3.3 14.5H1L6.4 8.4 1.2 1.5H6l3.1 4.1 3.1-4.1zM11.4 13.1h1.3L4.8 2.9H3.4l8 10.2z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/><circle cx="11.5" cy="4.5" r="0.7" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M11.6 1h-2v9.5a1.9 1.9 0 1 1-1.9-1.9v-2a3.9 3.9 0 1 0 3.9 3.9V6.1a4.6 4.6 0 0 0 2.8.9V5a2.6 2.6 0 0 1-2.8-2.5V1z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── NAV scroll state ───────────────────────────────────── */
+(function () {
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 8) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+/* ── Reveal on scroll ───────────────────────────────────── */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('in'));
+    return;
+  }
+  // Immediately mark anything already in the viewport as visible (no transition),
+  // so initial-load content isn't stuck at opacity 0.
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  els.forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < vh && r.bottom > 0) el.classList.add('in');
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        requestAnimationFrame(() => e.target.classList.add('in'));
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => { if (!el.classList.contains('in')) io.observe(el); });
+})();
+
+/* ── FAQ accordion (single open at a time) ──────────────── */
+(function () {
+  const items = document.querySelectorAll('.faq-item');
+  items.forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      items.forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+
+/* ── Waitlist forms ─────────────────────────────────────── */
+(function () {
+  const wire = (formId, successId) => {
+    const form = document.getElementById(formId);
+    const success = document.getElementById(successId);
+    if (!form || !success) return;
+    const input = form.querySelector('input[type="email"]');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = (input.value || '').trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      if (!valid) {
+        input.classList.add('invalid');
+        input.focus();
+        return;
+      }
+      input.classList.remove('invalid');
+      // TODO: POST to Mailchimp / Resend / Loops
+      form.classList.add('hidden');
+      success.classList.add('show');
+    });
+    input.addEventListener('input', () => input.classList.remove('invalid'));
+  };
+  wire('hero-form', 'hero-success');
+  wire('cta-form', 'cta-success');
+})();
+
+/* ── Generate QR-ish pattern for step 2 ─────────────────── */
+(function () {
+  const qr = document.getElementById('qr');
+  if (!qr) return;
+  // 7x7 deterministic pattern with finder squares in corners
+  const pattern = [
+    [1,1,1,1,1,1,1],
+    [1,0,0,0,0,0,1],
+    [1,0,1,1,1,0,1],
+    [1,0,1,0,1,0,1],
+    [1,0,1,1,1,0,1],
+    [1,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1],
+  ];
+  // Overlay a few stray pixels for "data" look (deterministic, not random)
+  const data = [
+    [0,1,0,1,0,1,0],
+    [1,0,1,0,1,0,1],
+    [0,1,0,0,1,1,0],
+    [1,0,1,1,0,0,1],
+    [0,1,0,1,0,1,0],
+    [1,0,1,0,1,0,1],
+    [0,1,0,1,0,1,0],
+  ];
+  const cells = [];
+  for (let y = 0; y < 7; y++) {
+    for (let x = 0; x < 7; x++) {
+      // Corners use finder pattern, center uses data
+      const inCorner = (x < 3 && y < 3) || (x > 3 && y < 3) || (x < 3 && y > 3);
+      const v = inCorner ? pattern[y][x] : data[y][x];
+      const div = document.createElement('div');
+      div.className = 'qcell' + (v ? '' : ' off');
+      cells.push(div);
+    }
+  }
+  qr.append(...cells);
+})();
+</script>
+
+</body>
+</html>
