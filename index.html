@@ -1748,14 +1748,36 @@ footer .container { padding: 0 24px; }
   });
 })();
 
-/* ── Waitlist forms ─────────────────────────────────────── */
+/* ── Waitlist forms → Cloudflare Worker → Airtable ─────── */
 (function () {
-  const wire = (formId, successId) => {
+  /*
+   *  After deploying worker.js to Cloudflare Workers,
+   *  paste your worker URL below (e.g. https://splits-waitlist.your-account.workers.dev)
+   */
+  const WORKER_URL = 'https://splits-waitlist.antonio-d78.workers.dev';
+
+  async function submitEmail(email, source) {
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source }),
+      });
+      return res.ok;
+    } catch (e) {
+      console.error('Submission error:', e);
+      return false;
+    }
+  }
+
+  const wire = (formId, successId, source) => {
     const form = document.getElementById(formId);
     const success = document.getElementById(successId);
     if (!form || !success) return;
     const input = form.querySelector('input[type="email"]');
-    form.addEventListener('submit', (e) => {
+    const btn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const v = (input.value || '').trim();
       const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
@@ -1765,14 +1787,24 @@ footer .container { padding: 0 24px; }
         return;
       }
       input.classList.remove('invalid');
-      // TODO: POST to Mailchimp / Resend / Loops
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      await submitEmail(v, source);
+
       form.classList.add('hidden');
       success.classList.add('show');
+
+      btn.disabled = false;
+      btn.textContent = 'Join waitlist';
     });
+
     input.addEventListener('input', () => input.classList.remove('invalid'));
   };
-  wire('hero-form', 'hero-success');
-  wire('cta-form', 'cta-success');
+
+  wire('hero-form', 'hero-success', 'hero');
+  wire('cta-form', 'cta-success', 'footer-cta');
 })();
 
 /* ── Generate QR-ish pattern for step 2 ─────────────────── */
