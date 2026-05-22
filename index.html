@@ -3,30 +3,30 @@
 <head>
 <script>document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8" />
-<title>Splits — Bill Splitting App | Split Any Bill Fairly with AI</title>
+<title>Splits — Settle Money with Your People</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Split any bill with AI. Snap a receipt, share a link — everyone claims what they had. Tax &amp; tip divided proportionally. No app download required for friends." />
+<meta name="description" content="From restaurant bills to rent, Uber rides to group trips — Splits tracks every shared expense and helps you settle up in seconds. No awkward conversations. No mental math. No chasing." />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://trysplits.com" />
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="Splits" />
-<meta property="og:title" content="Splits — Bill Splitting App" />
-<meta property="og:description" content="Split any bill with AI. Snap a receipt, share a link — everyone claims what they had. Tax &amp; tip divided proportionally. No app download required for friends." />
+<meta property="og:title" content="Splits — Settle Money with Your People" />
+<meta property="og:description" content="From restaurant bills to rent, Uber rides to group trips — Splits tracks every shared expense and helps you settle up in seconds. No awkward conversations. No mental math. No chasing." />
 <meta property="og:url" content="https://trysplits.com" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:image" content="https://trysplits.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Splits — Split any bill fairly with AI" />
+<meta property="og:image:alt" content="Splits — Settle money with your people" />
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Splits — Bill Splitting App" />
-<meta name="twitter:description" content="Snap a receipt, share a link — everyone claims what they had. No app needed for friends." />
+<meta name="twitter:title" content="Splits — Settle Money with Your People" />
+<meta name="twitter:description" content="Track every shared expense and settle up in seconds. No awkward conversations. No mental math. No chasing." />
 <meta name="twitter:image" content="https://trysplits.com/og-image.png" />
-<meta name="twitter:image:alt" content="Splits — Split any bill fairly with AI" />
+<meta name="twitter:image:alt" content="Splits — Settle money with your people" />
 
 <!-- Favicon / app icons -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -44,7 +44,7 @@
     "@type": "WebSite",
     "name": "Splits",
     "url": "https://trysplits.com",
-    "description": "Split any bill with AI. Snap a receipt, share a link — everyone claims what they had."
+    "description": "Settle money with your people. From restaurant bills to rent, Splits tracks every shared expense and helps you settle up in seconds."
   },
   {
     "@context": "https://schema.org",
@@ -52,7 +52,7 @@
     "name": "Splits",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "iOS, Android",
-    "description": "AI-powered bill splitting app. Snap a receipt photo, share a link, and each person claims what they had. Tax and tip are split proportionally. Friends need no app — just a browser link.",
+    "description": "Settle money with your people. From restaurant bills to rent, Uber rides to group trips — Splits tracks every shared expense and helps you settle up in seconds. No awkward conversations. No mental math. No chasing.",
     "url": "https://trysplits.com",
     "offers": {
       "@type": "Offer",
@@ -61,10 +61,12 @@
     },
     "featureList": [
       "AI-powered receipt scanning",
+      "Relationship ledger — always-current view of who owes who",
       "Shareable link — no app required for friends",
+      "One-tap settle via Venmo, Cash App, or Zelle",
       "Proportional tax and tip splitting",
       "Real-time claim tracking dashboard",
-      "Shared item auto-division"
+      "Quick expense add — no receipt needed"
     ]
   },
   {
@@ -73,7 +75,7 @@
     "name": "Splits",
     "url": "https://trysplits.com",
     "logo": "https://trysplits.com/favicon.svg",
-    "description": "Splits helps groups split bills fairly using AI-powered receipt scanning and shareable claim links."
+    "description": "Splits helps you and your people settle money — instantly, fairly, and without the awkwardness. AI receipt scanning, relationship ledger, one-tap settle."
   },
   {
     "@context": "https://schema.org",
@@ -125,6 +127,22 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Splits shows each person what they owe and suggests payment via Venmo, Cash App, Zelle, or Apple Pay. In-app payments are coming soon."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I track expenses other than restaurant receipts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. You can add any shared expense in seconds — Uber rides, groceries, rent, utilities, group trip costs. No receipt needed. Just log what you paid and who owes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Splits help with ongoing balances between friends or roommates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Splits maintains a relationship ledger so you always know who owes who across all your shared expenses. See your balance with every person at a glance — all updated in real time."
         }
       }
     ]
@@ -1048,6 +1066,185 @@ footer .container { padding: 0 24px; }
   .reveal.in { animation: none; }
 }
 
+/* ── FEATURES GRID 2-COL OVERRIDE ──────────────────────────── */
+.features-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 900px) {
+  .features-grid-2 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .features-grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ── FLOW B ─────────────────────────────────────────────────── */
+.flow-section-label {
+  margin-bottom: 0;
+}
+.flow-divider {
+  text-align: center;
+  margin: 60px 0 40px;
+  position: relative;
+}
+.flow-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 0.5px;
+  background: var(--border);
+  transform: translateY(-50%);
+}
+.flow-divider span {
+  position: relative;
+  background: var(--bg);
+  padding: 0 20px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+.flow-b-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.flow-b-copy .eyebrow { margin-bottom: 4px; display: block; }
+.flow-b-examples {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 20px;
+}
+.flow-b-example {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; color: var(--t2);
+}
+.flow-b-example .ex-icon { font-size: 18px; flex-shrink: 0; }
+.flow-b-visual { display: flex; justify-content: center; }
+.quick-add-card {
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  width: 260px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.quick-add-card .qa-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--t3); letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.quick-add-card .qa-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.quick-add-card .qa-row:last-of-type { border-bottom: none; }
+.quick-add-card .qa-desc { font-size: 13px; font-weight: 500; color: var(--text); }
+.quick-add-card .qa-sub { font-size: 11px; color: var(--t3); margin-top: 2px; }
+.quick-add-card .qa-amt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 600; color: var(--text);
+}
+.quick-add-card .qa-add-btn {
+  width: 100%; height: 36px;
+  background: var(--green); color: #fff;
+  border: none; border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  margin-top: 12px; cursor: pointer;
+}
+@media (max-width: 768px) {
+  .flow-b-card { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
+  .flow-b-visual { display: none; }
+}
+
+/* ── USE CASES ──────────────────────────────────────────────── */
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.use-case-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 24px 28px;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+.use-case-card:hover { border-color: var(--green-200); transform: translateY(-2px); }
+.use-case-card .uc-emoji { font-size: 32px; margin-bottom: 12px; display: block; }
+.use-case-card .uc-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.use-case-card .uc-body { font-size: 14px; color: var(--t2); line-height: 1.55; }
+@media (max-width: 960px) {
+  .use-cases-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .use-cases-grid { grid-template-columns: 1fr; }
+}
+
+/* ── PAIN POINT ─────────────────────────────────────────────── */
+.pain-section {
+  background: #1A1A2E;
+  padding: 96px 0;
+  text-align: center;
+}
+.pain-stat {
+  font-size: 64px; font-weight: 700;
+  color: var(--green-400);
+  letter-spacing: -3px; line-height: 1;
+  margin-bottom: 20px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.pain-headline {
+  font-size: 30px; font-weight: 600;
+  color: #fff; letter-spacing: -0.5px;
+  max-width: 600px; margin: 0 auto 20px;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.pain-body {
+  font-size: 18px; color: #9CA3AF;
+  max-width: 540px; margin: 0 auto;
+  line-height: 1.65;
+}
+.pain-body strong { color: #E5E7EB; }
+@media (max-width: 768px) {
+  .pain-stat { font-size: 48px; }
+  .pain-headline { font-size: 24px; }
+  .pain-section { padding: 72px 0; }
+}
+
+/* ── WHY SPLITS ─────────────────────────────────────────────── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px; margin: 0 auto;
+}
+.why-card {
+  display: flex; flex-direction: column;
+  align-items: flex-start; gap: 12px;
+  padding: 28px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-card);
+}
+.why-card .why-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--green-50);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.why-card .why-title { font-size: 16px; font-weight: 600; color: var(--text); }
+.why-card .why-body { font-size: 14px; color: var(--t2); line-height: 1.6; }
+@media (max-width: 768px) {
+  .why-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
 /* ── UTILITIES ─────────────────────────────────────────────── */
 .center { text-align: center; }
 .hide-desktop { display: none; }
@@ -1069,6 +1266,7 @@ footer .container { padding: 0 24px; }
     <div class="nav-links">
       <a class="anchor" href="#how-it-works">How it works</a>
       <a class="anchor" href="#features">Features</a>
+      <a class="anchor" href="#use-cases">Use cases</a>
       <a class="anchor" href="#faq">FAQ</a>
       <a class="btn btn-primary btn-sm" href="#cta">Join waitlist</a>
       <button class="menu-btn" aria-label="Menu">
@@ -1085,11 +1283,10 @@ footer .container { padding: 0 24px; }
   <div class="container">
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow reveal">No more awkward bill math</span>
-        <h1 class="hero-title reveal d1">Split the bill in 60 seconds</h1>
+        <span class="eyebrow reveal">No awkward conversations. No mental math.</span>
+        <h1 class="hero-title reveal d1">Settle money with your people.</h1>
         <p class="body reveal d2">
-          Snap a photo of the receipt, share a link, everyone claims their items.
-          Tax and tip split fairly — no app needed for your friends.
+          From restaurant bills to rent, Uber rides to group trips — Splits tracks every shared expense and helps you settle up in seconds. No awkward conversations. No mental math. No chasing.
         </p>
 
         <!-- PRE-LAUNCH: waitlist -->
@@ -1217,10 +1414,15 @@ footer .container { padding: 0 24px; }
   <div class="container">
     <div class="section-head reveal">
       <h2 class="h2">How it works</h2>
-      <p class="body">From receipt to split in three taps</p>
+      <p class="body">Two ways to use Splits — pick your moment</p>
     </div>
 
-    <div class="steps">
+    <div class="flow-section-label reveal">
+      <span class="eyebrow">Flow A: Receipt Split</span>
+      <p class="body-tight" style="margin-top: 6px;">The flashy one. Snap any receipt and your group settles in seconds.</p>
+    </div>
+
+    <div class="steps" style="margin-top: 32px;">
       <div class="step-connector hide-mobile" aria-hidden="true"></div>
 
       <div class="step reveal">
@@ -1246,8 +1448,8 @@ footer .container { padding: 0 24px; }
             </div>
           </div>
         </div>
-        <h3 class="h3">Snap the receipt</h3>
-        <p class="body-tight">Take a photo and AI reads every item, price, tax, and tip in seconds.</p>
+        <h3 class="h3">Snap a receipt</h3>
+        <p class="body-tight">Take a photo and AI reads every item, price, tax, and tip in seconds. No manual entry.</p>
       </div>
 
       <div class="step reveal d1">
@@ -1271,7 +1473,7 @@ footer .container { padding: 0 24px; }
           </div>
         </div>
         <h3 class="h3">Share a link</h3>
-        <p class="body-tight">Send to your group chat. Friends open it in any browser — no app download needed.</p>
+        <p class="body-tight">Send to your group via WhatsApp, text, anywhere. Friends open it in any browser — no app, no signup needed.</p>
       </div>
 
       <div class="step reveal d2">
@@ -1307,6 +1509,51 @@ footer .container { padding: 0 24px; }
         <p class="body-tight">Each person taps what they had. Tax and tip split proportionally. Done.</p>
       </div>
     </div>
+
+    <!-- Flow B -->
+    <div class="flow-divider reveal"><span>Flow B: Quick Expenses</span></div>
+
+    <div class="flow-b-card reveal">
+      <div class="flow-b-copy">
+        <span class="eyebrow">The everyday use case</span>
+        <h3 class="h3" style="margin-top: 8px; margin-bottom: 12px;">No receipt? No problem.</h3>
+        <p class="body-tight">Paid for the Uber? Covered groceries? Spotted someone for lunch? Add it in 5 seconds — no receipt, no photos, no fuss. Splits tracks the balance so you both know where you stand.</p>
+        <div class="flow-b-examples">
+          <div class="flow-b-example"><span class="ex-icon">🚗</span><span>Covered an Uber for the group</span></div>
+          <div class="flow-b-example"><span class="ex-icon">🛒</span><span>Bought groceries for the house</span></div>
+          <div class="flow-b-example"><span class="ex-icon">🎟️</span><span>Paid for everyone's movie tickets</span></div>
+          <div class="flow-b-example"><span class="ex-icon">⚡</span><span>Split a utility bill with your roommate</span></div>
+        </div>
+      </div>
+      <div class="flow-b-visual" aria-hidden="true">
+        <div class="quick-add-card">
+          <div class="qa-label">Recent expenses</div>
+          <div class="qa-row">
+            <div>
+              <div class="qa-desc">🚗 Uber home</div>
+              <div class="qa-sub">You + Carlos · Tonight</div>
+            </div>
+            <div class="qa-amt">$18.50</div>
+          </div>
+          <div class="qa-row">
+            <div>
+              <div class="qa-desc">🛒 Trader Joe's run</div>
+              <div class="qa-sub">You + María + Sofia</div>
+            </div>
+            <div class="qa-amt">$64.20</div>
+          </div>
+          <div class="qa-row">
+            <div>
+              <div class="qa-desc">⚡ March electric</div>
+              <div class="qa-sub">Apartment split · 4 people</div>
+            </div>
+            <div class="qa-amt">$112.00</div>
+          </div>
+          <button class="qa-add-btn">+ Add expense</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1489,39 +1736,109 @@ footer .container { padding: 0 24px; }
 <section id="features" class="section features-bg" data-screen-label="04 Features">
   <div class="container">
     <div class="section-head reveal">
-      <h2 class="h2">Everything you need to split fairly</h2>
+      <h2 class="h2">Built for real life</h2>
+      <p class="body">Everything you need to share money without the headache</p>
     </div>
 
-    <div class="features-grid">
+    <div class="features-grid features-grid-2">
       <div class="fcard reveal">
         <div class="ficon">📸</div>
-        <h3 class="h3">Smart receipt scanning</h3>
-        <p>AI extracts every item, quantity, and price. Handles multi-item lines, tax, and tip automatically.</p>
+        <h3 class="h3">AI-Powered Receipt Scanning</h3>
+        <p>Snap any receipt — restaurant, bar, grocery store. Our AI reads every item, price, tax, and tip instantly. No manual entry, no typos, no spreadsheets.</p>
       </div>
       <div class="fcard reveal d1">
-        <div class="ficon">🔗</div>
-        <h3 class="h3">Shareable link</h3>
-        <p>One unique link per split. Share via WhatsApp, iMessage, or QR code. No app install required.</p>
-      </div>
-      <div class="fcard reveal d2">
-        <div class="ficon">✋</div>
-        <h3 class="h3">Self-claim</h3>
-        <p>Everyone picks their own items. Shared appetizers? Claimed by multiple people and auto-divided.</p>
-      </div>
-      <div class="fcard reveal">
         <div class="ficon">📊</div>
-        <h3 class="h3">Live dashboard</h3>
-        <p>Watch in real-time as friends join and claim. See who's missing. Send nudge reminders.</p>
+        <h3 class="h3">Know Where You Stand</h3>
+        <p>See your balance with every person at a glance. Who owes you, who you owe — all updated in real-time. No more "hey, did I ever pay you back?"</p>
       </div>
       <div class="fcard reveal d1">
-        <div class="ficon">👥</div>
-        <h3 class="h3">Friends &amp; history</h3>
-        <p>Build your split circle. See past splits, pending balances, and who owes what.</p>
+        <div class="ficon">💸</div>
+        <h3 class="h3">Settle Up in One Tap</h3>
+        <p>Send a Venmo request, Cash App, or Zelle payment with the exact amount pre-filled. Or just mark it settled. The goal: $0 balance, zero awkwardness.</p>
       </div>
       <div class="fcard reveal d2">
-        <div class="ficon">🌍</div>
-        <h3 class="h3">Starting in the US</h3>
-        <p>Launching with US state sales tax, tipping culture (18–25%), and payment methods like Venmo, Cash App, and Zelle — with more regions on the way.</p>
+        <div class="ficon">🔗</div>
+        <h3 class="h3">No App? No Problem.</h3>
+        <p>When you share a split, your friends open it in their browser. No download, no signup required. They claim their items, see their total — done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── USE CASES ─────────────────────────────────────────── -->
+<section id="use-cases" class="section" data-screen-label="05 Use Cases">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="h2">Splits works for everything</h2>
+      <p class="body">Not just dinner. Every shared expense, every kind of group.</p>
+    </div>
+
+    <div class="use-cases-grid">
+      <div class="use-case-card reveal">
+        <span class="uc-emoji">🍽️</span>
+        <div class="uc-title">Dinner with friends</div>
+        <div class="uc-body">Scan the receipt. Everyone claims what they ordered. Tax and tip split proportionally. No debate, no drama.</div>
+      </div>
+      <div class="use-case-card reveal d1">
+        <span class="uc-emoji">🏠</span>
+        <div class="uc-title">Roommates</div>
+        <div class="uc-body">Track rent, utilities, groceries, household supplies. Always know who's up and who owes — no more dry-erase board math.</div>
+      </div>
+      <div class="use-case-card reveal d2">
+        <span class="uc-emoji">✈️</span>
+        <div class="uc-title">Group trips</div>
+        <div class="uc-body">10 days, 15 receipts, 6 people. One app settles everything. Airbnb, meals, activities — all tracked, all fair.</div>
+      </div>
+      <div class="use-case-card reveal">
+        <span class="uc-emoji">👫</span>
+        <div class="uc-title">Couples</div>
+        <div class="uc-body">Split shared expenses fairly without the spreadsheet. Groceries, subscriptions, date night — always know where you stand.</div>
+      </div>
+      <div class="use-case-card reveal d1">
+        <span class="uc-emoji">🎉</span>
+        <div class="uc-title">Events &amp; group gifts</div>
+        <div class="uc-body">Collecting for a birthday party, bachelor trip, or office lunch? Share one link. Everyone pays their share. You stop chasing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PAIN POINT ─────────────────────────────────────────── -->
+<section class="pain-section" data-screen-label="06 Pain Point">
+  <div class="container">
+    <div class="pain-stat reveal">67%</div>
+    <h2 class="pain-headline reveal d1">of people say money causes tension in friendships.</h2>
+    <p class="pain-body reveal d2">
+      Ever Venmo-requested someone three times and felt terrible about it? 
+      <strong>Splits handles the awkward part so you don't have to.</strong>
+      $0 owed = $0 awkwardness.
+    </p>
+  </div>
+</section>
+
+<!-- ── WHY SPLITS ─────────────────────────────────────────── -->
+<section class="section" data-screen-label="07 Why Splits">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="h2">Built different</h2>
+      <p class="body">Why people choose Splits over everything else</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">No limits. No paywalls.</div>
+        <div class="why-body">Unlike other apps, we don't limit your expenses or lock basic features behind a subscription. The full experience is free.</div>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="why-icon">📱</div>
+        <div class="why-title">Your friends don't need the app.</div>
+        <div class="why-body">Share a link. Your friends open it in any browser, claim their items, and see their total. No download, no account, no friction.</div>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-icon">🤖</div>
+        <div class="why-title">AI does the work.</div>
+        <div class="why-body">Point your camera at any receipt. Our AI reads every item, price, tax, and tip in seconds. You just snap and share — that's it.</div>
       </div>
     </div>
   </div>
@@ -1628,8 +1945,8 @@ footer .container { padding: 0 24px; }
 <section id="cta" class="final-cta" data-screen-label="07 Final CTA">
   <div class="container">
     <div class="inner">
-      <h2 class="h2 reveal">Stop doing bill math</h2>
-      <p class="body reveal d1">Join the waitlist and be first to try Splits.</p>
+      <h2 class="h2 reveal">Done chasing payments.</h2>
+      <p class="body reveal d1">Join thousands of people who are done splitting bills on napkins and Venmo-requesting the same person three times.</p>
 
       <form class="waitlist-form reveal d2" id="cta-form" novalidate>
         <input type="email" name="email" placeholder="Enter your email" aria-label="Email address" required />
@@ -1654,13 +1971,14 @@ footer .container { padding: 0 24px; }
           <span class="icon" aria-hidden="true"></span>
           <span class="wordmark"><span class="spl">spl</span><span class="its">its</span></span>
         </span>
-        <p class="tagline">Split bills fairly. Snap, claim, done.</p>
+        <p class="tagline">Settle money with your people — instantly, fairly, and without the awkwardness.</p>
       </div>
       <div class="foot-col">
         <h4>Product</h4>
         <ul>
           <li><a href="#how-it-works">How it works</a></li>
           <li><a href="#features">Features</a></li>
+          <li><a href="#use-cases">Use cases</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
