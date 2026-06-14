@@ -1252,6 +1252,67 @@ footer .container { padding: 0 24px; }
   .hide-mobile { display: none; }
   .hide-desktop { display: initial; }
 }
+
+/* ── SCREEN IMAGES ──────────────────────────────────────────── */
+.phone-screen img,
+.step-phone-screen img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  display: block;
+}
+
+/* ── FEATURE SHOWCASE ───────────────────────────────────────── */
+.feature-showcase {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 64px;
+  align-items: center;
+  padding: 56px 0;
+  border-bottom: 0.5px solid var(--border);
+  max-width: 960px;
+  margin: 0 auto;
+}
+.feature-showcase:last-of-type { border-bottom: none; }
+.feature-showcase-reverse {
+  grid-template-columns: 260px 1fr;
+}
+.feature-showcase-reverse .feature-showcase-copy { order: 2; }
+.feature-showcase-reverse .feature-showcase-visual { order: 1; }
+.feature-showcase-visual {
+  display: flex; justify-content: center; align-items: center;
+}
+.feature-showcase .ficon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--green-50);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.feature-showcase .feature-showcase-copy h3 { margin-bottom: 12px; }
+.feature-showcase .feature-showcase-copy p {
+  margin: 0; font-size: 16px; color: var(--t2); line-height: 1.6;
+}
+.feature-showcase .phone-sm {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 4px 20px rgba(0,0,0,0.08);
+  transform: rotate(1.5deg);
+}
+.feature-showcase-reverse .phone-sm {
+  transform: rotate(-1.5deg);
+}
+@media (max-width: 800px) {
+  .feature-showcase,
+  .feature-showcase-reverse {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 40px 0;
+  }
+  .feature-showcase-reverse .feature-showcase-copy { order: 1; }
+  .feature-showcase-reverse .feature-showcase-visual { order: 2; }
+  .feature-showcase-visual { display: none; }
+  .feature-showcase .phone-sm,
+  .feature-showcase-reverse .phone-sm { transform: none; }
+}
 </style>
 </head>
 <body>
@@ -1314,94 +1375,14 @@ footer .container { padding: 0 24px; }
       <div class="hero-mock-wrap">
         <div class="float-bubble bubble-1" aria-hidden="true">
           <span class="dot"></span>
-          <span>María claimed 4 items</span>
+          <span>Sofia settled up ✓</span>
         </div>
-        <div class="float-bubble bubble-2" aria-hidden="true">$52.30</div>
+        <div class="float-bubble bubble-2" aria-hidden="true">You're owed $162</div>
 
         <div class="phone hero-mock" aria-hidden="true">
           <div class="phone-notch"></div>
           <div class="phone-screen">
-            <div class="phone-status">
-              <span>9:41</span>
-              <span class="status-icons">
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 7.5l2-1.5 2 2 3-3 3 2.5L14 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a8 8 0 0 1 12 0M3 7a5 5 0 0 1 8 0M5.5 9a2 2 0 0 1 3 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="1" y="1" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1"/><rect x="3" y="3" width="13" height="4" rx="0.6" fill="currentColor"/><path d="M20 4v2" stroke="currentColor" stroke-linecap="round"/></svg>
-              </span>
-            </div>
-
-            <div class="claim-web-chrome">
-              <div class="claim-url">
-                <svg class="lock" viewBox="0 0 11 13" fill="none"><rect x="1" y="6" width="9" height="6" rx="1.2" stroke="#6B7280" stroke-width="1.2"/><path d="M3 6V4a2.5 2.5 0 0 1 5 0v2" stroke="#6B7280" stroke-width="1.2"/></svg>
-                <span>trysplits.com</span>
-                <span class="path">/s/earls-abc123</span>
-              </div>
-            </div>
-
-            <div class="claim-header">
-              <div class="place">EARL'S KITCHEN · TUE, MAY 12</div>
-              <div class="you">
-                <span class="you-dot"></span>
-                <span class="you-name">You're claiming as Antonio</span>
-              </div>
-              <div class="who-list">
-                <div class="avatar-stack">
-                  <div class="av" style="background: var(--p-blue-bg); color: #1E40AF;">A</div>
-                  <div class="av" style="background: var(--p-pink-bg); color: #9D174D;">M</div>
-                  <div class="av" style="background: var(--p-amber-bg); color: #92400E;">C</div>
-                  <div class="av" style="background: var(--p-purple-bg); color: #6D28D9;">S</div>
-                </div>
-                <div style="margin-left: 10px; font-size: 12px; color: var(--t3); display: inline-flex; align-items: center;">+ 4 claiming</div>
-              </div>
-            </div>
-
-            <div class="claim-items">
-              <div class="claim-section-title">Tap what you had</div>
-
-              <div class="claim-row mine">
-                <div class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.2 2L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <div class="item-name">Truffle fries</div>
-                <div class="item-price">$12.00</div>
-              </div>
-
-              <div class="claim-row mine">
-                <div class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.2 2L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <div class="item-name">Bavette steak</div>
-                <div class="item-price">$32.00</div>
-              </div>
-
-              <div class="claim-row theirs">
-                <div class="check pink"><span class="initial">M</span></div>
-                <div class="item-name">Burrata salad</div>
-                <div class="item-price">$18.00</div>
-              </div>
-
-              <div class="claim-row theirs">
-                <div class="check amber"><span class="initial">C</span></div>
-                <div class="item-name">Margherita pizza</div>
-                <div class="item-price">$22.00</div>
-              </div>
-
-              <div class="claim-row mine">
-                <div class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.2 2L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <div class="item-name">Old Fashioned</div>
-                <div class="item-price">$14.00</div>
-              </div>
-
-              <div class="claim-row theirs">
-                <div class="check pink"><span class="initial">M</span></div>
-                <div class="item-name">Glass of Malbec</div>
-                <div class="item-price">$13.00</div>
-              </div>
-            </div>
-
-            <div class="claim-bottom">
-              <div class="label-stack">
-                <span class="lbl">Your total</span>
-                <span class="amt">$52.30</span>
-              </div>
-              <button class="pay-btn">Done</button>
-            </div>
+            <img src="/screens/09-home-active.png" alt="Splits home screen showing who owes you and who you owe" loading="eager" />
           </div>
         </div>
       </div>
@@ -1429,23 +1410,7 @@ footer .container { padding: 0 24px; }
         <div class="step-num">1</div>
         <div class="step-phone">
           <div class="step-phone-screen">
-            <div class="viewfinder">
-              <div class="vf-corner tl"></div>
-              <div class="vf-corner tr"></div>
-              <div class="vf-corner bl"></div>
-              <div class="vf-corner br"></div>
-              <div class="receipt">
-                <div class="receipt-line head">EARL'S</div>
-                <div class="receipt-line"><span>FRIES</span><span>12.00</span></div>
-                <div class="receipt-line"><span>STEAK</span><span>32.00</span></div>
-                <div class="receipt-line"><span>SALAD</span><span>18.00</span></div>
-                <div class="receipt-line"><span>PIZZA</span><span>22.00</span></div>
-                <div class="receipt-line"><span>OLD F.</span><span>14.00</span></div>
-                <div class="receipt-line"><span>WINE</span><span>13.00</span></div>
-                <div class="receipt-line total"><span>TOTAL</span><span>121.00</span></div>
-              </div>
-              <div class="shutter"></div>
-            </div>
+            <img src="/screens/10-camera.png" alt="Camera viewfinder pointing at a restaurant receipt" loading="lazy" />
           </div>
         </div>
         <h3 class="h3">Snap a receipt</h3>
@@ -1456,20 +1421,7 @@ footer .container { padding: 0 24px; }
         <div class="step-num">2</div>
         <div class="step-phone">
           <div class="step-phone-screen">
-            <div class="share-step">
-              <div class="top">Share this split
-                <div class="top-meta">Earl's · 6 items · $121.00</div>
-              </div>
-              <div class="qr" id="qr">
-                <!-- QR generated by JS for variety; fallback pattern -->
-              </div>
-              <div class="link">trysplits.com/s/earls-abc123</div>
-              <div class="share-buttons">
-                <div class="sb"><svg viewBox="0 0 24 24" fill="none"><path d="M20 12c0-4.4-3.6-8-8-8s-8 3.6-8 8c0 1.5.4 2.9 1.1 4.1L4 20l4-1.1c1.2.7 2.6 1.1 4 1.1 4.4 0 8-3.6 8-8z" stroke="#2D8B57" stroke-width="1.5"/></svg></div>
-                <div class="sb"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8 6 8-6M4 7h16v10H4z" stroke="#2D8B57" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-                <div class="sb"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v12m0 0l-4-4m4 4l4-4M5 19h14" stroke="#2D8B57" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              </div>
-            </div>
+            <img src="/screens/13-share.png" alt="Share split link via WhatsApp, text, or QR code" loading="lazy" />
           </div>
         </div>
         <h3 class="h3">Share a link</h3>
@@ -1480,29 +1432,7 @@ footer .container { padding: 0 24px; }
         <div class="step-num">3</div>
         <div class="step-phone">
           <div class="step-phone-screen">
-            <div class="claim-step">
-              <div class="top">EARL'S · $121.00</div>
-              <div class="title">Tap your items</div>
-              <div class="row mine">
-                <span class="ck"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 4.7l1.6 1.6L7 2.7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="n">Fries</span><span class="pr">12.00</span>
-              </div>
-              <div class="row mine">
-                <span class="ck"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 4.7l1.6 1.6L7 2.7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="n">Steak</span><span class="pr">32.00</span>
-              </div>
-              <div class="row theirs"><span class="ck pink"></span><span class="n">Salad</span><span class="pr">18.00</span></div>
-              <div class="row theirs"><span class="ck amber"></span><span class="n">Pizza</span><span class="pr">22.00</span></div>
-              <div class="row mine">
-                <span class="ck"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M2 4.7l1.6 1.6L7 2.7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="n">Old Fashioned</span><span class="pr">14.00</span>
-              </div>
-              <div class="row theirs"><span class="ck purple"></span><span class="n">Malbec</span><span class="pr">13.00</span></div>
-              <div style="margin-top: 12px; padding: 8px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 9px; color: var(--t3); text-transform: uppercase; letter-spacing: 0.5px;">Your total</span>
-                <span class="mono" style="font-size: 13px; font-weight: 600; color: var(--text);">$52.30</span>
-              </div>
-            </div>
+            <img src="/screens/16-claim-items.png" alt="Each person taps what they ordered to claim their items" loading="lazy" />
           </div>
         </div>
         <h3 class="h3">Everyone claims their items</h3>
@@ -1526,30 +1456,11 @@ footer .container { padding: 0 24px; }
         </div>
       </div>
       <div class="flow-b-visual" aria-hidden="true">
-        <div class="quick-add-card">
-          <div class="qa-label">Recent expenses</div>
-          <div class="qa-row">
-            <div>
-              <div class="qa-desc">🚗 Uber home</div>
-              <div class="qa-sub">You + Carlos · Tonight</div>
-            </div>
-            <div class="qa-amt">$18.50</div>
+        <div class="phone phone-sm" style="box-shadow: 0 12px 40px rgba(0,0,0,0.12);">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="/screens/10b-manual-split.png" alt="Quick expense entry — add an expense in 5 seconds" loading="lazy" />
           </div>
-          <div class="qa-row">
-            <div>
-              <div class="qa-desc">🛒 Trader Joe's run</div>
-              <div class="qa-sub">You + María + Sofia</div>
-            </div>
-            <div class="qa-amt">$64.20</div>
-          </div>
-          <div class="qa-row">
-            <div>
-              <div class="qa-desc">⚡ March electric</div>
-              <div class="qa-sub">Apartment split · 4 people</div>
-            </div>
-            <div class="qa-amt">$112.00</div>
-          </div>
-          <button class="qa-add-btn">+ Add expense</button>
         </div>
       </div>
     </div>
@@ -1566,143 +1477,19 @@ footer .container { padding: 0 24px; }
     </div>
 
     <div class="preview-phones reveal d1">
-      <!-- Dashboard -->
+      <!-- Dashboard — creator view -->
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="phone-screen">
-          <div class="phone-status">
-            <span>9:41</span>
-            <span class="status-icons">
-              <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 7.5l2-1.5 2 2 3-3 3 2.5L14 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a8 8 0 0 1 12 0M3 7a5 5 0 0 1 8 0M5.5 9a2 2 0 0 1 3 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-              <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="1" y="1" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1"/><rect x="3" y="3" width="13" height="4" rx="0.6" fill="currentColor"/></svg>
-            </span>
-          </div>
-          <div class="dash-header">
-            <div class="dash-back">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L4.5 7 9 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>Splits</span>
-            </div>
-            <div class="dash-title">Earl's Kitchen</div>
-            <div class="dash-sub">Tue, May 12 · 5 people invited</div>
-          </div>
-
-          <div class="progress-ring-wrap">
-            <div class="progress-ring">
-              <svg width="140" height="140" viewBox="0 0 140 140">
-                <circle cx="70" cy="70" r="60" stroke="#F3F4F6" stroke-width="10" fill="none"/>
-                <circle cx="70" cy="70" r="60" stroke="#2D8B57" stroke-width="10" fill="none"
-                  stroke-linecap="round"
-                  stroke-dasharray="376.99" stroke-dashoffset="120.6"/>
-              </svg>
-              <div class="pct">
-                68%
-                <span class="pct-sub">claimed</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="dash-totals">
-            <div class="dash-total-card">
-              <div class="l">Claimed</div>
-              <div class="v green">$82.30</div>
-            </div>
-            <div class="dash-total-card">
-              <div class="l">Remaining</div>
-              <div class="v">$38.70</div>
-            </div>
-          </div>
-
-          <div class="dash-participants">
-            <div class="sec">Participants</div>
-            <div class="p-card">
-              <div class="p-avatar" style="background: var(--p-blue-bg); color: #1E40AF;">A</div>
-              <div class="p-info">
-                <div class="p-name">Antonio</div>
-                <div class="p-meta">3 items · just now</div>
-              </div>
-              <span class="p-amount">$52.30</span>
-            </div>
-            <div class="p-card">
-              <div class="p-avatar" style="background: var(--p-pink-bg); color: #9D174D;">M</div>
-              <div class="p-info">
-                <div class="p-name">María</div>
-                <div class="p-meta">2 items · 1m ago</div>
-              </div>
-              <span class="p-amount">$30.00</span>
-            </div>
-            <div class="p-card">
-              <div class="p-avatar" style="background: var(--p-amber-bg); color: #92400E;">C</div>
-              <div class="p-info">
-                <div class="p-name">Carlos</div>
-                <div class="p-meta">Not yet claimed</div>
-              </div>
-              <span class="p-amount pending">—</span>
-            </div>
-          </div>
+          <img src="/screens/14-dashboard.png" alt="Split dashboard showing who has claimed what and payment status" loading="lazy" />
         </div>
       </div>
 
-      <!-- Compact claim phone (reuses the hero claim look but not rotated) -->
+      <!-- Claim — guest view in browser -->
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="phone-screen">
-          <div class="phone-status">
-            <span>9:41</span>
-            <span class="status-icons">
-              <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 7.5l2-1.5 2 2 3-3 3 2.5L14 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a8 8 0 0 1 12 0M3 7a5 5 0 0 1 8 0M5.5 9a2 2 0 0 1 3 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-              <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="1" y="1" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1"/><rect x="3" y="3" width="13" height="4" rx="0.6" fill="currentColor"/></svg>
-            </span>
-          </div>
-          <div class="claim-web-chrome">
-            <div class="claim-url">
-              <svg class="lock" viewBox="0 0 11 13" fill="none"><rect x="1" y="6" width="9" height="6" rx="1.2" stroke="#6B7280" stroke-width="1.2"/><path d="M3 6V4a2.5 2.5 0 0 1 5 0v2" stroke="#6B7280" stroke-width="1.2"/></svg>
-              <span>trysplits.com</span><span class="path">/s/earls-abc123</span>
-            </div>
-          </div>
-          <div class="claim-header">
-            <div class="place">EARL'S KITCHEN · TUE, MAY 12</div>
-            <div class="you">
-              <span class="you-dot"></span>
-              <span class="you-name">Claiming as Sofia</span>
-            </div>
-          </div>
-          <div class="claim-items">
-            <div class="claim-section-title">Tap what you had</div>
-            <div class="claim-row mine">
-              <div class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2l2.2 2L9.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="item-name">Burrata salad</div>
-              <div class="item-price">$18.00</div>
-            </div>
-            <div class="claim-row" style="border: none;">
-              <div class="check" style="border: 1.5px solid var(--border);"></div>
-              <div class="item-name" style="color: var(--text); font-weight: 500;">Margherita pizza</div>
-              <div class="item-price">$22.00</div>
-            </div>
-            <div class="claim-row theirs">
-              <div class="check pink"><span class="initial">M</span></div>
-              <div class="item-name">Truffle fries</div>
-              <div class="item-price">$12.00</div>
-            </div>
-            <div class="claim-row theirs">
-              <div class="check amber"><span class="initial">A</span></div>
-              <div class="item-name">Bavette steak</div>
-              <div class="item-price">$32.00</div>
-            </div>
-            <div class="claim-row">
-              <div class="check" style="border: 1.5px solid var(--border);"></div>
-              <div class="item-name" style="color: var(--text); font-weight: 500;">Glass of Malbec</div>
-              <div class="item-price">$13.00</div>
-            </div>
-          </div>
-          <div class="claim-bottom">
-            <div class="label-stack">
-              <span class="lbl">Your total</span>
-              <span class="amt">$22.40</span>
-            </div>
-            <button class="pay-btn">Done</button>
-          </div>
+          <img src="/screens/16-claim-items.png" alt="Guest claim screen — tap items you ordered, no app required" loading="lazy" />
         </div>
       </div>
     </div>
@@ -1740,28 +1527,74 @@ footer .container { padding: 0 24px; }
       <p class="body">Everything you need to share money without the headache</p>
     </div>
 
-    <div class="features-grid features-grid-2">
-      <div class="fcard reveal">
+    <!-- Feature 1: AI Receipt Scanning -->
+    <div class="feature-showcase reveal">
+      <div class="feature-showcase-copy">
         <div class="ficon">📸</div>
         <h3 class="h3">AI-Powered Receipt Scanning</h3>
         <p>Snap any receipt — restaurant, bar, grocery store. Our AI reads every item, price, tax, and tip instantly. No manual entry, no typos, no spreadsheets.</p>
       </div>
-      <div class="fcard reveal d1">
+      <div class="feature-showcase-visual">
+        <div class="phone phone-sm">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="/screens/12-review.png" alt="AI-extracted items from a restaurant receipt" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Know Where You Stand (reversed) -->
+    <div class="feature-showcase feature-showcase-reverse reveal">
+      <div class="feature-showcase-copy">
         <div class="ficon">📊</div>
         <h3 class="h3">Know Where You Stand</h3>
         <p>See your balance with every person at a glance. Who owes you, who you owe — all updated in real-time. No more "hey, did I ever pay you back?"</p>
       </div>
-      <div class="fcard reveal d1">
+      <div class="feature-showcase-visual">
+        <div class="phone phone-sm">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="/screens/20b-friend-profile.png" alt="Friend profile showing full financial history and running balance" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Settle Up -->
+    <div class="feature-showcase reveal">
+      <div class="feature-showcase-copy">
         <div class="ficon">💸</div>
         <h3 class="h3">Settle Up in One Tap</h3>
         <p>Send a Venmo request, Cash App, or Zelle payment with the exact amount pre-filled. Or just mark it settled. The goal: $0 balance, zero awkwardness.</p>
       </div>
-      <div class="fcard reveal d2">
+      <div class="feature-showcase-visual">
+        <div class="phone phone-sm">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="/screens/28-app-payment.png" alt="Settle up screen with Venmo, Cash App, and Zelle options" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: No App Needed (reversed) -->
+    <div class="feature-showcase feature-showcase-reverse reveal">
+      <div class="feature-showcase-copy">
         <div class="ficon">🔗</div>
         <h3 class="h3">No App? No Problem.</h3>
         <p>When you share a split, your friends open it in their browser. No download, no signup required. They claim their items, see their total — done.</p>
       </div>
+      <div class="feature-showcase-visual">
+        <div class="phone phone-sm">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="/screens/16-claim-items.png" alt="Guest claim screen works in any mobile browser — no app needed" loading="lazy" />
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -2125,43 +1958,7 @@ footer .container { padding: 0 24px; }
   wire('cta-form', 'cta-success', 'footer-cta');
 })();
 
-/* ── Generate QR-ish pattern for step 2 ─────────────────── */
-(function () {
-  const qr = document.getElementById('qr');
-  if (!qr) return;
-  // 7x7 deterministic pattern with finder squares in corners
-  const pattern = [
-    [1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1],
-    [1,0,1,0,1,0,1],
-    [1,0,1,1,1,0,1],
-    [1,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1],
-  ];
-  // Overlay a few stray pixels for "data" look (deterministic, not random)
-  const data = [
-    [0,1,0,1,0,1,0],
-    [1,0,1,0,1,0,1],
-    [0,1,0,0,1,1,0],
-    [1,0,1,1,0,0,1],
-    [0,1,0,1,0,1,0],
-    [1,0,1,0,1,0,1],
-    [0,1,0,1,0,1,0],
-  ];
-  const cells = [];
-  for (let y = 0; y < 7; y++) {
-    for (let x = 0; x < 7; x++) {
-      // Corners use finder pattern, center uses data
-      const inCorner = (x < 3 && y < 3) || (x > 3 && y < 3) || (x < 3 && y > 3);
-      const v = inCorner ? pattern[y][x] : data[y][x];
-      const div = document.createElement('div');
-      div.className = 'qcell' + (v ? '' : ' off');
-      cells.push(div);
-    }
-  }
-  qr.append(...cells);
-})();
+/* ── Generate QR-ish pattern for step 2 — no longer needed (screenshot used) ── */
 </script>
 
 </body>
