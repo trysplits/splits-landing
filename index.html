@@ -261,7 +261,7 @@ h1, h2, h3 { margin: 0; font-weight: 600; color: var(--text); }
 
 /* ── NAV ────────────────────────────────────────────────────── */
 .nav {
-  position: sticky; top: 0; z-index: 50;
+  position: sticky; top: 0; z-index: 110;
   height: 64px;
   background: rgba(250, 251, 248, 0.8);
   backdrop-filter: blur(14px);
@@ -309,11 +309,77 @@ h1, h2, h3 { margin: 0; font-weight: 600; color: var(--text); }
   display: none;
   background: transparent; border: none; padding: 8px;
   color: var(--text);
+  align-items: center; justify-content: center;
+  border-radius: 8px;
+  transition: background 140ms ease;
+  position: relative;
+  z-index: 101;
 }
+.menu-btn:hover { background: var(--muted); }
+.menu-btn .close-icon { display: none; }
+.menu-btn[aria-expanded="true"] .menu-icon { display: none; }
+.menu-btn[aria-expanded="true"] .close-icon { display: block; }
+
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  background: rgba(26, 26, 46, 0.18);
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease, visibility 200ms ease;
+}
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  bottom: 0;
+  background: var(--bg);
+  border-bottom: 0.5px solid var(--border);
+  padding: 12px 16px 24px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
+  overflow-y: auto;
+}
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.mobile-menu .anchor {
+  display: block;
+  padding: 14px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--t2);
+  border-radius: 10px;
+  transition: color 140ms ease, background 140ms ease;
+}
+.mobile-menu .anchor:hover { color: var(--text); background: var(--muted); }
+.mobile-menu .btn { margin-top: 10px; width: 100%; }
+
+body.menu-open { overflow: hidden; }
 
 @media (max-width: 768px) {
   .nav-links .anchor, .nav-links .btn { display: none; }
   .menu-btn { display: inline-flex; }
+  .nav-inner { padding: 0 16px; }
+}
+@media (min-width: 769px) {
+  .mobile-menu, .mobile-menu-backdrop { display: none !important; }
 }
 
 /* ── HERO ───────────────────────────────────────────────────── */
@@ -437,6 +503,25 @@ h1, h2, h3 { margin: 0; font-weight: 600; color: var(--text); }
   .hero-mock { transform: rotate(0deg); }
   .hero-mock-wrap .bubble-1 { left: 0; }
   .hero-mock-wrap .bubble-2 { right: 0; }
+}
+@media (max-width: 768px) {
+  .hero-copy .body { font-size: 16px; }
+  .hero-mock-wrap { min-height: auto; padding: 12px 0 8px; }
+  .hero-mock-wrap::before { width: min(320px, 90vw); height: min(320px, 90vw); }
+  .phone { width: min(320px, calc(100vw - 48px)); }
+  .hero-mock-wrap .float-bubble { font-size: 13px; padding: 10px 12px; }
+  .waitlist-form {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .waitlist-form .btn { width: 100%; }
+  .waitlist-success { max-width: 100%; width: 100%; }
+  .container { padding: 0 16px; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: 32px; letter-spacing: -1px; }
+  .feature-row { grid-template-columns: 1fr; }
+  .pain-stat { font-size: 40px; }
 }
 
 /* ── PREMIUM DARK DEVICE FRAME ──────────────────────────────── */
@@ -913,14 +998,25 @@ footer .container { padding: 0 24px; }
       <a class="anchor" href="#use-cases">Use cases</a>
       <a class="anchor" href="#faq">FAQ</a>
       <a class="btn btn-primary btn-sm" href="#cta">Join waitlist</a>
-      <button class="menu-btn" aria-label="Menu">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="menu-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
           <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <svg class="close-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
       </button>
     </div>
   </div>
 </nav>
+<div class="mobile-menu-backdrop" id="mobile-menu-backdrop" aria-hidden="true"></div>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a class="anchor" href="#how-it-works">How it works</a>
+  <a class="anchor" href="#features">Features</a>
+  <a class="anchor" href="#use-cases">Use cases</a>
+  <a class="anchor" href="#faq">FAQ</a>
+  <a class="btn btn-primary btn-sm" href="#cta">Join waitlist</a>
+</div>
 
 <!-- ── HERO ────────────────────────────────────────────────── -->
 <section id="top" class="hero" data-screen-label="01 Hero">
@@ -1369,6 +1465,43 @@ footer .container { padding: 0 24px; }
   };
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+})();
+
+/* ── Mobile nav menu ────────────────────────────────────── */
+(function () {
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  if (!btn || !menu || !backdrop) return;
+
+  const setOpen = (open) => {
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+    backdrop.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.classList.toggle('menu-open', open);
+  };
+
+  btn.addEventListener('click', () => {
+    setOpen(btn.getAttribute('aria-expanded') !== 'true');
+  });
+
+  backdrop.addEventListener('click', () => setOpen(false));
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+      setOpen(false);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) setOpen(false);
+  });
 })();
 
 /* ── Reveal on scroll ───────────────────────────────────── */
