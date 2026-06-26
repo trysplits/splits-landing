@@ -66,7 +66,8 @@
       "One-tap settle via Venmo, Cash App, or Zelle",
       "Proportional tax and tip splitting",
       "Real-time claim tracking dashboard",
-      "Quick expense add — no receipt needed"
+      "Quick expense add — no receipt needed",
+      "Conversational split — describe an expense in plain words and AI does the math"
     ]
   },
   {
@@ -530,6 +531,7 @@ body.menu-open { overflow: hidden; }
     flex-direction: column;
     max-width: 100%;
   }
+  .waitlist-form input[type="email"] { flex: none; width: 100%; height: 48px; }
   .waitlist-form .btn { width: 100%; }
   .waitlist-success { max-width: 100%; width: 100%; }
   .container { padding: 0 16px; }
@@ -975,6 +977,144 @@ footer .container { padding: 0 24px; }
 }
 @media (max-width: 480px) { .foot-grid { grid-template-columns: 1fr; } }
 
+/* ── OR JUST TELL IT (conversational beat) ─────────────────── */
+.jtm { --coral: #E84545; --coral-dark: #C73838; }
+.jtm-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center;
+}
+.jtm-copy { max-width: 480px; }
+.jtm-copy .eyebrow { display: block; margin-bottom: 18px; }
+.jtm-title {
+  font-size: 40px; font-weight: 700;
+  letter-spacing: -1.4px; line-height: 1.08;
+  margin-bottom: 18px; text-wrap: balance;
+}
+.jtm-title .or { color: var(--coral); font-style: italic; font-weight: 600; }
+.jtm-sub { font-size: 18px; line-height: 1.6; color: var(--t2); margin-bottom: 28px; max-width: 440px; }
+.jtm-readout {
+  display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13.5px;
+}
+.jtm-readout .in { color: var(--t2); background: var(--muted); border: 0.5px solid var(--border); border-radius: 8px; padding: 7px 11px; }
+.jtm-readout .arrow { color: var(--green); font-size: 16px; }
+.jtm-readout .out { color: var(--green-dark); font-weight: 500; background: var(--green-50); border-radius: 8px; padding: 7px 11px; }
+
+.jtm-demo-col { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.jtm .phone { width: 320px; transform: none; }
+.jtm .phone-screen { height: 596px; display: flex; flex-direction: column; }
+.jtm .phone-status {
+  height: 44px; flex-shrink: 0;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 26px 4px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  letter-spacing: -0.2px;
+}
+.jtm .phone-status .status-icons { display: inline-flex; align-items: center; gap: 5px; }
+.jtm .phone-status .status-icons svg { display: block; }
+
+/* Looping demo stage */
+.jtm-stage { position: relative; flex: 1; overflow: hidden; }
+.jtm-frame {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transition: opacity 450ms ease;
+}
+.jtm-stage[data-step="0"] .f-input,
+.jtm-stage[data-step="1"] .f-thread,
+.jtm-stage[data-step="2"] .f-card,
+.jtm-stage[data-step="3"] .f-done { opacity: 1; }
+
+.jtm-h { display: flex; align-items: center; justify-content: space-between; padding: 14px 12px 6px; flex-shrink: 0; }
+.jtm-ic { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--t2); }
+.jtm-brand { display: inline-flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
+.jtm-aimark { width: 18px; height: 18px; border-radius: 5px; background: var(--green); position: relative; flex-shrink: 0; }
+.jtm-aimark.lg { width: 26px; height: 26px; border-radius: 7px; }
+.jtm-aimark::before, .jtm-aimark::after { content: ""; position: absolute; width: 3px; height: 9px; border-radius: 2px; background: #fff; top: 4.5px; }
+.jtm-aimark::before { left: 5px; }
+.jtm-aimark::after  { left: 10px; opacity: 0.6; }
+.jtm-aimark.lg::before, .jtm-aimark.lg::after { width: 4px; height: 13px; top: 6.5px; }
+.jtm-aimark.lg::before { left: 7px; }
+.jtm-aimark.lg::after  { left: 15px; }
+
+/* Input frame */
+.jtm-input-body { flex: 1; display: flex; flex-direction: column; padding: 14px 20px 0; }
+.jtm-prompt { font-size: 19px; font-weight: 500; line-height: 1.4; letter-spacing: -0.3px; color: var(--text); min-height: 54px; }
+.jtm-caret { display: inline-block; width: 2px; height: 22px; background: var(--green); vertical-align: -4px; margin-left: 2px; animation: jtm-caret 1.1s step-end infinite; }
+.jtm-spacer { flex: 1; }
+.jtm-try { font-size: 11px; font-weight: 600; color: var(--t2); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 9px; }
+.jtm-chips { display: flex; flex-direction: column; gap: 8px; padding-bottom: 14px; }
+.jtm-chip { display: inline-flex; align-items: center; gap: 8px; text-align: left; background: var(--bg); border: 0.5px solid var(--border); border-radius: 999px; padding: 9px 14px; font-family: inherit; font-size: 12.5px; font-weight: 500; color: var(--t3); }
+.jtm-chip svg { flex-shrink: 0; color: var(--t2); }
+.jtm-compose { flex-shrink: 0; border-top: 0.5px solid var(--border); background: var(--surface); padding: 11px 14px 16px; display: flex; align-items: center; gap: 10px; }
+.jtm-mic { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border); background: var(--muted); color: var(--t2); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.jtm-compose-hint { flex: 1; font-size: 11.5px; color: var(--t2); line-height: 1.35; }
+.jtm-send { width: 42px; height: 42px; border-radius: 50%; background: var(--green); color: #fff; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* Thread + card frames */
+.jtm-thread { flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 10px 16px 14px; overflow: hidden; }
+.jtm-bubble-user { align-self: flex-end; max-width: 86%; background: var(--green-50); color: var(--text); border: 0.5px solid #CDEAD7; border-radius: 16px 16px 4px 16px; padding: 10px 13px; font-size: 14px; line-height: 1.45; }
+.jtm-ai-row { display: flex; gap: 9px; align-items: flex-start; }
+.jtm-ai-col { flex: 1; min-width: 0; }
+.jtm-ai-label { font-size: 12.5px; color: var(--t3); margin-bottom: 9px; line-height: 1.4; padding-top: 4px; }
+.jtm-typing { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 13px; padding: 9px 13px; font-size: 13px; color: var(--t3); }
+.jtm-typing .dots { display: inline-flex; gap: 5px; }
+.jtm-typing .dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; animation: jtm-dot 1.2s infinite ease-in-out; }
+.jtm-typing .dots i:nth-child(2) { animation-delay: 0.16s; }
+.jtm-typing .dots i:nth-child(3) { animation-delay: 0.32s; }
+
+.jtm-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; opacity: 1; }
+.jtm-stage[data-step="2"] .jtm-card { animation: jtm-rise 460ms ease; }
+.jtm-card-head { display: flex; align-items: center; gap: 12px; padding: 14px 15px 12px; }
+.jtm-emoji { width: 42px; height: 42px; border-radius: 12px; background: var(--green-50); display: inline-flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0; }
+.jtm-card-desc { font-size: 16px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+.jtm-card-tag { font-size: 12px; color: var(--t3); margin-top: 1px; }
+.jtm-card-total { display: flex; align-items: baseline; justify-content: space-between; padding: 0 15px 12px; }
+.jtm-card-total .lbl { font-size: 12px; font-weight: 500; color: var(--t3); text-transform: uppercase; letter-spacing: 0.5px; }
+.jtm-card-total .amt { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 26px; font-weight: 600; color: var(--text); letter-spacing: -1px; }
+.jtm-rows { padding: 0 15px; background: #FCFDFB; border-top: 0.5px solid var(--border); }
+.jtm-prow { display: flex; align-items: center; gap: 11px; padding: 10px 0; }
+.jtm-prow + .jtm-prow { border-top: 0.5px solid var(--border); }
+.jtm-prow .av { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+.jtm-prow .av.you { background: var(--green-50); color: var(--green-dark); }
+.jtm-prow .av.jake { background: var(--p-blue-bg); color: #1E40AF; }
+.jtm-prow .nm { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); display: inline-flex; align-items: center; gap: 6px; }
+.jtm-prow .youtag { font-size: 10px; font-weight: 600; color: var(--green-dark); background: var(--green-50); border-radius: 5px; padding: 1px 6px; }
+.jtm-prow .amt { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+.jtm-recon { display: flex; align-items: center; gap: 8px; padding: 11px 15px; border-top: 0.5px solid var(--border); background: var(--green-50); font-size: 12px; font-weight: 600; color: var(--green-dark); }
+.jtm-recon svg { flex-shrink: 0; }
+.jtm-actions { display: flex; gap: 9px; padding: 13px 15px 15px; }
+.jtm-edit { flex: 0 0 auto; min-width: 86px; height: 46px; border-radius: 11px; border: 1px solid var(--border); background: transparent; font-family: inherit; font-weight: 600; font-size: 14px; color: var(--text); display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.jtm-create { flex: 1; height: 46px; border-radius: 11px; border: none; background: var(--green); color: #fff; font-family: inherit; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+
+/* Done frame */
+.jtm-frame.f-done { align-items: center; justify-content: center; }
+.jtm-done-inner { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 30px; }
+.jtm-done-check { width: 72px; height: 72px; border-radius: 50%; background: var(--green); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; opacity: 1; }
+.jtm-stage[data-step="3"] .jtm-done-check { animation: jtm-pop 420ms cubic-bezier(.2,.8,.3,1.2); }
+.jtm-done-title { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.4px; }
+.jtm-done-sub { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: var(--t2); margin-top: 4px; }
+.jtm-done-link { margin-top: 12px; font-size: 12.5px; color: var(--t3); display: inline-flex; align-items: center; gap: 6px; }
+
+@keyframes jtm-caret { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+@keyframes jtm-dot { 0%,80%,100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+@keyframes jtm-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes jtm-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .jtm-caret, .jtm-typing .dots i { animation: none; }
+  .jtm-stage[data-step="2"] .jtm-card, .jtm-stage[data-step="3"] .jtm-done-check { animation: none; }
+  .jtm-frame { transition: none; }
+}
+@media (max-width: 960px) {
+  .jtm-grid { grid-template-columns: 1fr; gap: 44px; }
+  .jtm-copy { max-width: none; }
+  .jtm-title { font-size: 30px; letter-spacing: -0.8px; }
+}
+@media (max-width: 768px) {
+  .jtm .phone { width: min(320px, calc(100vw - 48px)); }
+}
+
 /* ── SCROLL ANIMATIONS ─────────────────────────────────────── */
 .reveal.in { animation: revealUp 600ms ease both; }
 .reveal.d1.in { animation-delay: 100ms; }
@@ -1157,8 +1297,145 @@ footer .container { padding: 0 24px; }
   </div>
 </section>
 
+<!-- ── OR JUST TELL IT (conversational beat) ───────────────── -->
+<section class="section band-white jtm" id="just-tell-it" data-screen-label="03 Or just tell it">
+  <div class="container">
+    <div class="jtm-grid">
+      <div class="jtm-copy reveal">
+        <span class="eyebrow">Even faster</span>
+        <h2 class="jtm-title"><span class="or">Or</span> just tell it what happened</h2>
+        <p class="jtm-sub">Describe the expense in plain words — who, how much, how to split — and Splits does the math. No forms, no fields.</p>
+        <div class="jtm-readout">
+          <span class="in">"Split $40 dinner with Jake"</span>
+          <span class="arrow">→</span>
+          <span class="out">$20 each</span>
+        </div>
+      </div>
+
+      <div class="jtm-demo-col reveal d1">
+        <div class="phone" aria-label="Or just tell it — conversational split demo">
+          <div class="phone-screen">
+            <div class="phone-status">
+              <span>9:41</span>
+              <span class="status-icons">
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 7.5l2-1.5 2 2 3-3 3 2.5L14 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a8 8 0 0 1 12 0M3 7a5 5 0 0 1 8 0M5.5 9a2 2 0 0 1 3 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="1" y="1" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1"/><rect x="3" y="3" width="13" height="4" rx="0.6" fill="currentColor"/></svg>
+              </span>
+            </div>
+
+            <div class="jtm-stage" id="jtm-stage" data-step="0">
+
+              <!-- 0 · INPUT -->
+              <div class="jtm-frame f-input">
+                <div class="jtm-h">
+                  <span class="jtm-ic"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+                  <span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span>
+                  <span class="jtm-ic" style="visibility:hidden"></span>
+                </div>
+                <div class="jtm-input-body">
+                  <div class="jtm-prompt"><span id="jtm-typed"></span><span class="jtm-caret"></span></div>
+                  <div class="jtm-spacer"></div>
+                  <div class="jtm-try">Try one</div>
+                  <div class="jtm-chips">
+                    <span class="jtm-chip"><svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M6.5 2.5v8M3 5l3.5-2.5L10 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Uber $24 split with Sara</span>
+                    <span class="jtm-chip"><svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M6.5 2.5v8M3 5l3.5-2.5L10 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Groceries $86, I paid for everyone</span>
+                  </div>
+                </div>
+                <div class="jtm-compose">
+                  <span class="jtm-mic"><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect x="6.2" y="2.2" width="5.6" height="9.4" rx="2.8" stroke="currentColor" stroke-width="1.5"/><path d="M3.8 8.4a5.2 5.2 0 0 0 10.4 0M9 13.6v2.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  <span class="jtm-compose-hint">Voice input coming soon</span>
+                  <span class="jtm-send"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M5 9l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+              </div>
+
+              <!-- 1 · SENT → PARSING -->
+              <div class="jtm-frame f-thread">
+                <div class="jtm-h">
+                  <span class="jtm-ic"><svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M14 4l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span>
+                  <span class="jtm-ic" style="visibility:hidden"></span>
+                </div>
+                <div class="jtm-thread">
+                  <div class="jtm-bubble-user">Split $40 dinner with Jake</div>
+                  <div class="jtm-ai-row">
+                    <span class="jtm-aimark lg"></span>
+                    <div class="jtm-typing"><span class="dots"><i></i><i></i><i></i></span>Reading your split…</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2 · CONFIRMATION CARD -->
+              <div class="jtm-frame f-card">
+                <div class="jtm-h">
+                  <span class="jtm-ic"><svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M14 4l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span>
+                  <span class="jtm-ic" style="visibility:hidden"></span>
+                </div>
+                <div class="jtm-thread">
+                  <div class="jtm-bubble-user">Split $40 dinner with Jake</div>
+                  <div class="jtm-ai-row">
+                    <span class="jtm-aimark lg"></span>
+                    <div class="jtm-ai-col">
+                      <div class="jtm-ai-label">Here's your split — does this look right?</div>
+                      <div class="jtm-card">
+                        <div class="jtm-card-head">
+                          <span class="jtm-emoji">🍽️</span>
+                          <div>
+                            <div class="jtm-card-desc">Dinner</div>
+                            <div class="jtm-card-tag">Equal split · 2 people</div>
+                          </div>
+                        </div>
+                        <div class="jtm-card-total">
+                          <span class="lbl">Total</span>
+                          <span class="amt">$40.00</span>
+                        </div>
+                        <div class="jtm-rows">
+                          <div class="jtm-prow">
+                            <span class="av you">A</span>
+                            <span class="nm">You <span class="youtag">you</span></span>
+                            <span class="amt">$20.00</span>
+                          </div>
+                          <div class="jtm-prow">
+                            <span class="av jake">J</span>
+                            <span class="nm">Jake</span>
+                            <span class="amt">$20.00</span>
+                          </div>
+                        </div>
+                        <div class="jtm-recon">
+                          <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="6.5" fill="#2D8B57"/><path d="M4.5 7.7l2 2 4-4.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          <span class="mono">$40.00 ÷ 2 = $20.00 each</span>
+                        </div>
+                        <div class="jtm-actions">
+                          <span class="jtm-edit"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M9.5 2.5l3 3-7 7-3.5.5.5-3.5 7-7z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Edit</span>
+                          <span class="jtm-create">Create Split</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3 · CREATED -->
+              <div class="jtm-frame f-done">
+                <div class="jtm-done-inner">
+                  <span class="jtm-done-check"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M9 17.5l5 5 11-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <div class="jtm-done-title">Split created</div>
+                  <div class="jtm-done-sub">$20.00 each · 2 people</div>
+                  <div class="jtm-done-link"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6.5 9.5a3 3 0 0 1 0-4l1.2-1.2a3 3 0 0 1 4 4l-.6.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M9.5 6.5a3 3 0 0 1 0 4L8.3 11.7a3 3 0 0 1-4-4l.6-.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Share link sent to Jake</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── APP PREVIEW ─────────────────────────────────────────── -->
-<section class="section band-white" data-screen-label="03 App preview">
+<section class="section band-tint" data-screen-label="04 App preview">
   <div class="container">
     <div class="section-head reveal">
       <h2 class="h2">See it in action</h2>
@@ -1207,7 +1484,7 @@ footer .container { padding: 0 24px; }
 </section>
 
 <!-- ── FEATURES ───────────────────────────────────────────── -->
-<section id="features" class="section band-tint" data-screen-label="04 Features">
+<section id="features" class="section band-white" data-screen-label="05 Features">
   <div class="container">
     <div class="section-head reveal">
       <h2 class="h2">Built for real life</h2>
@@ -1282,7 +1559,7 @@ footer .container { padding: 0 24px; }
 </section>
 
 <!-- ── USE CASES ─────────────────────────────────────────── -->
-<section id="use-cases" class="section band-white" data-screen-label="05 Use Cases">
+<section id="use-cases" class="section band-tint" data-screen-label="06 Use Cases">
   <div class="container">
     <div class="section-head reveal">
       <h2 class="h2">Splits works for everything</h2>
@@ -1320,7 +1597,7 @@ footer .container { padding: 0 24px; }
 </section>
 
 <!-- ── PAIN POINT ─────────────────────────────────────────── -->
-<section class="pain-section" data-screen-label="06 Pain Point">
+<section class="pain-section" data-screen-label="07 Pain Point">
   <div class="container">
     <div class="pain-stat reveal">67%</div>
     <h2 class="pain-headline reveal d1">of people say money causes tension in friendships.</h2>
@@ -1333,7 +1610,7 @@ footer .container { padding: 0 24px; }
 </section>
 
 <!-- ── WHY SPLITS ─────────────────────────────────────────── -->
-<section class="section band-white" data-screen-label="07 Why Splits">
+<section class="section band-white" data-screen-label="08 Why Splits">
   <div class="container">
     <div class="section-head reveal">
       <h2 class="h2">Built different</h2>
@@ -1632,6 +1909,53 @@ footer .container { padding: 0 24px; }
 
   wire('hero-form', 'hero-success', 'hero-form-error', 'hero');
   wire('cta-form', 'cta-success', 'cta-form-error', 'footer-cta');
+})();
+
+/* ── "Or just tell it" looping demo ─────────────────────── */
+(function () {
+  const stage = document.getElementById('jtm-stage');
+  const typed = document.getElementById('jtm-typed');
+  if (!stage || !typed) return;
+  const sentence = 'Split $40 dinner with Jake';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduce) {
+    typed.textContent = sentence;
+    stage.setAttribute('data-step', '2');
+    return;
+  }
+
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+  let active = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => { active = e.isIntersecting; }, { threshold: 0.2 }).observe(stage);
+  }
+  const waitActive = async () => { while (!active) await sleep(250); };
+
+  async function typeOut(str) {
+    typed.textContent = '';
+    for (let i = 0; i < str.length; i++) {
+      typed.textContent = str.slice(0, i + 1);
+      await sleep(58);
+    }
+  }
+
+  (async function loop() {
+    while (true) {
+      await waitActive();
+      stage.setAttribute('data-step', '0');
+      typed.textContent = '';
+      await sleep(550);
+      await typeOut(sentence);
+      await sleep(950);
+      stage.setAttribute('data-step', '1');
+      await sleep(1500);
+      stage.setAttribute('data-step', '2');
+      await sleep(3000);
+      stage.setAttribute('data-step', '3');
+      await sleep(1900);
+    }
+  })();
 })();
 </script>
 
