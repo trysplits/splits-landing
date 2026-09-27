@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Get Splits — Download the app</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Download Splits on the App Store, or jump straight back into the app if you already have it installed." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://trysplits.com/download" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#2D8B57" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #2D8B57;
+  --green-dark: #1B6B3A;
+  --green-50: #E8F5EC;
+  --bg: #FAFBF8;
+  --surface: #FFFFFF;
+  --border: #E5E7EB;
+  --text: #1A1A2E;
+  --t2: #6B7280;
+  --t3: #9CA3AF;
+  --container: 760px;
+  --radius-btn: 10px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-size: 16px; line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  height: 64px;
+  background: rgba(250, 251, 248, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-inner {
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+  max-width: 1140px; margin: 0 auto; padding: 0 24px;
+}
+.lockup { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.lockup .icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(145deg, #2D8B57 0%, #1B6B3A 100%);
+  position: relative; flex-shrink: 0;
+}
+.lockup .icon::before, .lockup .icon::after {
+  content: ""; position: absolute;
+  width: 7px; height: 16px; border-radius: 4px;
+  background: #fff; top: 8px;
+}
+.lockup .icon::before { left: 8px; }
+.lockup .icon::after  { left: 17px; opacity: 0.6; }
+.wordmark { font-size: 22px; font-weight: 600; letter-spacing: -1px; line-height: 1; }
+.wordmark .spl { color: var(--text); }
+.wordmark .its { color: var(--green); }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+.hero {
+  padding: 88px 0 64px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 34px; font-weight: 700; letter-spacing: -1px;
+  margin: 0 0 12px; color: var(--text);
+}
+.hero p {
+  font-size: 16px; color: var(--t2); margin: 0 auto 32px;
+  max-width: 440px;
+}
+.app-store-badge {
+  display: inline-block;
+  line-height: 0;
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+.app-store-badge:hover { opacity: 0.88; }
+.app-store-badge:active { transform: scale(0.98); }
+.app-store-badge img {
+  display: block;
+  height: 50px;
+  width: auto;
+}
+.android-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--t3);
+}
+.opening-note {
+  display: none;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--t3);
+}
+.opening-note.show { display: block; }
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0; text-align: center;
+  font-size: 13px; color: var(--t3);
+}
+.footer a { color: var(--t3); }
+.footer a:hover { color: var(--green); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="lockup">
+      <div class="icon"></div>
+      <div class="wordmark"><span class="spl">spl</span><span class="its">its</span></div>
+    </a>
+    <a href="/" style="font-size:14px;font-weight:500;color:var(--t2);">&larr; Back to home</a>
+  </div>
+</nav>
+
+<main class="container">
+  <section class="hero">
+    <h1 id="heading">Get Splits</h1>
+    <p id="subheading">Snap receipts, split fairly, and settle up in seconds.</p>
+
+    <a class="app-store-badge" href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer">
+      <img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" />
+    </a>
+    <p class="android-note">Android — coming soon</p>
+    <p class="opening-note" id="opening-note">Opening Splits&hellip;</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    &copy; 2026 Splits &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot; <a href="/support">Support</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  // This page is the "smart link" target for emails and other download prompts: if the visitor
+  // already has Splits installed, jump straight into the app instead of showing this page. If
+  // not, the App Store badge above (and, after a short wait, an automatic redirect) gets them
+  // there. Unlike the participant claim/invite pages, this page's whole purpose is installing
+  // the app, so — unlike those pages — it's correct for the fallback to land on the App Store.
+  var ua = navigator.userAgent || navigator.vendor || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  var isAndroid = /Android/i.test(ua);
+  var IOS_STORE = 'https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939';
+
+  if (!isIOS) return; // Android has no live store listing yet; desktop just sees the page.
+
+  document.getElementById('opening-note').classList.add('show');
+  var t = setTimeout(function () {
+    if (!document.hidden) window.location.href = IOS_STORE;
+  }, 1500);
+  document.addEventListener('visibilitychange', function onHide() {
+    if (document.hidden) clearTimeout(t);
+  }, { once: true });
+  window.location.href = 'splits://';
+})();
+</script>
+
+</body>
+</html>
