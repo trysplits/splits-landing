@@ -129,7 +129,7 @@ a:hover { text-decoration: underline; }
 <main class="container">
   <article class="legal">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 9, 2026</p>
+    <p class="updated">Last updated: October 29, 2026</p>
 
     <p>Splits ("we," "us," or "our") operates the Splits mobile application and the website at trysplits.com. This Privacy Policy explains what information we collect, how we use it, and the choices you have.</p>
 
@@ -139,7 +139,10 @@ a:hover { text-decoration: underline; }
     <p>When you create a Splits account, we collect your name and email address. Authentication is handled through AWS Cognito, a secure third-party identity service provided by Amazon Web Services.</p>
 
     <h3>Receipt images</h3>
-    <p>When you use Splits to scan a receipt, the photo is uploaded to our secure servers. We use AI (powered by Anthropic's Claude) to extract item names, prices, quantities, tax, and tip from the image. Receipt images are stored in Amazon S3 and are associated with your account.</p>
+    <p>When you scan a receipt or attach a photo to an expense, we store the image in Amazon S3 with that split. People in the split can see it in the app, and anyone with the split's share link can see it on the web. Receipt images are deleted when the split is deleted or when you delete your account.</p>
+
+    <h3>AI processing</h3>
+    <p>Splits uses Anthropic's Claude to read receipts and to understand expenses you describe with Just tell me. Scanning a receipt sends the photo to Anthropic. Just tell me sends your message, your name and the names of your friends on Splits, so it can tell who you mean. Emails, contacts, location and payment details are not sent. Anthropic processes this data only to provide the service and doesn't use it to train its models. The app asks for your permission before you use each feature for the first time.</p>
 
     <h3>Usage data</h3>
     <p>We collect information about how you interact with the app, including splits created, items claimed, and session activity. This helps us improve the product and troubleshoot issues.</p>
@@ -176,7 +179,7 @@ a:hover { text-decoration: underline; }
     <p>Your data is stored on servers located in the United States. We use industry-standard security measures, including encrypted connections (HTTPS/TLS), secure authentication through AWS Cognito, and access-controlled cloud storage for receipt images.</p>
 
     <h2>5. Data Retention</h2>
-    <p>We retain your account information and split history for as long as your account is active. Receipt images are automatically deleted after 90 days. Payment method handles are retained while your account is active and deleted when you remove them or delete your account. You can request deletion of your account and associated data at any time by contacting us.</p>
+    <p>We retain your account information and split history for as long as your account is active. Receipt images are deleted when the split is deleted or when you delete your account. Payment method handles are retained while your account is active and deleted when you remove them or delete your account. You can request deletion of your account and associated data at any time by contacting us.</p>
 
     <h2>6. Your Rights and Choices</h2>
     <p>Depending on your location, you may have the right to:</p>
