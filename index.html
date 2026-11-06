@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://trysplits.com" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:image" content="https://trysplits.com/og-image.png" />
+<meta property="og:image" content="https://trysplits.com/og-image-v2.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Splits: Settle money with your people" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Splits: Settle money with your people" />
 <meta name="twitter:description" content="Settle money with your people. Available now on the App Store." />
-<meta name="twitter:image" content="https://trysplits.com/og-image.png" />
+<meta name="twitter:image" content="https://trysplits.com/og-image-v2.png" />
 <meta name="twitter:image:alt" content="Splits: Settle money with your people" />
 
 <!-- Favicon / app icons -->
@@ -34,7 +34,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-<meta name="theme-color" content="#2D8B57" />
+<meta name="theme-color" content="#F5F4EF" />
 
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
@@ -152,1041 +152,359 @@
 ]
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
 <style>
-/* ── TOKENS ─────────────────────────────────────────────────── */
-:root {
-  --green: #2D8B57;
-  --green-dark: #1B6B3A;
-  --green-400: #4ABA6E;
-  --green-200: #A8DBBA;
-  --green-50: #E8F5EC;
-  --bg: #FAFBF8;
-  --surface: #FFFFFF;
-  --muted: #F3F4F6;
-  --border: #E5E7EB;
-  --text: #1A1A2E;
-  --t2: #6B7280;
-  --t3: #9CA3AF;
-  --error: #EF4444;
+/* Splits landing, app look. Tokens mirror splits-mobile/theme/palette.ts (v2.2.1). No web fonts, no gradients. */
+:root{
+  --green:#267A4D;--green-graphic:#2D8B57;--green-dark:#1B6B3A;--green-soft:#E8F5EC;--ink:#1A1A2E;
+  --bg:#F5F4EF;--surface:#FFFFFF;--fill:#EEEDE7;--hairline:#E6E4DB;--secondary:#6B6A62;--tertiary:#8C8B82;
+  --warning-soft:#FAF2E4;--warning-text:#8A5A0B;
+  --lake-soft:#E4ECF5;--lake-text:#254872;
+  --r-sm:6px;--r-md:10px;--r-lg:16px;--r-xl:22px;
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --shadow-float:0 6px 16px rgba(26,26,46,.08);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--green);text-decoration:none}
+a:hover{text-decoration:underline}
+.num{font-variant-numeric:tabular-nums}
+.ic{width:1em;height:1em;fill:none;stroke:currentColor;display:inline-block;flex-shrink:0}
+.ic use{pointer-events:none}
+.container{max-width:1200px;margin:0 auto;padding:0 80px}
+.hide-mobile{}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:4px}
 
-  --p-blue: #3B82F6;   --p-blue-bg: #DBEAFE;
-  --p-pink: #EC4899;   --p-pink-bg: #FCE7F3;
-  --p-amber: #F59E0B;  --p-amber-bg: #FEF3C7;
-  --p-purple: #8B5CF6; --p-purple-bg: #EDE9FE;
+/* Nav */
+.nav{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:.5px solid var(--hairline)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:14px 80px;display:flex;align-items:center;justify-content:space-between}
+.lockup{display:inline-flex;align-items:center}
+.lockup img{height:26px;width:auto}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links .anchor{color:var(--ink);font-size:14px;font-weight:500}
+.app-store-badge{display:inline-block;line-height:0}
+.app-store-badge img{height:48px;width:auto}
+.app-store-badge--nav img{height:40px}
+.app-store-badge--sm img{height:40px}
+.menu-btn{display:none;background:none;border:0;color:var(--ink);font-size:26px;padding:6px;cursor:pointer;line-height:0}
+.menu-btn .close-icon{display:none}
+.menu-btn[aria-expanded="true"] .menu-icon{display:none}
+.menu-btn[aria-expanded="true"] .close-icon{display:inline-block}
+.mobile-menu-backdrop{position:fixed;inset:0;background:rgba(26,26,46,.35);opacity:0;pointer-events:none;transition:opacity .2s;z-index:28}
+.mobile-menu-backdrop.open{opacity:1;pointer-events:auto}
+.mobile-menu{position:fixed;left:0;right:0;top:57px;background:var(--surface);z-index:29;padding:8px 20px 20px;display:flex;flex-direction:column;border-bottom:.5px solid var(--hairline);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.2s}
+.mobile-menu.open{opacity:1;transform:none;pointer-events:auto}
+.mobile-menu .anchor{color:var(--ink);font-size:17px;font-weight:500;padding:14px 0;border-bottom:.5px solid var(--hairline)}
+.mobile-menu .app-store-badge{margin-top:16px}
+body.menu-open{overflow:hidden}
 
-  /* alternating section bands */
-  --band-tint: #EEF5F0;
+/* Type */
+.eyebrow{display:block;font-size:13px;font-weight:600;color:var(--green)}
+.h1{font-size:64px;line-height:1.04;letter-spacing:-1.8px;font-weight:700;margin:0;text-wrap:balance}
+.h2{font-size:44px;line-height:1.1;letter-spacing:-1px;font-weight:700;margin:0;text-wrap:balance}
+.h3{font-size:22px;line-height:1.25;letter-spacing:-.3px;font-weight:600;margin:0;text-wrap:balance}
+.body{font-size:19px;line-height:1.5;color:var(--secondary);margin:12px 0 0;text-wrap:pretty}
+.body-tight{font-size:16px;line-height:1.5;color:var(--secondary);margin:8px 0 0;text-wrap:pretty}
+.fine{font-size:13px;color:var(--secondary);margin:0}
 
-  /* premium dark device frame */
-  --bezel: linear-gradient(155deg, #3c3c45 0%, #1a1a21 40%, #0f0f13 68%, #27272f 100%);
-  --bezel-shadow:
-    0 50px 90px -34px rgba(13, 16, 26, 0.55),
-    0 20px 46px -22px rgba(13, 16, 26, 0.4),
-    inset 0 0 0 1.5px rgba(255, 255, 255, 0.08),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.45);
+/* Sections */
+.section{padding:96px 0}
+.band-tint{background:var(--bg)}
+.band-white{background:var(--surface)}
+.section-head{margin-bottom:48px}
+.section-head.center{text-align:center}
+.section-head .body{margin-top:12px}
 
-  --container: 1140px;
-  --radius-btn: 10px;
-  --radius-card: 12px;
-  --radius-input: 8px;
-}
+/* Buttons + waitlist */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 20px;border-radius:var(--r-md);font:600 16px var(--font);cursor:pointer;white-space:nowrap}
+.btn-primary{background:var(--green);color:#fff;border:0}
+.btn-primary:hover{background:var(--green-dark)}
+.btn[disabled]{opacity:.6;cursor:default}
+.waitlist-form-group.hidden{display:none}
+.updates-label{font-size:14px;font-weight:500;color:var(--secondary);margin:0 0 8px}
+.waitlist-form{display:flex;gap:8px;max-width:440px}
+.waitlist-form input{flex:1;min-width:0;height:48px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--hairline);padding:0 14px;font:400 16px var(--font);color:var(--ink)}
+.waitlist-form input::placeholder{color:var(--tertiary)}
+.waitlist-form input.invalid{border-color:#C4473A}
+.waitlist-error{display:none;color:#893229;font-size:13px;margin:8px 0 0}
+.waitlist-error.show{display:block}
+.waitlist-success{display:none;align-items:center;gap:8px;color:var(--green-dark);background:var(--green-soft);border-radius:var(--r-md);padding:12px 14px;font-size:15px;font-weight:500;max-width:440px}
+.waitlist-success.show{display:flex}
+.waitlist-success .ic{font-size:18px;stroke-width:32}
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: 'Inter', -apple-system, system-ui, sans-serif;
-  font-size: 18px; line-height: 1.6;
-  color: var(--text);
-  background: var(--bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+/* Phones */
+.phone{width:var(--pw,260px);background:var(--ink);border-radius:calc(var(--pw,260px)*.14);padding:calc(var(--pw,260px)*.03);box-shadow:0 24px 48px rgba(26,26,46,.12);flex-shrink:0}
+.phone img{width:100%;height:auto;border-radius:calc(var(--pw,260px)*.115);background:var(--bg)}
+.phone-lg{--pw:300px}.phone-md{--pw:250px}.phone-sm{--pw:236px}
 
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; cursor: pointer; }
+/* Hero */
+.hero{padding:72px 0 96px}
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:20px}
+.hero-lead{font-size:20px;line-height:1.5;color:var(--secondary);margin:0;text-wrap:pretty}
+.hero-strong{font-size:20px;font-weight:600;line-height:1.4;margin:0}
+.hero-cta{margin-top:4px}
+.hero-mock-wrap{position:relative;display:flex;justify-content:center}
+.callout{position:absolute;left:-88px;bottom:72px;background:var(--surface);border-radius:var(--r-lg);padding:12px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-float)}
+.callout .tick{width:32px;height:32px;border-radius:999px;background:var(--green-soft);color:var(--green-graphic);display:flex;align-items:center;justify-content:center;font-size:18px}
+.callout .tick .ic{stroke-width:32}
+.callout b{display:block;font-size:14px;font-weight:600}
+.callout span{font-size:13px;color:var(--secondary)}
+.callout em{font-style:normal;color:var(--green);font-weight:600}
 
-.container {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 24px;
-}
+/* How it works */
+.flow-label{margin-bottom:8px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:32px}
+.step{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.step-num{width:28px;height:28px;border-radius:999px;background:var(--green);color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-head{display:flex;gap:12px;align-items:flex-start}
+.flow-divider{margin:72px 0 24px;display:flex;align-items:center;gap:16px;color:var(--secondary);font-size:13px;font-weight:600}
+.flow-divider::before,.flow-divider::after{content:"";flex:1;border-top:.5px solid var(--hairline)}
+.flow-b-card{display:flex;gap:48px;align-items:center;background:var(--bg);border-radius:var(--r-xl);padding:40px}
+.flow-b-copy{flex:1}
+.flow-b-examples{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.flow-b-example{display:flex;gap:10px;align-items:center;background:var(--surface);border-radius:var(--r-md);padding:12px 14px;font-size:14px}
+.flow-b-example .ic{font-size:20px;color:var(--green-graphic);stroke-width:32}
+.flow-b-visual{display:flex;justify-content:center}
 
-/* ── TYPE ───────────────────────────────────────────────────── */
-h1, h2, h3 { margin: 0; font-weight: 600; color: var(--text); }
-.eyebrow {
-  font-size: 12px; font-weight: 600;
-  color: var(--green); letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.hero-title {
-  font-size: 56px; font-weight: 700;
-  letter-spacing: -2px; line-height: 1.05;
-  color: var(--text);
-  text-wrap: balance;
-}
-.h2 {
-  font-size: 36px; font-weight: 600;
-  letter-spacing: -1px; line-height: 1.15;
-  text-wrap: balance;
-}
-.h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
-.body { font-size: 18px; line-height: 1.6; color: var(--t2); }
-.body-tight { font-size: 16px; line-height: 1.55; color: var(--t2); }
-.caption { font-size: 12px; color: var(--t3); }
-.label { font-size: 14px; font-weight: 500; }
+/* Tiles + cards */
+.tile{width:44px;height:44px;border-radius:var(--r-md);background:var(--green-soft);color:var(--green-graphic);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.tile .ic{stroke-width:32}
+.card{background:var(--surface);border-radius:var(--r-lg);padding:24px}
+.band-white .card,.why-card{background:var(--bg)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ft-title{font-size:17px;font-weight:600;margin-top:12px}
+.ft-body{font-size:14px;color:var(--secondary);margin-top:4px}
+.preview-phones{display:flex;gap:40px;justify-content:center;align-items:flex-start}
+.preview-cap{text-align:center;font-size:14px;font-weight:500;color:var(--secondary);margin-top:12px}
+.feature-row{margin-top:56px}
+.uc-title{font-size:17px;font-weight:600;margin-top:16px}
+.uc-body{font-size:14px;color:var(--secondary);margin-top:6px;line-height:1.5}
 
-/* ── BUTTONS ────────────────────────────────────────────────── */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  gap: 8px; height: 48px; padding: 0 22px;
-  border-radius: var(--radius-btn);
-  font-size: 15px; font-weight: 600; letter-spacing: -0.1px;
-  border: none; cursor: pointer; white-space: nowrap;
-  transition: background 160ms ease, transform 160ms ease, color 160ms ease, box-shadow 160ms ease;
-}
-.btn-primary { background: var(--green); color: #fff; box-shadow: 0 6px 16px -6px rgba(45,139,87,0.5); }
-.btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: 0 10px 22px -8px rgba(45,139,87,0.55); }
-.btn-secondary {
-  background: transparent; color: var(--green);
-  border: 1px solid var(--green);
-}
-.btn-secondary:hover { background: var(--green-50); }
-.btn-ghost { background: transparent; color: var(--green); }
-.btn-ghost:hover { text-decoration: underline; }
-.btn-sm { height: 40px; padding: 0 16px; font-size: 14px; }
+/* Features */
+.feature-showcase{display:flex;align-items:center;gap:80px;margin-top:64px}
+.feature-showcase:first-of-type{margin-top:0}
+.feature-showcase-reverse{flex-direction:row-reverse}
+.feature-showcase-copy{flex:1}
+.feature-showcase-copy p{font-size:19px;line-height:1.5;color:var(--secondary);margin:12px 0 0;text-wrap:pretty}
+.feature-showcase-visual{display:flex;justify-content:center}
+.feature-showcase .h3{font-size:36px;letter-spacing:-.8px;line-height:1.12;font-weight:700}
 
-/* ── NAV ────────────────────────────────────────────────────── */
-.nav {
-  position: sticky; top: 0; z-index: 110;
-  height: 64px;
-  background: rgba(250, 251, 248, 0.8);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 0.5px solid transparent;
-  transition: border-color 200ms ease, background 200ms ease;
-}
-.nav.scrolled { border-bottom-color: var(--border); }
-.nav-inner {
-  height: 100%;
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 24px;
-}
-.lockup { display: inline-flex; align-items: center; gap: 10px; }
-.lockup .icon {
-  width: 32px; height: 32px; border-radius: 8px;
-  background: linear-gradient(145deg, #2D8B57 0%, #1B6B3A 100%);
-  position: relative; flex-shrink: 0;
-  box-shadow: 0 2px 6px -2px rgba(45,139,87,0.6);
-}
-.lockup .icon::before, .lockup .icon::after {
-  content: ""; position: absolute;
-  width: 7px; height: 16px; border-radius: 4px;
-  background: #fff; top: 8px;
-}
-.lockup .icon::before { left: 8px; }
-.lockup .icon::after  { left: 17px; opacity: 0.6; }
-.wordmark {
-  font-size: 22px; font-weight: 600; letter-spacing: -1px; line-height: 1;
-}
-.wordmark .spl { color: var(--text); }
-.wordmark .its { color: var(--green); }
+/* Stat */
+.pain-section{background:var(--ink);color:#fff;padding:96px 0;text-align:center}
+.pain-stat{font-size:96px;font-weight:700;letter-spacing:-3px;line-height:1}
+.pain-headline{font-size:26px;font-weight:600;line-height:1.3;margin:16px auto 0;max-width:720px;text-wrap:balance}
+.pain-body{font-size:17px;line-height:1.55;color:#C9C9D4;margin:16px auto 0;max-width:600px}
+.pain-body strong{color:#fff}
+.pain-source{font-size:12px;color:#A7A7B6;margin:24px 0 0}
+.pain-source a{color:#CFE9DA;text-decoration:underline}
 
-.nav-links {
-  display: flex; align-items: center; gap: 28px;
-}
-.nav-links a.anchor {
-  font-size: 14px; font-weight: 500; color: var(--t2);
-  transition: color 140ms ease;
-}
-.nav-links a.anchor:hover { color: var(--text); }
-.menu-btn {
-  display: none;
-  background: transparent; border: none; padding: 8px;
-  color: var(--text);
-  align-items: center; justify-content: center;
-  border-radius: 8px;
-  transition: background 140ms ease;
-  position: relative;
-  z-index: 101;
-}
-.menu-btn:hover { background: var(--muted); }
-.menu-btn .close-icon { display: none; }
-.menu-btn[aria-expanded="true"] .menu-icon { display: none; }
-.menu-btn[aria-expanded="true"] .close-icon { display: block; }
+/* Why */
+.why-title{font-size:19px;font-weight:600;margin-top:16px}
+.why-body{font-size:15px;color:var(--secondary);margin-top:8px}
 
-.mobile-menu-backdrop {
-  position: fixed;
-  inset: 0;
-  top: 64px;
-  background: rgba(26, 26, 46, 0.18);
-  z-index: 90;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 200ms ease, visibility 200ms ease;
-}
-.mobile-menu-backdrop.open {
-  opacity: 1;
-  visibility: visible;
-}
-.mobile-menu {
-  position: fixed;
-  top: 64px;
-  left: 0; right: 0;
-  bottom: 0;
-  background: var(--bg);
-  border-bottom: 0.5px solid var(--border);
-  padding: 12px 16px 24px;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(-10px);
-  transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
-  overflow-y: auto;
-}
-.mobile-menu.open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-.mobile-menu .anchor {
-  display: block;
-  padding: 14px 12px;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--t2);
-  border-radius: 10px;
-  transition: color 140ms ease, background 140ms ease;
-}
-.mobile-menu .anchor:hover { color: var(--text); background: var(--muted); }
-.mobile-menu .app-store-badge { margin-top: 14px; align-self: flex-start; }
+/* FAQ */
+.faq{max-width:760px;margin:0 auto;border-top:.5px solid var(--hairline)}
+.faq-item{border-bottom:.5px solid var(--hairline)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;background:none;border:0;padding:20px 4px;font:600 17px/1.3 var(--font);color:var(--ink);text-align:left;cursor:pointer}
+.faq-q .chev{font-size:18px;color:var(--tertiary);transition:transform .2s;stroke-width:32;margin-top:2px}
+.faq-item.open .chev{transform:rotate(180deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a-inner{overflow:hidden;min-height:0;color:var(--secondary);font-size:16px;padding:0 4px}
+.faq-item.open .faq-a-inner{padding-bottom:20px}
 
-body.menu-open { overflow: hidden; }
+/* Final CTA */
+.final-cta{background:var(--green);padding:96px 0;text-align:center;color:#fff}
+.final-cta .h2{color:#fff}
+.final-cta .body{color:#E3F2E9}
+.final-cta .inner{display:flex;flex-direction:column;align-items:center;gap:20px}
+.final-cta .waitlist-form-group{background:var(--surface);border-radius:var(--r-lg);padding:20px;text-align:left;width:min(480px,100%)}
+.final-cta .waitlist-form{max-width:none}
+.final-cta .waitlist-success{background:var(--surface)}
+.final-cta .fine{color:#E3F2E9}
 
-@media (max-width: 768px) {
-  .nav-links .anchor, .nav-links .app-store-badge { display: none; }
-  .app-store-badge img { height: 40px; }
-  .menu-btn { display: inline-flex; }
-  .nav-inner { padding: 0 16px; }
-}
-@media (min-width: 769px) {
-  .mobile-menu, .mobile-menu-backdrop { display: none !important; }
-}
+/* Footer */
+footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(--bg)}
+.foot-grid{display:flex;justify-content:space-between;gap:32px}
+.foot-brand{max-width:360px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.foot-brand .lockup img{height:24px}
+.tagline{font-size:15px;color:var(--secondary);margin:0}
+.foot-cols{display:flex;gap:56px}
+.foot-col h4{font-size:13px;font-weight:600;color:var(--secondary);margin:0 0 12px}
+.foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.foot-col a{color:var(--ink);font-size:14px;font-weight:500}
+.foot-bottom{margin-top:32px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--secondary)}
+.foot-bottom .social a{color:var(--secondary)}
 
-/* ── HERO ───────────────────────────────────────────────────── */
-.hero {
-  padding: 84px 0 104px;
-  position: relative; overflow: hidden;
-}
-.hero-grid {
-  display: grid; grid-template-columns: 1.05fr 0.95fr;
-  gap: 72px; align-items: center;
-}
-.hero-copy { max-width: 540px; }
-.hero-copy .eyebrow { display: block; margin-bottom: 20px; }
-.hero-copy .hero-title { margin-bottom: 24px; }
-.hero-copy .body { max-width: 520px; margin-bottom: 36px; }
+/* Reveal */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.js .reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s!important}.d2{transition-delay:.16s!important}.d3{transition-delay:.24s!important}.d4{transition-delay:.32s!important}
 
-.waitlist-form-group {
-  max-width: 460px;
-  margin-bottom: 24px;
-}
-.waitlist-form {
-  display: flex; gap: 8px;
-}
-.waitlist-form input[type="email"] {
-  flex: 1; height: 48px; padding: 0 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-input);
-  background: var(--surface);
-  font-family: inherit; font-size: 15px; color: var(--text);
-  outline: none;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
-}
-.waitlist-form input[type="email"]:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(45, 139, 87, 0.12);
-}
-.waitlist-form input.invalid { border-color: var(--error); }
-.waitlist-form input.invalid:focus {
-  border-color: var(--error);
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
-}
-.waitlist-error {
-  display: none;
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--error);
-}
-.waitlist-error.show { display: block; }
-.waitlist-success {
-  display: none;
-  height: 48px; padding: 0 20px;
-  border-radius: var(--radius-input);
-  background: var(--green-50);
-  color: var(--green-dark);
-  font-weight: 500; font-size: 15px;
-  align-items: center; gap: 8px;
-  max-width: 460px;
-  animation: fade-up 320ms ease;
-}
-.waitlist-success.show { display: inline-flex; }
-.waitlist-form-group.hidden,
-.waitlist-form.hidden { display: none; }
-
-.app-store-badge {
-  display: inline-block;
-  line-height: 0;
-  transition: opacity 140ms ease, transform 140ms ease;
-}
-.app-store-badge:hover { opacity: 0.88; }
-.app-store-badge:active { transform: scale(0.98); }
-.app-store-badge img {
-  display: block;
-  height: 44px;
-  width: auto;
-}
-.app-store-badge--sm img { height: 36px; }
-.app-store-badge--nav img { height: 32px; }
-.hero-cta { margin-bottom: 28px; }
-.updates-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--t2);
-  margin-bottom: 10px;
-}
-.final-cta .hero-cta { display: flex; justify-content: center; margin-bottom: 24px; }
-.foot-brand .app-store-badge { margin-top: 20px; }
-
-.social-proof {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 14px; color: var(--t2);
-}
-.social-proof .dot { color: var(--green); }
-
-/* Hero mockup column */
-.hero-mock-wrap {
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-  min-height: 720px;
-}
-.hero-mock-wrap::before {
-  content: "";
-  position: absolute;
-  width: 520px; height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(45,139,87,0.12) 0%, rgba(45,139,87,0.04) 45%, transparent 70%);
-  z-index: 0;
-}
-.hero-mock {
-  transform: rotate(2.5deg);
-  animation: float 5s ease-in-out infinite;
-  position: relative; z-index: 2;
-}
-.hero-mock-wrap .float-bubble {
-  position: absolute;
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 14px;
-  padding: 12px 16px;
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 14px; color: var(--text); font-weight: 500;
-  z-index: 5;
-  box-shadow: 0 16px 36px -16px rgba(20,24,40,0.22);
-}
-.hero-mock-wrap .bubble-1 {
-  top: 9%; left: -6%;
-  animation: float-flat 6s ease-in-out infinite;
-}
-.hero-mock-wrap .bubble-2 {
-  bottom: 12%; right: -3%;
-  animation: float-flat 5.4s ease-in-out 1s infinite;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 18px; font-weight: 600;
-  color: var(--green);
-}
-.bubble-1 .dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--p-pink);
+/* Or just tell it: the app's "Just tell me" card, animated */
+.jtm-grid{display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center}
+.jtm-copy{max-width:520px}
+.jtm-copy .eyebrow{margin-bottom:14px}
+.jtm-title{font-size:44px;line-height:1.1;letter-spacing:-1px;font-weight:700;margin:0 0 16px;text-wrap:balance}
+.jtm-sub{font-size:19px;line-height:1.5;color:var(--secondary);margin:0 0 28px;max-width:460px}
+.jtm-readout{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px}
+.jtm-readout .in{background:var(--fill);color:var(--secondary);border-radius:var(--r-md);padding:8px 12px}
+.jtm-readout .arrow{color:var(--green);font-size:18px}
+.jtm-readout .out{background:var(--green-soft);color:var(--green-dark);font-weight:600;border-radius:var(--r-md);padding:8px 12px;font-variant-numeric:tabular-nums}
+.jtm-demo-col{display:flex;justify-content:center}
+.jtm .phone{--pw:316px;border-radius:44px;padding:9px}
+.jtm .phone-screen{height:640px;border-radius:36px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;position:relative}
+.phone-status{height:46px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:6px 24px 0 28px;font-size:14px;font-weight:600;position:relative}
+.phone-status .island{position:absolute;left:50%;top:9px;transform:translateX(-50%);width:92px;height:27px;border-radius:999px;background:#000}
+.phone-status .status-icons{display:inline-flex;gap:5px;align-items:center}
+.jtm-stage{position:relative;flex:1;overflow:hidden}
+.jtm-frame{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.jtm-stage[data-step="0"] .f-input,.jtm-stage[data-step="1"] .f-thread,.jtm-stage[data-step="2"] .f-card,.jtm-stage[data-step="3"] .f-done{opacity:1;pointer-events:auto}
+.jtm-h{display:flex;align-items:center;justify-content:space-between;padding:6px 12px 8px;flex-shrink:0;border-bottom:.5px solid var(--hairline)}
+.jtm-ic{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);font-size:22px}
+.jtm-ic .ic{stroke-width:32}
+.jtm-brand{display:inline-flex;align-items:center;gap:7px;font-size:16px;font-weight:600}
+.jtm-aimark{width:18px;height:18px;border-radius:5px;background:var(--green-graphic);position:relative;flex-shrink:0;display:inline-block}
+.jtm-aimark.lg{width:26px;height:26px;border-radius:7px}
+.jtm-aimark::before,.jtm-aimark::after{content:"";position:absolute;width:3px;height:9px;border-radius:2px;background:#fff;top:4.5px}
+.jtm-aimark::before{left:5px}.jtm-aimark::after{left:10px;opacity:.6}
+.jtm-aimark.lg::before,.jtm-aimark.lg::after{width:4px;height:13px;top:6.5px}
+.jtm-aimark.lg::before{left:7px}.jtm-aimark.lg::after{left:15px}
+.jtm-input-body{flex:1;display:flex;flex-direction:column;padding:16px 18px 0}
+.jtm-prompt{font-size:19px;font-weight:500;line-height:1.4;letter-spacing:-.2px;min-height:54px}
+.jtm-caret{display:inline-block;width:2px;height:22px;background:var(--green);vertical-align:-4px;margin-left:2px;animation:jtm-caret 1.1s step-end infinite}
+.jtm-spacer{flex:1}
+.jtm-try{font-size:12px;font-weight:600;color:var(--secondary);margin-bottom:8px}
+.jtm-chips{display:flex;flex-direction:column;gap:8px;padding-bottom:14px}
+.jtm-chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:.5px solid var(--hairline);border-radius:999px;padding:9px 14px;font-size:13px;color:var(--ink)}
+.jtm-chip .ic{font-size:14px;color:var(--secondary);stroke-width:36}
+.jtm-compose{flex-shrink:0;border-top:.5px solid var(--hairline);background:var(--surface);padding:10px 14px 18px;display:flex;align-items:center}
+.jtm-send{width:42px;height:42px;border-radius:999px;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:20px}
+.jtm-send .ic{stroke-width:40}
+.jtm-thread{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px 14px 14px;overflow:hidden}
+.jtm-bubble-user{align-self:stretch;background:var(--green-soft);color:var(--ink);border-radius:var(--r-md);padding:10px 12px;font-size:14px;line-height:1.4}
+.jtm-ai-row{display:flex;gap:9px;align-items:flex-start}
+.jtm-ai-col{flex:1;min-width:0}
+.jtm-ai-label{font-size:13px;color:var(--secondary);margin-bottom:8px;line-height:1.4;padding-top:4px}
+.jtm-typing{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:.5px solid var(--hairline);border-radius:var(--r-md);padding:9px 13px;font-size:13px;color:var(--secondary)}
+.jtm-typing .dots{display:inline-flex;gap:5px}
+.jtm-typing .dots i{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;animation:jtm-dot 1.2s infinite ease-in-out}
+.jtm-typing .dots i:nth-child(2){animation-delay:.16s}.jtm-typing .dots i:nth-child(3){animation-delay:.32s}
+.jtm-card{background:var(--surface);border-radius:var(--r-lg);overflow:hidden}
+.jtm-stage[data-step="2"] .jtm-card{animation:jtm-rise .46s ease}
+.jtm-card-head{display:flex;align-items:center;gap:12px;padding:14px 14px 6px}
+.jtm-emoji{width:40px;height:40px;border-radius:999px;background:var(--fill);display:inline-flex;align-items:center;justify-content:center;color:var(--secondary);font-size:20px}
+.jtm-emoji .ic{stroke-width:28}
+.jtm-card-desc{font-size:16px;font-weight:600}
+.jtm-card-tag{font-size:12px;color:var(--secondary)}
+.jtm-card-total{display:flex;align-items:baseline;justify-content:space-between;padding:6px 14px 10px}
+.jtm-card-total .lbl{font-size:13px;color:var(--secondary)}
+.jtm-card-total .amt{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.jtm-rows{padding:0 14px}
+.jtm-prow{display:flex;align-items:center;gap:11px;padding:10px 0}
+.jtm-prow+.jtm-prow{border-top:.5px solid var(--hairline)}
+.jtm-prow .av{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
+.jtm-prow .av.you{background:var(--lake-soft);color:var(--lake-text);box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--green-graphic)}
+.jtm-prow .av.jake{background:#F7E9E3;color:#7D3E24}
+.jtm-prow .nm{flex:1;font-size:14px;font-weight:500}
+.jtm-prow .youtag{font-size:12px;color:var(--secondary);font-weight:400}
+.jtm-prow .amt{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+.jtm-recon{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:12px;color:var(--green-dark);font-variant-numeric:tabular-nums}
+.jtm-recon .ic{font-size:15px;color:var(--green-graphic);stroke-width:36}
+.jtm-actions{display:flex;gap:9px;padding:4px 14px 14px}
+.jtm-edit{flex:0 0 auto;min-width:84px;height:44px;border-radius:var(--r-md);border:1px solid var(--green);color:var(--green);font-weight:600;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.jtm-edit .ic{font-size:15px;stroke-width:36}
+.jtm-create{flex:1;height:44px;border-radius:var(--r-md);background:var(--green);color:#fff;font-weight:600;font-size:14px;display:inline-flex;align-items:center;justify-content:center}
+.jtm-frame.f-done{align-items:center;justify-content:center}
+.jtm-done-inner{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 30px}
+.jtm-done-check{width:64px;height:64px;border-radius:50%;background:var(--green-soft);color:var(--green-graphic);display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:32px}
+.jtm-done-check .ic{stroke-width:40}
+.jtm-stage[data-step="3"] .jtm-done-check{animation:jtm-pop .42s cubic-bezier(.2,.8,.3,1.2)}
+.jtm-done-title{font-size:22px;font-weight:700;letter-spacing:-.3px}
+.jtm-done-sub{font-size:14px;color:var(--secondary);margin-top:4px;font-variant-numeric:tabular-nums}
+.jtm-done-link{margin-top:12px;font-size:13px;color:var(--secondary);display:inline-flex;align-items:center;gap:6px}
+.jtm-done-link .ic{font-size:14px;stroke-width:36}
+@keyframes jtm-caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes jtm-dot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+@keyframes jtm-rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes jtm-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .jtm-caret,.jtm-typing .dots i{animation:none}
+  .jtm-stage[data-step="2"] .jtm-card,.jtm-stage[data-step="3"] .jtm-done-check{animation:none}
+  .jtm-frame,.js .reveal,.faq-a,.faq-q .chev{transition:none}
+  html{scroll-behavior:auto}
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(2.5deg); }
-  50% { transform: translateY(-7px) rotate(2.5deg); }
-}
-@keyframes float-flat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-mock, .hero-mock-wrap .float-bubble { animation: none; }
-}
-@media (max-width: 768px) {
-  .hero-mock, .hero-mock-wrap .float-bubble { animation: none !important; }
-}
-
-@media (max-width: 960px) {
-  .hero { padding: 48px 0 64px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .hero-title { font-size: 36px; letter-spacing: -1.2px; }
-  .hero-mock-wrap { min-height: 600px; }
-  .hero-mock { transform: rotate(0deg); }
-  .hero-mock-wrap .bubble-1 { left: 0; }
-  .hero-mock-wrap .bubble-2 { right: 0; }
-}
-@media (max-width: 768px) {
-  .hero-copy .body { font-size: 16px; }
-  .hero-mock-wrap { min-height: auto; padding: 12px 0 8px; }
-  .hero-mock-wrap::before { width: min(320px, 90vw); height: min(320px, 90vw); }
-  .phone { width: min(320px, calc(100vw - 48px)); }
-  .hero-mock-wrap .float-bubble { font-size: 13px; padding: 10px 12px; }
-  .waitlist-form-group { max-width: 100%; }
-  .waitlist-form {
-    flex-direction: column;
-    max-width: 100%;
-  }
-  .waitlist-form input[type="email"] { flex: none; width: 100%; height: 48px; }
-  .waitlist-form .btn { width: 100%; }
-  .waitlist-success { max-width: 100%; width: 100%; }
-  .container { padding: 0 16px; }
-}
-@media (max-width: 480px) {
-  .hero-title { font-size: 32px; letter-spacing: -1px; }
-  .feature-row { grid-template-columns: 1fr; }
-  .pain-stat { font-size: 40px; }
-}
-
-/* ── PREMIUM DARK DEVICE FRAME ──────────────────────────────── */
-.phone {
-  width: 320px; height: auto;
-  background: var(--bezel);
-  border-radius: 52px; padding: 12px;
-  position: relative; flex-shrink: 0;
-  box-shadow: var(--bezel-shadow);
-}
-.phone-notch { display: none !important; }
-.phone-screen {
-  width: 100%; height: auto;
-  background: #FAFBF8;
-  border-radius: 40px; overflow: hidden;
-  position: relative; display: block;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
-}
-.phone-screen img {
-  width: 100%; height: auto; display: block;
-  object-fit: contain; object-position: top center;
-}
-.phone-sm { width: 252px; padding: 9px; border-radius: 42px; }
-.phone-sm .phone-screen { border-radius: 33px; }
-
-/* ── HOW IT WORKS ───────────────────────────────────────────── */
-section { scroll-margin-top: 80px; }
-.section { padding: 100px 0; }
-.section-head {
-  text-align: center;
-  margin: 0 auto 60px;
-  max-width: 660px;
-}
-.section-head .h2 { margin-bottom: 14px; }
-
-.steps {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px; position: relative;
-}
-.step {
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-.step-num {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--green); color: #fff;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 17px; font-weight: 600;
-  margin-bottom: 28px;
-  z-index: 3; position: relative;
-  box-shadow: 0 6px 16px -6px rgba(45,139,87,0.6);
-}
-.step .h3 { margin: 26px 0 10px; }
-.step .body-tight { max-width: 280px; }
-
-.step-phone {
-  width: 210px; height: auto;
-  background: var(--bezel);
-  border-radius: 38px; padding: 9px;
-  box-shadow: var(--bezel-shadow);
-  margin-bottom: 4px;
-}
-.step-phone-screen {
-  width: 100%; height: auto;
-  background: #FAFBF8;
-  border-radius: 30px; overflow: hidden;
-  position: relative; display: block;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
-}
-.step-phone-screen img { width: 100%; height: auto; display: block; }
-
-.step-connector {
-  position: absolute;
-  top: 22px;
-  left: calc(16.67% + 30px);
-  right: calc(16.67% + 30px);
-  height: 1px;
-  background-image: linear-gradient(to right, var(--green-200) 0 6px, transparent 6px 12px);
-  background-size: 12px 1px;
-  z-index: 1;
-}
-
-@media (max-width: 960px) {
-  .section { padding: 72px 0; }
-  .steps { grid-template-columns: 1fr; gap: 48px; }
-  .step-connector { display: none; }
-  .h2 { font-size: 28px; letter-spacing: -0.6px; }
-  .section-head { margin-bottom: 40px; }
-}
-
-/* ── APP PREVIEW ────────────────────────────────────────────── */
-.preview-phones {
-  display: flex; gap: 48px;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 0 56px;
-  flex-wrap: wrap;
-}
-.preview-phones .phone:nth-child(1) { transform: rotate(-2.5deg); }
-.preview-phones .phone:nth-child(2) { transform: rotate(2.5deg); }
-
-.feature-row {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  max-width: 1000px; margin: 0 auto;
-}
-.feature-mini {
-  display: flex; flex-direction: column; align-items: flex-start;
-  gap: 10px;
-}
-.feature-mini .icon-wrap {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: var(--green-50);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 22px;
-}
-.feature-mini .ft-title { font-size: 15px; font-weight: 600; color: var(--text); }
-.feature-mini .ft-body { font-size: 14px; color: var(--t2); line-height: 1.5; }
-
-@media (max-width: 768px) {
-  .feature-row { grid-template-columns: 1fr 1fr; gap: 24px; }
-  .preview-phones { gap: 28px; }
-  .preview-phones .phone:nth-child(1),
-  .preview-phones .phone:nth-child(2) { transform: none; }
-}
-
-/* ── SECTION BANDS ─────────────────────────────────────────── */
-.band-tint { background: var(--band-tint); }
-.band-white { background: var(--surface); }
-.band-tint + .band-white, .band-white + .band-tint { border-top: 0.5px solid var(--border); }
-
-/* ── FEATURE SHOWCASE ───────────────────────────────────────── */
-.feature-showcase {
-  display: grid;
-  grid-template-columns: 1fr 252px;
-  gap: 72px;
-  align-items: center;
-  padding: 60px 0;
-  border-bottom: 0.5px solid var(--border);
-  max-width: 960px;
-  margin: 0 auto;
-}
-.feature-showcase:last-of-type { border-bottom: none; }
-.feature-showcase-reverse { grid-template-columns: 252px 1fr; }
-.feature-showcase-reverse .feature-showcase-copy { order: 2; }
-.feature-showcase-reverse .feature-showcase-visual { order: 1; }
-.feature-showcase-visual { display: flex; justify-content: center; align-items: center; }
-.feature-showcase .ficon {
-  width: 48px; height: 48px;
-  border-radius: 14px;
-  background: var(--green-50);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 24px;
-  margin-bottom: 16px;
-}
-.feature-showcase .feature-showcase-copy h3 { margin-bottom: 12px; font-size: 24px; letter-spacing: -0.5px; }
-.feature-showcase .feature-showcase-copy p {
-  margin: 0; font-size: 16px; color: var(--t2); line-height: 1.65;
-}
-.feature-showcase .phone-sm { transform: rotate(1.5deg); }
-.feature-showcase-reverse .phone-sm { transform: rotate(-1.5deg); }
-@media (max-width: 800px) {
-  .feature-showcase, .feature-showcase-reverse {
-    grid-template-columns: 1fr; gap: 32px; padding: 44px 0;
-    justify-items: center; text-align: center;
-  }
-  .feature-showcase-reverse .feature-showcase-copy { order: 1; }
-  .feature-showcase-reverse .feature-showcase-visual { order: 2; }
-  .feature-showcase .ficon { margin-left: auto; margin-right: auto; }
-  .feature-showcase .phone-sm,
-  .feature-showcase-reverse .phone-sm { transform: none; }
-}
-
-/* ── FLOW B ─────────────────────────────────────────────────── */
-.flow-section-label { margin-bottom: 0; }
-.flow-divider {
-  text-align: center;
-  margin: 64px 0 40px;
-  position: relative;
-}
-.flow-divider::before {
-  content: "";
-  position: absolute;
-  top: 50%; left: 0; right: 0;
-  height: 0.5px;
-  background: var(--border);
-  transform: translateY(-50%);
-}
-.flow-divider span {
-  position: relative;
-  background: var(--band-tint);
-  padding: 0 20px;
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--t3);
-}
-.flow-b-card {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 20px;
-  padding: 44px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: center;
-  box-shadow: 0 24px 60px -36px rgba(20,24,40,0.2);
-}
-.flow-b-copy .eyebrow { margin-bottom: 4px; display: block; }
-.flow-b-examples {
-  display: flex; flex-direction: column; gap: 10px;
-  margin-top: 20px;
-}
-.flow-b-example {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 15px; color: var(--t2);
-}
-.flow-b-example .ex-icon { font-size: 18px; flex-shrink: 0; }
-.flow-b-visual { display: flex; justify-content: center; }
-@media (max-width: 768px) {
-  .flow-b-card { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
-  .flow-b-visual { display: none; }
-}
-
-/* ── USE CASES ──────────────────────────────────────────────── */
-.use-cases-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.use-case-card {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-card);
-  padding: 26px 28px;
-  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
-}
-.use-case-card:hover { border-color: var(--green-200); transform: translateY(-3px); box-shadow: 0 18px 36px -22px rgba(20,24,40,0.25); }
-.use-case-card .uc-emoji { font-size: 30px; margin-bottom: 12px; display: block; }
-.use-case-card .uc-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-.use-case-card .uc-body { font-size: 14px; color: var(--t2); line-height: 1.55; }
-@media (max-width: 960px) { .use-cases-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .use-cases-grid { grid-template-columns: 1fr; } }
-
-/* ── PAIN POINT ─────────────────────────────────────────────── */
-.pain-section {
-  background: #16161F;
-  padding: 100px 0;
-  text-align: center;
-}
-.pain-stat {
-  font-size: 64px; font-weight: 700;
-  color: var(--green-400);
-  letter-spacing: -3px; line-height: 1;
-  margin-bottom: 20px;
-  font-family: 'JetBrains Mono', monospace;
-}
-.pain-headline {
-  font-size: 30px; font-weight: 600;
-  color: #fff; letter-spacing: -0.5px;
-  max-width: 600px; margin: 0 auto 20px;
-  line-height: 1.25;
-  text-wrap: balance;
-}
-.pain-body {
-  font-size: 18px; color: #9CA3AF;
-  max-width: 540px; margin: 0 auto;
-  line-height: 1.65;
-}
-.pain-body strong { color: #E5E7EB; }
-@media (max-width: 768px) {
-  .pain-stat { font-size: 48px; }
-  .pain-headline { font-size: 24px; }
-  .pain-section { padding: 72px 0; }
-}
-
-/* ── WHY SPLITS ─────────────────────────────────────────────── */
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 960px; margin: 0 auto;
-}
-.why-card {
-  display: flex; flex-direction: column;
-  align-items: flex-start; gap: 12px;
-  padding: 28px;
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-card);
-}
-.why-card .why-icon {
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  background: var(--green-50);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 22px;
-}
-.why-card .why-title { font-size: 16px; font-weight: 600; color: var(--text); }
-.why-card .why-body { font-size: 14px; color: var(--t2); line-height: 1.6; }
-@media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; gap: 16px; } }
-
-/* ── TESTIMONIALS ──────────────────────────────────────────── */
-.tcards {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.tcard {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-card);
-  padding: 28px;
-  display: flex; flex-direction: column; gap: 18px;
-  box-shadow: 0 18px 44px -32px rgba(20,24,40,0.22);
-}
-.tcard .quote {
-  font-size: 17px; line-height: 1.5;
-  color: var(--text); font-weight: 500;
-  letter-spacing: -0.2px;
-  text-wrap: pretty;
-}
-.tcard .person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
-.tcard .pav {
-  width: 36px; height: 36px; border-radius: 50%;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 600;
-}
-.tcard .pn { font-size: 14px; font-weight: 500; color: var(--text); }
-.tcard .pr { font-size: 12px; color: var(--t3); }
-@media (max-width: 900px) {
-  .tcards {
-    grid-template-columns: 1fr;
-    overflow-x: auto;
-    grid-auto-flow: column;
-    grid-auto-columns: 86%;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 8px;
-    margin: 0 -24px;
-    padding-left: 24px; padding-right: 24px;
-  }
-  .tcard { scroll-snap-align: start; }
-}
-
-/* ── FAQ ────────────────────────────────────────────────────── */
-.faq { max-width: 760px; margin: 0 auto; }
-.faq-item { border-bottom: 0.5px solid var(--border); }
-.faq-item:first-child { border-top: 0.5px solid var(--border); }
-.faq-q {
-  width: 100%;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 20px;
-  padding: 24px 8px;
-  background: transparent; border: none;
-  text-align: left;
-  font-size: 17px; font-weight: 500; color: var(--text);
-  letter-spacing: -0.2px;
-}
-.faq-q .chev {
-  flex-shrink: 0; width: 20px; height: 20px;
-  color: var(--green);
-  transition: transform 240ms ease;
-}
-.faq-item.open .faq-q .chev { transform: rotate(180deg); }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height 280ms ease; }
-.faq-a-inner {
-  padding: 0 8px 24px;
-  font-size: 16px; line-height: 1.6;
-  color: var(--t2);
-  max-width: 620px;
-}
-.faq-item.open .faq-a { max-height: 320px; }
-
-/* ── FINAL CTA ─────────────────────────────────────────────── */
-.final-cta {
-  background: var(--green-50);
-  padding: 100px 0;
-  text-align: center;
-}
-.final-cta .inner { max-width: 540px; margin: 0 auto; }
-.final-cta .h2 { margin-bottom: 14px; }
-.final-cta .body { margin-bottom: 32px; }
-.final-cta .waitlist-form-group { margin: 0 auto 14px; }
-.final-cta .waitlist-success { margin: 0 auto; }
-.final-cta .fine { font-size: 13px; color: var(--t3); }
-.final-cta input[type="email"] { background: #fff; }
-@media (max-width: 768px) { .final-cta { padding: 72px 0; } }
-
-/* ── FOOTER ────────────────────────────────────────────────── */
-footer {
-  background: #16161F;
-  color: #9CA3AF;
-  padding: 64px 0 32px;
-}
-footer .container { padding: 0 24px; }
-.foot-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 48px;
-  border-bottom: 0.5px solid rgba(255,255,255,0.08);
-}
-.foot-brand .wordmark .spl { color: #fff; }
-.foot-brand .wordmark .its { color: var(--green-400); }
-.foot-brand .lockup .icon { width: 28px; height: 28px; }
-.foot-brand .lockup .icon::before,
-.foot-brand .lockup .icon::after { width: 6px; height: 14px; top: 7px; }
-.foot-brand .lockup .icon::before { left: 7px; }
-.foot-brand .lockup .icon::after  { left: 15px; }
-.foot-brand .tagline { font-size: 14px; color: #9CA3AF; margin-top: 16px; max-width: 240px; }
-.foot-col h4 { font-size: 13px; font-weight: 600; color: #fff; margin: 0 0 16px; letter-spacing: 0.2px; }
-.foot-col ul { list-style: none; padding: 0; margin: 0; }
-.foot-col li { margin-bottom: 12px; }
-.foot-col a { color: #9CA3AF; font-size: 14px; transition: color 140ms ease; }
-.foot-col a:hover { color: #fff; }
-.foot-bottom {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 24px;
-  flex-wrap: wrap; gap: 16px;
-}
-.foot-bottom .copy { font-size: 13px; color: #6B7280; }
-.foot-bottom .social { display: flex; gap: 16px; }
-.foot-bottom .social a {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  display: inline-flex; align-items: center; justify-content: center;
-  color: #9CA3AF;
-  transition: color 140ms ease, background 140ms ease;
-}
-.foot-bottom .social a:hover { color: #fff; background: rgba(255,255,255,0.05); }
-@media (max-width: 768px) {
-  .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; text-align: left; }
-  .foot-bottom { justify-content: center; text-align: center; }
-}
-@media (max-width: 480px) { .foot-grid { grid-template-columns: 1fr; } }
-
-/* ── OR JUST TELL IT (conversational beat) ─────────────────── */
-.jtm { --coral: #E84545; --coral-dark: #C73838; }
-.jtm-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 72px; align-items: center;
-}
-.jtm-copy { max-width: 480px; }
-.jtm-copy .eyebrow { display: block; margin-bottom: 18px; }
-.jtm-title {
-  font-size: 40px; font-weight: 700;
-  letter-spacing: -1.4px; line-height: 1.08;
-  margin-bottom: 18px; text-wrap: balance;
-}
-.jtm-title .or { color: var(--coral); font-style: italic; font-weight: 600; }
-.jtm-sub { font-size: 18px; line-height: 1.6; color: var(--t2); margin-bottom: 28px; max-width: 440px; }
-.jtm-readout {
-  display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13.5px;
-}
-.jtm-readout .in { color: var(--t2); background: var(--muted); border: 0.5px solid var(--border); border-radius: 8px; padding: 7px 11px; }
-.jtm-readout .arrow { color: var(--green); font-size: 16px; }
-.jtm-readout .out { color: var(--green-dark); font-weight: 500; background: var(--green-50); border-radius: 8px; padding: 7px 11px; }
-
-.jtm-demo-col { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.jtm .phone { width: 320px; transform: none; }
-.jtm .phone-screen { height: 596px; display: flex; flex-direction: column; }
-.jtm .phone-status {
-  height: 44px; flex-shrink: 0;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  padding: 0 26px 4px;
-  font-size: 14px; font-weight: 600; color: var(--text);
-  letter-spacing: -0.2px;
-}
-.jtm .phone-status .status-icons { display: inline-flex; align-items: center; gap: 5px; }
-.jtm .phone-status .status-icons svg { display: block; }
-
-/* Looping demo stage */
-.jtm-stage { position: relative; flex: 1; overflow: hidden; }
-.jtm-frame {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  opacity: 0; pointer-events: none;
-  transition: opacity 450ms ease;
-}
-.jtm-stage[data-step="0"] .f-input,
-.jtm-stage[data-step="1"] .f-thread,
-.jtm-stage[data-step="2"] .f-card,
-.jtm-stage[data-step="3"] .f-done { opacity: 1; }
-
-.jtm-h { display: flex; align-items: center; justify-content: space-between; padding: 14px 12px 6px; flex-shrink: 0; }
-.jtm-ic { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--t2); }
-.jtm-brand { display: inline-flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; }
-.jtm-aimark { width: 18px; height: 18px; border-radius: 5px; background: var(--green); position: relative; flex-shrink: 0; }
-.jtm-aimark.lg { width: 26px; height: 26px; border-radius: 7px; }
-.jtm-aimark::before, .jtm-aimark::after { content: ""; position: absolute; width: 3px; height: 9px; border-radius: 2px; background: #fff; top: 4.5px; }
-.jtm-aimark::before { left: 5px; }
-.jtm-aimark::after  { left: 10px; opacity: 0.6; }
-.jtm-aimark.lg::before, .jtm-aimark.lg::after { width: 4px; height: 13px; top: 6.5px; }
-.jtm-aimark.lg::before { left: 7px; }
-.jtm-aimark.lg::after  { left: 15px; }
-
-/* Input frame */
-.jtm-input-body { flex: 1; display: flex; flex-direction: column; padding: 14px 20px 0; }
-.jtm-prompt { font-size: 19px; font-weight: 500; line-height: 1.4; letter-spacing: -0.3px; color: var(--text); min-height: 54px; }
-.jtm-caret { display: inline-block; width: 2px; height: 22px; background: var(--green); vertical-align: -4px; margin-left: 2px; animation: jtm-caret 1.1s step-end infinite; }
-.jtm-spacer { flex: 1; }
-.jtm-try { font-size: 11px; font-weight: 600; color: var(--t2); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 9px; }
-.jtm-chips { display: flex; flex-direction: column; gap: 8px; padding-bottom: 14px; }
-.jtm-chip { display: inline-flex; align-items: center; gap: 8px; text-align: left; background: var(--bg); border: 0.5px solid var(--border); border-radius: 999px; padding: 9px 14px; font-family: inherit; font-size: 12.5px; font-weight: 500; color: var(--t3); }
-.jtm-chip svg { flex-shrink: 0; color: var(--t2); }
-.jtm-compose { flex-shrink: 0; border-top: 0.5px solid var(--border); background: var(--surface); padding: 11px 14px 16px; display: flex; align-items: center; gap: 10px; }
-.jtm-send { width: 42px; height: 42px; border-radius: 50%; background: var(--green); color: #fff; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-/* Thread + card frames */
-.jtm-thread { flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 10px 16px 14px; overflow: hidden; }
-.jtm-bubble-user { align-self: flex-end; max-width: 86%; background: var(--green-50); color: var(--text); border: 0.5px solid #CDEAD7; border-radius: 16px 16px 4px 16px; padding: 10px 13px; font-size: 14px; line-height: 1.45; }
-.jtm-ai-row { display: flex; gap: 9px; align-items: flex-start; }
-.jtm-ai-col { flex: 1; min-width: 0; }
-.jtm-ai-label { font-size: 12.5px; color: var(--t3); margin-bottom: 9px; line-height: 1.4; padding-top: 4px; }
-.jtm-typing { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 13px; padding: 9px 13px; font-size: 13px; color: var(--t3); }
-.jtm-typing .dots { display: inline-flex; gap: 5px; }
-.jtm-typing .dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; animation: jtm-dot 1.2s infinite ease-in-out; }
-.jtm-typing .dots i:nth-child(2) { animation-delay: 0.16s; }
-.jtm-typing .dots i:nth-child(3) { animation-delay: 0.32s; }
-
-.jtm-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; opacity: 1; }
-.jtm-stage[data-step="2"] .jtm-card { animation: jtm-rise 460ms ease; }
-.jtm-card-head { display: flex; align-items: center; gap: 12px; padding: 14px 15px 12px; }
-.jtm-emoji { width: 42px; height: 42px; border-radius: 12px; background: var(--green-50); display: inline-flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0; }
-.jtm-card-desc { font-size: 16px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
-.jtm-card-tag { font-size: 12px; color: var(--t3); margin-top: 1px; }
-.jtm-card-total { display: flex; align-items: baseline; justify-content: space-between; padding: 0 15px 12px; }
-.jtm-card-total .lbl { font-size: 12px; font-weight: 500; color: var(--t3); text-transform: uppercase; letter-spacing: 0.5px; }
-.jtm-card-total .amt { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 26px; font-weight: 600; color: var(--text); letter-spacing: -1px; }
-.jtm-rows { padding: 0 15px; background: #FCFDFB; border-top: 0.5px solid var(--border); }
-.jtm-prow { display: flex; align-items: center; gap: 11px; padding: 10px 0; }
-.jtm-prow + .jtm-prow { border-top: 0.5px solid var(--border); }
-.jtm-prow .av { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
-.jtm-prow .av.you { background: var(--green-50); color: var(--green-dark); }
-.jtm-prow .av.jake { background: var(--p-blue-bg); color: #1E40AF; }
-.jtm-prow .nm { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); display: inline-flex; align-items: center; gap: 6px; }
-.jtm-prow .youtag { font-size: 10px; font-weight: 600; color: var(--green-dark); background: var(--green-50); border-radius: 5px; padding: 1px 6px; }
-.jtm-prow .amt { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
-.jtm-recon { display: flex; align-items: center; gap: 8px; padding: 11px 15px; border-top: 0.5px solid var(--border); background: var(--green-50); font-size: 12px; font-weight: 600; color: var(--green-dark); }
-.jtm-recon svg { flex-shrink: 0; }
-.jtm-actions { display: flex; gap: 9px; padding: 13px 15px 15px; }
-.jtm-edit { flex: 0 0 auto; min-width: 86px; height: 46px; border-radius: 11px; border: 1px solid var(--border); background: transparent; font-family: inherit; font-weight: 600; font-size: 14px; color: var(--text); display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
-.jtm-create { flex: 1; height: 46px; border-radius: 11px; border: none; background: var(--green); color: #fff; font-family: inherit; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
-
-/* Done frame */
-.jtm-frame.f-done { align-items: center; justify-content: center; }
-.jtm-done-inner { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 30px; }
-.jtm-done-check { width: 72px; height: 72px; border-radius: 50%; background: var(--green); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; opacity: 1; }
-.jtm-stage[data-step="3"] .jtm-done-check { animation: jtm-pop 420ms cubic-bezier(.2,.8,.3,1.2); }
-.jtm-done-title { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.4px; }
-.jtm-done-sub { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: var(--t2); margin-top: 4px; }
-.jtm-done-link { margin-top: 12px; font-size: 12.5px; color: var(--t3); display: inline-flex; align-items: center; gap: 6px; }
-
-@keyframes jtm-caret { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
-@keyframes jtm-dot { 0%,80%,100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
-@keyframes jtm-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes jtm-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
-@media (prefers-reduced-motion: reduce) {
-  .jtm-caret, .jtm-typing .dots i { animation: none; }
-  .jtm-stage[data-step="2"] .jtm-card, .jtm-stage[data-step="3"] .jtm-done-check { animation: none; }
-  .jtm-frame { transition: none; }
-}
-@media (max-width: 960px) {
-  .jtm-grid { grid-template-columns: 1fr; gap: 44px; }
-  .jtm-copy { max-width: none; }
-  .jtm-title { font-size: 30px; letter-spacing: -0.8px; }
-}
-@media (max-width: 768px) {
-  .jtm .phone { width: min(320px, calc(100vw - 48px)); }
-}
-
-/* ── SCROLL ANIMATIONS ─────────────────────────────────────── */
-.reveal.in { animation: revealUp 600ms ease both; }
-.reveal.d1.in { animation-delay: 100ms; }
-.reveal.d2.in { animation-delay: 200ms; }
-.reveal.d3.in { animation-delay: 300ms; }
-@keyframes revealUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@media (prefers-reduced-motion: reduce) { .reveal.in { animation: none; } }
-
-/* ── UTILITIES ─────────────────────────────────────────────── */
-.center { text-align: center; }
-.hide-desktop { display: none; }
-@media (max-width: 768px) {
-  .hide-mobile { display: none; }
-  .hide-desktop { display: initial; }
+/* Tablet */
+@media (max-width:980px){
+  .container,.nav-inner{padding-left:32px;padding-right:32px}
+  .h1{font-size:52px}.h2{font-size:36px}
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .callout{left:0}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-5{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:48px}
+  .step{align-items:center}
+  .step-head{max-width:420px}
+  .flow-b-card{flex-direction:column;padding:28px}
+  .feature-showcase,.feature-showcase-reverse{flex-direction:column;gap:32px;align-items:center;text-align:left}
+  .feature-showcase-copy{width:100%}
+  .jtm-grid{grid-template-columns:1fr;gap:44px}
+  .jtm-copy{max-width:none}
+  .jtm-title{font-size:34px}
+}
+/* Mobile */
+@media (max-width:768px){
+  .nav-links .anchor,.nav-links .app-store-badge{display:none}
+  .menu-btn{display:inline-flex}
+  .hide-mobile{display:none!important}
+}
+@media (max-width:600px){
+  .container,.nav-inner{padding-left:20px;padding-right:20px}
+  .section,.pain-section,.final-cta{padding:56px 0}
+  .hero{padding:40px 0 56px}
+  .h1{font-size:40px;letter-spacing:-1px}.h2{font-size:30px;letter-spacing:-.6px}
+  .body,.hero-lead,.hero-strong{font-size:17px}
+  .section-head{margin-bottom:32px}
+  .waitlist-form{flex-direction:column;max-width:none}
+  .btn{width:100%}
+  .callout{left:-4px;bottom:48px}
+  .phone-lg{--pw:260px}
+  .preview-phones{flex-direction:column;align-items:center;gap:32px}
+  .grid-4,.grid-5{grid-template-columns:1fr}
+  .grid-5 .card{display:flex;flex-direction:row;align-items:flex-start;gap:16px}
+  .grid-5 .uc-title{margin-top:0}
+  .flow-b-examples{grid-template-columns:1fr}
+  .flow-b-card{padding:20px}
+  .feature-showcase .h3{font-size:28px}
+  .feature-showcase-copy p{font-size:17px}
+  .pain-stat{font-size:64px}.pain-headline{font-size:20px}
+  .foot-grid{flex-direction:column}.foot-cols{gap:40px}
+  .foot-bottom{flex-direction:column;gap:12px;align-items:flex-start}
+  .jtm-title{font-size:30px}.jtm-sub{font-size:17px}
+  .jtm .phone{--pw:min(316px,calc(100vw - 48px))}
 }
 </style>
 </head>
 <body>
-
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-receipt" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" d="M160 336V48l32 16 32-16 31.94 16 32.37-16L320 64l31.79-16 31.93 16L416 48l32.01 16L480 48v224"/><path d="M480 272v112a80 80 0 01-80 80h0a80 80 0 01-80-80v-48H48a15.86 15.86 0 00-16 16c0 64 6.74 112 80 112h288" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M224 144h192M288 224h128"/></symbol><symbol id="i-link" viewBox="0 0 512 512"><path d="M208 352h-64a96 96 0 010-192h64M304 160h64a96 96 0 010 192h-64M163.29 256h187.42" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="36"/></symbol><symbol id="i-time" viewBox="0 0 512 512"><path d="M256 64C150 64 64 150 64 256s86 192 192 192 192-86 192-192S362 64 256 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 128v144h96"/></symbol><symbol id="i-calculator" viewBox="0 0 512 512"><rect x="112" y="48" width="288" height="416" rx="32" ry="32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M160.01 112H352v64H160.01z"/><circle cx="168" cy="248" r="24"/><circle cx="256" cy="248" r="24"/><circle cx="344" cy="248" r="24"/><circle cx="168" cy="328" r="24"/><circle cx="256" cy="328" r="24"/><circle cx="168" cy="408" r="24"/><circle cx="256" cy="408" r="24"/><rect x="320" y="304" width="48" height="128" rx="24" ry="24"/></symbol><symbol id="i-restaurant" viewBox="0 0 512 512"><path d="M57.49 47.74l368.43 368.43a37.28 37.28 0 010 52.72h0a37.29 37.29 0 01-52.72 0l-90-91.55a32 32 0 01-9.2-22.43v-5.53a32 32 0 00-9.52-22.78l-11.62-10.73a32 32 0 00-29.8-7.44h0a48.53 48.53 0 01-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path d="M400 32l-77.25 77.25A64 64 0 00304 154.51v14.86a16 16 0 01-4.69 11.32L288 192M320 224l11.31-11.31a16 16 0 0111.32-4.69h14.86a64 64 0 0045.26-18.75L480 112M440 72l-80 80M200 368l-99.72 100.28a40 40 0 01-56.56 0h0a40 40 0 010-56.56L128 328" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></symbol><symbol id="i-home" viewBox="0 0 512 512"><path d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></symbol><symbol id="i-pricetag" viewBox="0 0 512 512"><path d="M435.25 48h-122.9a14.46 14.46 0 00-10.2 4.2L56.45 297.9a28.85 28.85 0 000 40.7l117 117a28.85 28.85 0 0040.7 0L459.75 210a14.46 14.46 0 004.2-10.2v-123a28.66 28.66 0 00-28.7-28.8z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M384 160a32 32 0 1132-32 32 32 0 01-32 32z"/></symbol><symbol id="i-people" viewBox="0 0 512 512"><path d="M402 168c-2.93 40.67-33.1 72-66 72s-63.12-31.32-66-72c-3-42.31 26.37-72 66-72s69 30.46 66 72z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M336 304c-65.17 0-127.84 32.37-143.54 95.41-2.08 8.34 3.15 16.59 11.72 16.59h263.65c8.57 0 13.77-8.25 11.72-16.59C463.85 335.36 401.18 304 336 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path d="M200 185.94c-2.34 32.48-26.72 58.06-53 58.06s-50.7-25.57-53-58.06C91.61 152.15 115.34 128 147 128s55.39 24.77 53 57.94z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M206 306c-18.05-8.27-37.93-11.45-59-11.45-52 0-102.1 25.85-114.65 76.2-1.65 6.66 2.53 13.25 9.37 13.25H154" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/></symbol><symbol id="i-star" viewBox="0 0 512 512"><path d="M480 208H308L256 48l-52 160H32l140 96-54 160 138-100 138 100-54-160z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/></symbol><symbol id="i-checkmark" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></symbol><symbol id="i-car" viewBox="0 0 512 512"><path d="M80 224l37.78-88.15C123.93 121.5 139.6 112 157.11 112h197.78c17.51 0 33.18 9.5 39.33 23.85L432 224M80 224h352v144H80zM112 368v32H80v-32M432 368v32h-32v-32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="144" cy="288" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="368" cy="288" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></symbol><symbol id="i-cart" viewBox="0 0 512 512"><circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256"/><path d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></symbol><symbol id="i-ticket" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" d="M366.05 146a46.7 46.7 0 01-2.42-63.42 3.87 3.87 0 00-.22-5.26l-44.13-44.18a3.89 3.89 0 00-5.5 0l-70.34 70.34a23.62 23.62 0 00-5.71 9.24h0a23.66 23.66 0 01-14.95 15h0a23.7 23.7 0 00-9.25 5.71L33.14 313.78a3.89 3.89 0 000 5.5l44.13 44.13a3.87 3.87 0 005.26.22 46.69 46.69 0 0165.84 65.84 3.87 3.87 0 00.22 5.26l44.13 44.13a3.89 3.89 0 005.5 0l180.4-180.39a23.7 23.7 0 005.71-9.25h0a23.66 23.66 0 0114.95-15h0a23.62 23.62 0 009.24-5.71l70.34-70.34a3.89 3.89 0 000-5.5l-44.13-44.13a3.87 3.87 0 00-5.26-.22 46.7 46.7 0 01-63.42-2.32z"/><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" stroke-linecap="round" d="M250.5 140.44l-16.51-16.51M294.52 184.46l-11.01-11M338.54 228.49l-11-11.01M388.07 278.01l-16.51-16.51"/></symbol><symbol id="i-flash" viewBox="0 0 512 512"><path d="M315.27 33L96 304h128l-31.51 173.23a2.36 2.36 0 002.33 2.77h0a2.36 2.36 0 001.89-.95L416 208H288l31.66-173.25a2.45 2.45 0 00-2.44-2.75h0a2.42 2.42 0 00-1.95 1z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></symbol><symbol id="i-lock-closed" viewBox="0 0 512 512"><path d="M336 208v-95a80 80 0 00-160 0v95" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><rect x="96" y="208" width="320" height="272" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></symbol><symbol id="i-menu" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M80 160h352M80 256h352M80 352h352"/></symbol><symbol id="i-close" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></symbol><symbol id="i-chevron-down" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/></symbol><symbol id="i-chatbubble" viewBox="0 0 512 512"><path d="M87.49 380c1.19-4.38-1.44-10.47-3.95-14.86a44.86 44.86 0 00-2.54-3.8 199.81 199.81 0 01-33-110C47.65 139.09 140.73 48 255.83 48 356.21 48 440 117.54 459.58 209.85a199 199 0 014.42 41.64c0 112.41-89.49 204.93-204.59 204.93-18.3 0-43-4.6-56.47-8.37s-26.92-8.77-30.39-10.11a31.09 31.09 0 00-11.12-2.07 30.71 30.71 0 00-12.09 2.43l-67.83 24.48a16 16 0 01-4.67 1.22 9.6 9.6 0 01-9.57-9.74 15.85 15.85 0 01.6-3.29z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"/></symbol><symbol id="i-arrow-forward" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M268 112l144 144-144 144M392 256H100"/></symbol><symbol id="i-create" viewBox="0 0 512 512"><path d="M384 224v184a40 40 0 01-40 40H104a40 40 0 01-40-40V168a40 40 0 0140-40h167.48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M459.94 53.25a16.06 16.06 0 00-23.22-.56L424.35 65a8 8 0 000 11.31l11.34 11.32a8 8 0 0011.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38zM399.34 90L218.82 270.2a9 9 0 00-2.31 3.93L208.16 299a3.91 3.91 0 004.86 4.86l24.85-8.35a9 9 0 003.93-2.31L422 112.66a9 9 0 000-12.66l-9.95-10a9 9 0 00-12.71 0z"/></symbol><symbol id="i-copy" viewBox="0 0 512 512"><rect x="128" y="128" width="336" height="336" rx="57" ry="57" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><path d="M383.5 128l.5-24a56.16 56.16 0 00-56-56H112a64.19 64.19 0 00-64 64v216a56.16 56.16 0 0056 56h24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></symbol><symbol id="i-arrow-up" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 244l144-144 144 144M256 120v292"/></symbol></defs></svg>
 <!-- ── NAV ─────────────────────────────────────────────────── -->
 <nav class="nav" id="nav" data-screen-label="Nav">
   <div class="nav-inner">
-    <a href="#top" class="lockup" aria-label="Splits home">
-      <span class="icon" aria-hidden="true"></span>
-      <span class="wordmark"><span class="spl">spl</span><span class="its">its</span></span>
-    </a>
+    <a href="#top" class="lockup" aria-label="Splits home"><img src="/splits-wordmark.svg" alt="splits" width="60" height="26" /></a>
     <div class="nav-links">
       <a class="anchor" href="#how-it-works">How it works</a>
       <a class="anchor" href="#features">Features</a>
       <a class="anchor" href="#use-cases">Use cases</a>
       <a class="anchor" href="#faq">FAQ</a>
-      <a class="app-store-badge app-store-badge--nav" href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer">
-        <img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="eager" />
-      </a>
+      <a class="app-store-badge app-store-badge--nav" href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer"><img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="eager" /></a>
       <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <svg class="menu-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-          <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
-        <svg class="close-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-          <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
+        <svg class="ic menu-icon" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="ic close-icon" aria-hidden="true" focusable="false"><use href="#i-close"/></svg>
       </button>
     </div>
   </div>
@@ -1197,9 +515,7 @@ footer .container { padding: 0 24px; }
   <a class="anchor" href="#features">Features</a>
   <a class="anchor" href="#use-cases">Use cases</a>
   <a class="anchor" href="#faq">FAQ</a>
-  <a class="app-store-badge" href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer">
-    <img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" />
-  </a>
+  <a class="app-store-badge " href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer"><img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="lazy" /></a>
 </div>
 
 <!-- ── HERO ────────────────────────────────────────────────── -->
@@ -1207,18 +523,10 @@ footer .container { padding: 0 24px; }
   <div class="container">
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow reveal">No awkward conversations. No mental math.</span>
-        <h1 class="hero-title reveal d1">Settle money with your people.</h1>
-        <p class="body reveal d2">
-          From restaurant bills to rent, Uber rides to group trips, Splits tracks every shared expense and helps you settle up in seconds. No awkward conversations. No mental math. No chasing.
-        </p>
-
-        <div class="hero-cta reveal d3">
-          <a class="app-store-badge" href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer">
-            <img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="eager" />
-          </a>
-        </div>
-
+        <h1 class="h1 reveal d1">Settle money with your people.</h1>
+        <p class="hero-lead reveal d2">From restaurant bills to rent, Uber rides to group trips, Splits tracks every shared expense and helps you settle up in seconds.</p>
+        <p class="hero-strong reveal d2">No awkward conversations. No mental math. No chasing.</p>
+        <div class="hero-cta reveal d3"><a class="app-store-badge " href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer"><img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="eager" /></a></div>
         <div class="waitlist-form-group reveal d4">
           <p class="updates-label" id="hero-updates-label">Get product updates</p>
           <form class="waitlist-form" id="hero-form" aria-labelledby="hero-updates-label" novalidate>
@@ -1227,29 +535,16 @@ footer .container { padding: 0 24px; }
           </form>
           <p class="waitlist-error" id="hero-form-error" role="alert">Please enter a valid email address.</p>
         </div>
-        <div class="waitlist-success" id="hero-success" role="status">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9.5l3.2 3L14 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="waitlist-success" id="hero-success" role="status"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg>
           You're on the list. We'll email you about new features and updates.
         </div>
-
-        <div class="social-proof reveal d4" style="margin-top: 20px;">
-          <!-- Placeholder: App Store star rating / review count when available -->
-          <span class="dot">📱</span>
-          <span>Available on the App Store · Android coming soon</span>
-        </div>
+        <p class="fine reveal d4">Available on the App Store · Android coming soon</p>
       </div>
-
       <div class="hero-mock-wrap">
-        <div class="float-bubble bubble-1" aria-hidden="true">
-          <span class="dot"></span>
-          <span>Sofia settled up ✓</span>
-        </div>
-        <div class="float-bubble bubble-2" aria-hidden="true">You're owed $162</div>
-
-        <div class="phone hero-mock" aria-hidden="true">
-          <div class="phone-screen">
-            <img src="/screens/home-redesign.png" alt="Splits home screen: the relationship ledger showing who owes you and who you owe" loading="eager" />
-          </div>
+        <div class="phone phone-lg"><img src="/screens/home.webp" width="786" height="1704" alt="Splits home screen: your balance and the people who owe you" loading="eager" fetchpriority="high" decoding="async" /></div>
+        <div class="callout" aria-hidden="true">
+          <div class="tick"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></div>
+          <div><b>Sofia settled up</b><span>You're owed <em class="num">$168.40</em></span></div>
         </div>
       </div>
     </div>
@@ -1257,210 +552,119 @@ footer .container { padding: 0 24px; }
 </section>
 
 <!-- ── HOW IT WORKS ────────────────────────────────────────── -->
-<section id="how-it-works" class="section band-tint" data-screen-label="02 How it works">
+<section id="how-it-works" class="section band-white" data-screen-label="02 How it works">
   <div class="container">
     <div class="section-head reveal">
       <h2 class="h2">How it works</h2>
       <p class="body">Two ways to use Splits. Pick your moment.</p>
     </div>
-
-    <div class="flow-section-label reveal">
+    <div class="flow-label reveal">
       <span class="eyebrow">Flow A: Receipt Split</span>
-      <p class="body-tight" style="margin-top: 6px;">The flashy one. Snap any receipt and your group settles in seconds.</p>
+      <p class="body-tight">The flashy one. Snap any receipt and your group settles in seconds.</p>
     </div>
-
-    <div class="steps" style="margin-top: 32px;">
-      <div class="step-connector hide-mobile" aria-hidden="true"></div>
-
+    <div class="steps">
       <div class="step reveal">
-        <div class="step-num">1</div>
-        <div class="step-phone">
-          <div class="step-phone-screen">
-            <img src="/screens/10-camera.png" alt="Camera viewfinder pointing at a restaurant receipt" loading="lazy" />
-          </div>
-        </div>
-        <h3 class="h3">Snap a receipt</h3>
-        <p class="body-tight">Take a photo and AI reads every item, price, tax, and tip in seconds. No manual entry.</p>
+        <div class="phone phone-md"><img src="/screens/review.webp" width="786" height="1704" alt="Review items screen with every receipt line read by AI" loading="lazy" decoding="async" /></div>
+        <div class="step-head"><div class="step-num">1</div><div><h3 class="h3">Snap a receipt</h3>
+        <p class="body-tight">Take a photo and AI reads every item, price, tax, and tip in seconds. No manual entry.</p></div></div>
       </div>
-
       <div class="step reveal d1">
-        <div class="step-num">2</div>
-        <div class="step-phone">
-          <div class="step-phone-screen">
-            <img src="/screens/13-share.png" alt="Share split link via WhatsApp, text, or QR code" loading="lazy" />
-          </div>
-        </div>
-        <h3 class="h3">Share a link</h3>
-        <p class="body-tight">Send to your group via WhatsApp, text, anywhere. Friends open it in any browser. No app, no signup needed.</p>
+        <div class="phone phone-md"><img src="/screens/share.webp" width="786" height="1704" alt="Share split screen with a link, QR code, and quick share options" loading="lazy" decoding="async" /></div>
+        <div class="step-head"><div class="step-num">2</div><div><h3 class="h3">Share a link</h3>
+        <p class="body-tight">Send to your group via WhatsApp, text, anywhere. Friends open it in any browser. No app, no signup needed.</p></div></div>
       </div>
-
       <div class="step reveal d2">
-        <div class="step-num">3</div>
-        <div class="step-phone">
-          <div class="step-phone-screen">
-            <img src="/screens/16-claim-items.png" alt="Each person taps what they ordered to claim their items" loading="lazy" />
-          </div>
-        </div>
-        <h3 class="h3">Everyone claims their items</h3>
-        <p class="body-tight">Each person taps what they had. Tax and tip split proportionally. Done.</p>
+        <div class="phone phone-md"><img src="/screens/claim.webp" width="786" height="1704" alt="Claim screen where each person taps the items they ordered" loading="lazy" decoding="async" /></div>
+        <div class="step-head"><div class="step-num">3</div><div><h3 class="h3">Everyone claims their items</h3>
+        <p class="body-tight">Each person taps what they had. Tax and tip split proportionally. Done.</p></div></div>
       </div>
     </div>
-
-    <!-- Flow B -->
     <div class="flow-divider reveal"><span>Flow B: Quick Expenses</span></div>
-
     <div class="flow-b-card reveal">
       <div class="flow-b-copy">
         <span class="eyebrow">The everyday use case</span>
-        <h3 class="h3" style="margin-top: 8px; margin-bottom: 12px;">No receipt? No problem.</h3>
+        <h3 class="h3" style="margin-top:8px;margin-bottom:12px;font-size:32px;letter-spacing:-.6px">No receipt? No problem.</h3>
         <p class="body-tight">Paid for the Uber? Covered groceries? Spotted someone for lunch? Add it in 5 seconds. No receipt, no photos, no fuss. Splits tracks the balance so you both know where you stand.</p>
         <div class="flow-b-examples">
-          <div class="flow-b-example"><span class="ex-icon">🚗</span><span>Covered an Uber for the group</span></div>
-          <div class="flow-b-example"><span class="ex-icon">🛒</span><span>Bought groceries for the house</span></div>
-          <div class="flow-b-example"><span class="ex-icon">🎟️</span><span>Paid for everyone's movie tickets</span></div>
-          <div class="flow-b-example"><span class="ex-icon">⚡</span><span>Split a utility bill with your roommate</span></div>
+          <div class="flow-b-example"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-car"/></svg><span>Covered an Uber for the group</span></div>
+          <div class="flow-b-example"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-cart"/></svg><span>Bought groceries for the house</span></div>
+          <div class="flow-b-example"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-ticket"/></svg><span>Paid for everyone's movie tickets</span></div>
+          <div class="flow-b-example"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-flash"/></svg><span>Split a utility bill with your roommate</span></div>
         </div>
       </div>
-      <div class="flow-b-visual" aria-hidden="true">
-        <div class="phone phone-sm">
-          <div class="phone-screen">
-            <img src="/screens/quick-add.png" alt="Quick expense entry: add an expense in 5 seconds" loading="lazy" />
-          </div>
-        </div>
-      </div>
+      <div class="flow-b-visual"><div class="phone phone-sm"><img src="/screens/quick-add.webp" width="786" height="1704" alt="Quick add screen: enter an amount, pick who is in, add the expense in 5 seconds" loading="lazy" decoding="async" /></div></div>
     </div>
-
   </div>
 </section>
 
-<!-- ── OR JUST TELL IT (conversational beat) ───────────────── -->
-<section class="section band-white jtm" id="just-tell-it" data-screen-label="03 Or just tell it">
+<!-- ── OR JUST TELL IT ─────────────────────────────────────── -->
+<section class="section band-tint jtm" id="just-tell-it" data-screen-label="03 Or just tell it">
   <div class="container">
     <div class="jtm-grid">
       <div class="jtm-copy reveal">
         <span class="eyebrow">Even faster</span>
-        <h2 class="jtm-title"><span class="or">Or</span> just tell it what happened</h2>
+        <h2 class="jtm-title">Or just tell it what happened</h2>
         <p class="jtm-sub">Describe the expense in plain words (who, how much, how to split) and Splits does the math. No forms, no fields.</p>
         <div class="jtm-readout">
           <span class="in">"Split $40 dinner with Jake"</span>
-          <span class="arrow">→</span>
+          <span class="arrow"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-arrow-forward"/></svg></span>
           <span class="out">$20 each</span>
         </div>
       </div>
-
       <div class="jtm-demo-col reveal d1">
         <div class="phone" aria-label="Or just tell it: conversational split demo">
           <div class="phone-screen">
-            <div class="phone-status">
-              <span>9:41</span>
-              <span class="status-icons">
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 7.5l2-1.5 2 2 3-3 3 2.5L14 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5a8 8 0 0 1 12 0M3 7a5 5 0 0 1 8 0M5.5 9a2 2 0 0 1 3 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="1" y="1" width="18" height="8" rx="2" stroke="currentColor" stroke-width="1"/><rect x="3" y="3" width="13" height="4" rx="0.6" fill="currentColor"/></svg>
-              </span>
-            </div>
-
+            <div class="phone-status"><span>9:41</span><span class="island"></span><span class="status-icons" aria-hidden="true"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="21" height="10.8" rx="3.2" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="2.2" width="17.6" height="7.6" rx="1.8" fill="currentColor"/></svg></span></div>
             <div class="jtm-stage" id="jtm-stage" data-step="0">
-
-              <!-- 0 · INPUT -->
               <div class="jtm-frame f-input">
-                <div class="jtm-h">
-                  <span class="jtm-ic"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-                  <span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span>
-                  <span class="jtm-ic" style="visibility:hidden"></span>
-                </div>
+                <div class="jtm-h"><span class="jtm-ic"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-close"/></svg></span><span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span><span class="jtm-ic" style="visibility:hidden"></span></div>
                 <div class="jtm-input-body">
                   <div class="jtm-prompt"><span id="jtm-typed"></span><span class="jtm-caret"></span></div>
                   <div class="jtm-spacer"></div>
                   <div class="jtm-try">Try one</div>
                   <div class="jtm-chips">
-                    <span class="jtm-chip"><svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M6.5 2.5v8M3 5l3.5-2.5L10 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Uber $24 split with Sara</span>
-                    <span class="jtm-chip"><svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M6.5 2.5v8M3 5l3.5-2.5L10 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Groceries $86, I paid for everyone</span>
+                    <span class="jtm-chip"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg>Uber $24 split with Sara</span>
+                    <span class="jtm-chip"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg>Groceries $86, I paid for everyone</span>
                   </div>
                 </div>
-                <div class="jtm-compose">
-                  <span class="jtm-spacer"></span>
-                  <span class="jtm-send"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M5 9l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                </div>
+                <div class="jtm-compose"><span class="jtm-spacer"></span><span class="jtm-send"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg></span></div>
               </div>
-
-              <!-- 1 · SENT → PARSING -->
               <div class="jtm-frame f-thread">
-                <div class="jtm-h">
-                  <span class="jtm-ic"><svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M14 4l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                  <span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span>
-                  <span class="jtm-ic" style="visibility:hidden"></span>
-                </div>
+                <div class="jtm-h"><span class="jtm-ic"><svg class="ic " aria-hidden="true" focusable="false" style="transform:rotate(90deg)"><use href="#i-chevron-down"/></svg></span><span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span><span class="jtm-ic" style="visibility:hidden"></span></div>
                 <div class="jtm-thread">
                   <div class="jtm-bubble-user">Split $40 dinner with Jake</div>
-                  <div class="jtm-ai-row">
-                    <span class="jtm-aimark lg"></span>
-                    <div class="jtm-typing"><span class="dots"><i></i><i></i><i></i></span>Reading your split…</div>
-                  </div>
+                  <div class="jtm-ai-row"><span class="jtm-aimark lg"></span><div class="jtm-typing"><span class="dots"><i></i><i></i><i></i></span>Reading your split…</div></div>
                 </div>
               </div>
-
-              <!-- 2 · CONFIRMATION CARD -->
               <div class="jtm-frame f-card">
-                <div class="jtm-h">
-                  <span class="jtm-ic"><svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M14 4l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                  <span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span>
-                  <span class="jtm-ic" style="visibility:hidden"></span>
-                </div>
+                <div class="jtm-h"><span class="jtm-ic"><svg class="ic " aria-hidden="true" focusable="false" style="transform:rotate(90deg)"><use href="#i-chevron-down"/></svg></span><span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span><span class="jtm-ic" style="visibility:hidden"></span></div>
                 <div class="jtm-thread">
                   <div class="jtm-bubble-user">Split $40 dinner with Jake</div>
-                  <div class="jtm-ai-row">
-                    <span class="jtm-aimark lg"></span>
+                  <div class="jtm-ai-row"><span class="jtm-aimark lg"></span>
                     <div class="jtm-ai-col">
                       <div class="jtm-ai-label">Here's your split. Does this look right?</div>
                       <div class="jtm-card">
-                        <div class="jtm-card-head">
-                          <span class="jtm-emoji">🍽️</span>
-                          <div>
-                            <div class="jtm-card-desc">Dinner</div>
-                            <div class="jtm-card-tag">Equal split · 2 people</div>
-                          </div>
-                        </div>
-                        <div class="jtm-card-total">
-                          <span class="lbl">Total</span>
-                          <span class="amt">$40.00</span>
-                        </div>
+                        <div class="jtm-card-head"><span class="jtm-emoji"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-restaurant"/></svg></span><div><div class="jtm-card-desc">Dinner</div><div class="jtm-card-tag">Equal split · 2 people</div></div></div>
+                        <div class="jtm-card-total"><span class="lbl">Total</span><span class="amt">$40.00</span></div>
                         <div class="jtm-rows">
-                          <div class="jtm-prow">
-                            <span class="av you">A</span>
-                            <span class="nm">You <span class="youtag">you</span></span>
-                            <span class="amt">$20.00</span>
-                          </div>
-                          <div class="jtm-prow">
-                            <span class="av jake">J</span>
-                            <span class="nm">Jake</span>
-                            <span class="amt">$20.00</span>
-                          </div>
+                          <div class="jtm-prow"><span class="av you">A</span><span class="nm">You</span><span class="amt">$20.00</span></div>
+                          <div class="jtm-prow"><span class="av jake">J</span><span class="nm">Jake</span><span class="amt">$20.00</span></div>
                         </div>
-                        <div class="jtm-recon">
-                          <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="6.5" fill="#2D8B57"/><path d="M4.5 7.7l2 2 4-4.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                          <span class="mono">$40.00 ÷ 2 = $20.00 each</span>
-                        </div>
-                        <div class="jtm-actions">
-                          <span class="jtm-edit"><svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M9.5 2.5l3 3-7 7-3.5.5.5-3.5 7-7z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Edit</span>
-                          <span class="jtm-create">Create Split</span>
-                        </div>
+                        <div class="jtm-recon"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg><span>$40.00 ÷ 2 = $20.00 each</span></div>
+                        <div class="jtm-actions"><span class="jtm-edit"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-create"/></svg>Edit</span><span class="jtm-create">Create split</span></div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <!-- 3 · CREATED -->
               <div class="jtm-frame f-done">
                 <div class="jtm-done-inner">
-                  <span class="jtm-done-check"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M9 17.5l5 5 11-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="jtm-done-check"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span>
                   <div class="jtm-done-title">Split created</div>
                   <div class="jtm-done-sub">$20.00 each · 2 people</div>
-                  <div class="jtm-done-link"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6.5 9.5a3 3 0 0 1 0-4l1.2-1.2a3 3 0 0 1 4 4l-.6.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M9.5 6.5a3 3 0 0 1 0 4L8.3 11.7a3 3 0 0 1-4-4l.6-.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Share link sent to Jake</div>
+                  <div class="jtm-done-link"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-link"/></svg>Share the link</div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -1470,163 +674,70 @@ footer .container { padding: 0 24px; }
 </section>
 
 <!-- ── APP PREVIEW ─────────────────────────────────────────── -->
-<section class="section band-tint" data-screen-label="04 App preview">
+<section class="section band-white" data-screen-label="04 App preview">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head center reveal">
       <h2 class="h2">See it in action</h2>
       <p class="body">The creator sees a live dashboard. Friends see a simple claim screen.</p>
     </div>
-
     <div class="preview-phones reveal d1">
-      <!-- Dashboard — creator view -->
-      <div class="phone">
-        <div class="phone-screen">
-          <img src="/screens/14-dashboard.png" alt="Split dashboard showing who has claimed what and payment status" loading="lazy" />
-        </div>
-      </div>
-
-      <!-- Claim — guest view in browser -->
-      <div class="phone">
-        <div class="phone-screen">
-          <img src="/screens/16-claim-items.png" alt="Guest claim screen: tap items you ordered, no app required" loading="lazy" />
-        </div>
-      </div>
+      <!-- Dashboard: creator view -->
+      <div><div class="phone phone-md"><img src="/screens/dashboard.webp" width="786" height="1704" alt="Split dashboard showing who has claimed what and payment status" loading="lazy" decoding="async" /></div><p class="preview-cap">Your view: who has claimed, who has paid</p></div>
+      <!-- Claim: in-app screen for now; the web claim page gets its own restyle and image later -->
+      <div><div class="phone phone-md"><img src="/screens/claim.webp" width="786" height="1704" alt="Claim screen: tap the items you ordered, no app needed for friends" loading="lazy" decoding="async" /></div><p class="preview-cap">Their view: no app required</p></div>
     </div>
-
-    <div class="feature-row reveal d2">
-      <div class="feature-mini">
-        <div class="icon-wrap">📸</div>
-        <div class="ft-title">AI-powered scanning</div>
-        <div class="ft-body">Receipt read in under 5 seconds.</div>
-      </div>
-      <div class="feature-mini">
-        <div class="icon-wrap">🔗</div>
-        <div class="ft-title">No app for friends</div>
-        <div class="ft-body">Works in any mobile browser.</div>
-      </div>
-      <div class="feature-mini">
-        <div class="icon-wrap">⚡</div>
-        <div class="ft-title">Real-time updates</div>
-        <div class="ft-body">See claims as they happen.</div>
-      </div>
-      <div class="feature-mini">
-        <div class="icon-wrap">💰</div>
-        <div class="ft-title">Fair math</div>
-        <div class="ft-body">Tax and tip split proportionally.</div>
-      </div>
+    <div class="grid-4 feature-row reveal d2">
+      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg></div><div class="ft-title">AI-powered scanning</div><div class="ft-body">Receipt read in under 5 seconds.</div></div>
+      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-link"/></svg></div><div class="ft-title">No app for friends</div><div class="ft-body">Works in any mobile browser.</div></div>
+      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-time"/></svg></div><div class="ft-title">Real-time updates</div><div class="ft-body">See claims as they happen.</div></div>
+      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg></div><div class="ft-title">Fair math</div><div class="ft-body">Tax and tip split proportionally.</div></div>
     </div>
   </div>
 </section>
 
 <!-- ── FEATURES ───────────────────────────────────────────── -->
-<section id="features" class="section band-white" data-screen-label="05 Features">
+<section id="features" class="section band-tint" data-screen-label="05 Features">
   <div class="container">
     <div class="section-head reveal">
       <h2 class="h2">Built for real life</h2>
       <p class="body">Everything you need to share money without the headache</p>
     </div>
-
-    <!-- Feature 1: AI Receipt Scanning -->
     <div class="feature-showcase reveal">
-      <div class="feature-showcase-copy">
-        <div class="ficon">📸</div>
-        <h3 class="h3">AI-Powered Receipt Scanning</h3>
-        <p>Snap any receipt: restaurant, bar, grocery store. Our AI reads every item, price, tax, and tip instantly. No manual entry, no typos, no spreadsheets.</p>
-      </div>
-      <div class="feature-showcase-visual">
-        <div class="phone phone-sm">
-          <div class="phone-screen">
-            <img src="/screens/12-review.png" alt="AI-extracted items from a restaurant receipt" loading="lazy" />
-          </div>
-        </div>
-      </div>
+      <div class="feature-showcase-copy"><h3 class="h3">AI-Powered Receipt Scanning</h3>
+        <p>Snap any receipt: restaurant, bar, grocery store. Our AI reads every item, price, tax, and tip instantly. No manual entry, no typos, no spreadsheets.</p></div>
+      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/review.webp" width="786" height="1704" alt="AI-extracted items from a restaurant receipt" loading="lazy" decoding="async" /></div></div>
     </div>
-
-    <!-- Feature 2: Know Where You Stand (reversed) -->
     <div class="feature-showcase feature-showcase-reverse reveal">
-      <div class="feature-showcase-copy">
-        <div class="ficon">📊</div>
-        <h3 class="h3">Know Where You Stand</h3>
-        <p>See your balance with every person at a glance. Who owes you, who you owe, all updated in real time. No more "hey, did I ever pay you back?"</p>
-      </div>
-      <div class="feature-showcase-visual">
-        <div class="phone phone-sm">
-          <div class="phone-screen">
-            <img src="/screens/person-detail.png" alt="Person detail showing full financial history and running balance with one person" loading="lazy" />
-          </div>
-        </div>
-      </div>
+      <div class="feature-showcase-copy"><h3 class="h3">Know Where You Stand</h3>
+        <p>See your balance with every person at a glance. Who owes you, who you owe, all updated in real time. No more "hey, did I ever pay you back?"</p></div>
+      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/person.webp" width="786" height="1704" alt="Person detail showing the running balance and history with one person" loading="lazy" decoding="async" /></div></div>
     </div>
-
-    <!-- Feature 3: Settle Up -->
     <div class="feature-showcase reveal">
-      <div class="feature-showcase-copy">
-        <div class="ficon">💸</div>
-        <h3 class="h3">Settle Up in One Tap</h3>
-        <p>Send a Venmo request, Cash App, or Zelle payment with the exact amount pre-filled. Or just mark it settled. The goal: $0 balance, zero awkwardness.</p>
-      </div>
-      <div class="feature-showcase-visual">
-        <div class="phone phone-sm">
-          <div class="phone-screen">
-            <img src="/screens/settle-up.png" alt="Settle up screen with Venmo, Cash App, and Zelle options and the exact amount pre-filled" loading="lazy" />
-          </div>
-        </div>
-      </div>
+      <div class="feature-showcase-copy"><h3 class="h3">Settle Up in One Tap</h3>
+        <p>Send a Venmo request, Cash App, or Zelle payment with the exact amount pre-filled. Or just mark it settled. The goal: $0 balance, zero awkwardness.</p></div>
+      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App, and Zelle options and the exact amount pre-filled" loading="lazy" decoding="async" /></div></div>
     </div>
-
-    <!-- Feature 4: No App Needed (reversed) -->
     <div class="feature-showcase feature-showcase-reverse reveal">
-      <div class="feature-showcase-copy">
-        <div class="ficon">🔗</div>
-        <h3 class="h3">No App? No Problem.</h3>
-        <p>When you share a split, your friends open it in their browser. No download, no signup required. They claim their items, see their total, and they're done.</p>
-      </div>
-      <div class="feature-showcase-visual">
-        <div class="phone phone-sm">
-          <div class="phone-screen">
-            <img src="/screens/16-claim-items.png" alt="Guest claim screen works in any mobile browser. No app needed." loading="lazy" />
-          </div>
-        </div>
-      </div>
+      <div class="feature-showcase-copy"><h3 class="h3">No App? No Problem.</h3>
+        <p>When you share a split, your friends open it in their browser. No download, no signup required. They claim their items, see their total, and they're done.</p></div>
+      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/claim.webp" width="786" height="1704" alt="Claim screen where friends tap what they had. Friends use it in any browser, no app needed." loading="lazy" decoding="async" /></div></div>
     </div>
-
   </div>
 </section>
 
 <!-- ── USE CASES ─────────────────────────────────────────── -->
-<section id="use-cases" class="section band-tint" data-screen-label="06 Use Cases">
+<section id="use-cases" class="section band-white" data-screen-label="06 Use Cases">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head center reveal">
       <h2 class="h2">Splits works for everything</h2>
       <p class="body">Not just dinner. Every shared expense, every kind of group.</p>
     </div>
-
-    <div class="use-cases-grid">
-      <div class="use-case-card reveal">
-        <span class="uc-emoji">🍽️</span>
-        <div class="uc-title">Dinner with friends</div>
-        <div class="uc-body">Scan the receipt. Everyone claims what they ordered. Tax and tip split proportionally. No debate, no drama.</div>
-      </div>
-      <div class="use-case-card reveal d1">
-        <span class="uc-emoji">🏠</span>
-        <div class="uc-title">Roommates</div>
-        <div class="uc-body">Track rent, utilities, groceries, household supplies. Always know who's up and who owes. No more dry-erase board math.</div>
-      </div>
-      <div class="use-case-card reveal d2">
-        <span class="uc-emoji">✈️</span>
-        <div class="uc-title">Group trips</div>
-        <div class="uc-body">10 days, 15 receipts, 6 people. One app settles everything. Airbnb, meals, activities: all tracked, all fair.</div>
-      </div>
-      <div class="use-case-card reveal">
-        <span class="uc-emoji">👫</span>
-        <div class="uc-title">Couples</div>
-        <div class="uc-body">Split shared expenses fairly without the spreadsheet. Groceries, subscriptions, date night: always know where you stand.</div>
-      </div>
-      <div class="use-case-card reveal d1">
-        <span class="uc-emoji">🎉</span>
-        <div class="uc-title">Events &amp; group gifts</div>
-        <div class="uc-body">Collecting for a birthday party, bachelor trip, or office lunch? Share one link. Everyone pays their share. You stop chasing.</div>
-      </div>
+    <div class="grid-5">
+      <div class="card reveal"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-restaurant"/></svg></div><div><div class="uc-title">Dinner with friends</div><div class="uc-body">Scan the receipt. Everyone claims what they ordered. Tax and tip split proportionally. No debate, no drama.</div></div></div>
+      <div class="card reveal d1"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-home"/></svg></div><div><div class="uc-title">Roommates</div><div class="uc-body">Track rent, utilities, groceries, household supplies. Always know who's up and who owes. No more dry-erase board math.</div></div></div>
+      <div class="card reveal d2"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-pricetag"/></svg></div><div><div class="uc-title">Group trips</div><div class="uc-body">10 days, 15 receipts, 6 people. One app settles everything. Airbnb, meals, activities: all tracked, all fair.</div></div></div>
+      <div class="card reveal"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-people"/></svg></div><div><div class="uc-title">Couples</div><div class="uc-body">Split shared expenses fairly without the spreadsheet. Groceries, subscriptions, date night: always know where you stand.</div></div></div>
+      <div class="card reveal d1"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-star"/></svg></div><div><div class="uc-title">Events &amp; group gifts</div><div class="uc-body">Collecting for a birthday party, bachelor trip, or office lunch? Share one link. Everyone pays their share. You stop chasing.</div></div></div>
     </div>
   </div>
 </section>
@@ -1634,94 +745,49 @@ footer .container { padding: 0 24px; }
 <!-- ── PAIN POINT ─────────────────────────────────────────── -->
 <section class="pain-section" data-screen-label="07 Pain Point">
   <div class="container">
-    <div class="pain-stat reveal">67%</div>
-    <h2 class="pain-headline reveal d1">of people say money causes tension in friendships.</h2>
+    <div class="pain-stat num reveal">41%</div>
+    <h2 class="pain-headline reveal d1">of Americans have had tension with a friend over money.</h2>
     <p class="pain-body reveal d2">
       Ever Venmo-requested someone three times and felt terrible about it?
       <strong>Splits handles the awkward part so you don't have to.</strong>
       $0 owed = $0 awkwardness.
     </p>
+    <p class="pain-source reveal d2">Source: <a href="https://www.lendingtree.com/credit-cards/study/friends-money-report/" rel="noopener noreferrer">LendingTree, 2025 Friends and Money Report</a> (2,000 U.S. adults, July 2025)</p>
   </div>
 </section>
 
 <!-- ── WHY SPLITS ─────────────────────────────────────────── -->
 <section class="section band-white" data-screen-label="08 Why Splits">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head center reveal">
       <h2 class="h2">Built different</h2>
       <p class="body">Why people choose Splits over everything else</p>
     </div>
-
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="why-icon">🤝</div>
-        <div class="why-title">No limits. No paywalls.</div>
-        <div class="why-body">Unlike other apps, we don't limit your expenses or lock basic features behind a subscription. The full experience is free.</div>
-      </div>
-      <div class="why-card reveal d1">
-        <div class="why-icon">📱</div>
-        <div class="why-title">Your friends don't need the app.</div>
-        <div class="why-body">Share a link. Your friends open it in any browser, claim their items, and see their total. No download, no account, no friction.</div>
-      </div>
-      <div class="why-card reveal d2">
-        <div class="why-icon">🤖</div>
-        <div class="why-title">AI does the work.</div>
-        <div class="why-body">Point your camera at any receipt. Our AI reads every item, price, tax, and tip in seconds. You snap and share. That's it.</div>
-      </div>
+    <div class="grid-3">
+      <div class="why-card card reveal"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-lock-closed"/></svg></div><div class="why-title">No limits. No paywalls.</div><div class="why-body">Unlike other apps, we don't limit your expenses or lock basic features behind a subscription. The full experience is free.</div></div>
+      <div class="why-card card reveal d1"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-link"/></svg></div><div class="why-title">Your friends don't need the app.</div><div class="why-body">Share a link. Your friends open it in any browser, claim their items, and see their total. No download, no account, no friction.</div></div>
+      <div class="why-card card reveal d2"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg></div><div class="why-title">AI does the work.</div><div class="why-body">Point your camera at any receipt. Our AI reads every item, price, tax, and tip in seconds. You snap and share. That's it.</div></div>
     </div>
   </div>
 </section>
 
 <!-- ── FAQ ─────────────────────────────────────────────────── -->
-<section id="faq" class="section band-white" data-screen-label="09 FAQ">
+<section id="faq" class="section band-tint" data-screen-label="09 FAQ">
   <div class="container">
-    <div class="section-head reveal">
-      <h2 class="h2">Questions?</h2>
-    </div>
-
+    <div class="section-head center reveal"><h2 class="h2">Questions?</h2></div>
     <div class="faq" id="faq-list">
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Do my friends need to download the app?</span>
-          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Nope! Only the person who paid needs the app. Everyone else just opens a link in their browser, enters their name, and taps what they had.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>How does the AI read receipts?</span>
-          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">We use advanced AI to extract every item, quantity, price, tax amount, and total from your receipt photo. It works in 2–5 seconds and handles most North American receipt formats.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>How are tax and tip calculated?</span>
-          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Tax and tip are split proportionally based on what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. No more equal splits on unequal orders.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>What about shared items like appetizers?</span>
-          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">If multiple people claim the same item (like a shared plate of nachos), the cost is automatically divided equally among everyone who claimed it.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Is Splits free?</span>
-          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Splits is free to use. We plan to offer optional premium features in the future, but the core split experience will always be free.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>What payment methods are supported?</span>
-          <svg class="chev" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">For now, Splits shows each person what they owe and suggests payment via Venmo, Cash App, or Zelle.</div></div>
-      </div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do my friends need to download the app?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Nope! Only the person who paid needs the app. Everyone else just opens a link in their browser, enters their name, and taps what they had.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How does the AI read receipts?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">We use advanced AI to extract every item, quantity, price, tax amount, and total from your receipt photo. It works in 2–5 seconds and handles most North American receipt formats.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How are tax and tip calculated?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Tax and tip are split proportionally based on what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. No more equal splits on unequal orders.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What about shared items like appetizers?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">If multiple people claim the same item (like a shared plate of nachos), the cost is automatically divided equally among everyone who claimed it.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is Splits free?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Splits is free to use. We plan to offer optional premium features in the future, but the core split experience will always be free.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What payment methods are supported?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">For now, Splits shows each person what they owe and suggests payment via Venmo, Cash App, or Zelle.</div></div></div>
     </div>
   </div>
 </section>
@@ -1732,27 +798,19 @@ footer .container { padding: 0 24px; }
     <div class="inner">
       <h2 class="h2 reveal">Done chasing payments.</h2>
       <p class="body reveal d1">Download Splits and start splitting bills today.</p>
-
-      <div class="hero-cta reveal d2">
-        <a class="app-store-badge" href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer">
-          <img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" />
-        </a>
-      </div>
-
+      <div class="hero-cta reveal d2"><a class="app-store-badge " href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer"><img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="lazy" /></a></div>
       <div class="waitlist-form-group reveal d3">
         <p class="updates-label" id="cta-updates-label">Get product updates</p>
         <form class="waitlist-form" id="cta-form" aria-labelledby="cta-updates-label" novalidate>
-          <input type="email" name="email" id="cta-email" placeholder="Enter your email" aria-label="Email address for product updates" aria-describedby="cta-form-error" required />
-          <button type="submit" class="btn btn-primary">Notify me</button>
-        </form>
-        <p class="waitlist-error" id="cta-form-error" role="alert">Please enter a valid email address.</p>
+            <input type="email" name="email" id="cta-email" placeholder="Enter your email" aria-label="Email address for product updates" aria-describedby="cta-form-error" required />
+            <button type="submit" class="btn btn-primary">Notify me</button>
+          </form>
+          <p class="waitlist-error" id="cta-form-error" role="alert">Please enter a valid email address.</p>
       </div>
-      <div class="waitlist-success" id="cta-success" role="status">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9.5l3.2 3L14 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        You're on the list. We'll email you about new features and updates.
-      </div>
-
-      <p class="fine reveal d2" style="margin-top: 18px;">Free. No credit card required.</p>
+      <div class="waitlist-success" id="cta-success" role="status"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg>
+          You're on the list. We'll email you about new features and updates.
+        </div>
+      <p class="fine reveal d2">Free. No credit card required.</p>
     </div>
   </div>
 </section>
@@ -1762,39 +820,21 @@ footer .container { padding: 0 24px; }
   <div class="container">
     <div class="foot-grid">
       <div class="foot-brand">
-        <span class="lockup">
-          <span class="icon" aria-hidden="true"></span>
-          <span class="wordmark"><span class="spl">spl</span><span class="its">its</span></span>
-        </span>
+        <span class="lockup"><img src="/splits-wordmark.svg" alt="splits" width="56" height="24" loading="lazy" /></span>
         <p class="tagline">Settle money with your people: instantly, fairly, and without the awkwardness.</p>
-        <a class="app-store-badge app-store-badge--sm" href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer">
-          <img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="lazy" />
-        </a>
+        <a class="app-store-badge app-store-badge--sm" href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer"><img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="lazy" /></a>
       </div>
-      <div class="foot-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#use-cases">Use cases</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="/privacy">Privacy Policy</a></li>
-          <li><a href="/terms">Terms of Service</a></li>
-          <li><a href="/support">Support</a></li>
-        </ul>
+      <div class="foot-cols">
+        <div class="foot-col"><h4>Product</h4><ul>
+          <li><a href="#how-it-works">How it works</a></li><li><a href="#features">Features</a></li><li><a href="#use-cases">Use cases</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div class="foot-col"><h4>Legal</h4><ul>
+          <li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Service</a></li><li><a href="/support">Support</a></li></ul></div>
       </div>
     </div>
     <div class="foot-bottom">
       <span class="copy">© 2026 Splits. All rights reserved.</span>
       <div class="social" aria-label="Social links">
-        <!-- <a href="#" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M12.2 1.5h2.3l-5 5.7L15.4 14.5h-4.6L7.3 9.9 3.3 14.5H1L6.4 8.4 1.2 1.5H6l3.1 4.1 3.1-4.1zM11.4 13.1h1.3L4.8 2.9H3.4l8 10.2z"/></svg></a> -->
         <a href="https://www.instagram.com/trysplits/" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/><circle cx="11.5" cy="4.5" r="0.7" fill="currentColor"/></svg></a>
-        <!-- <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M11.6 1h-2v9.5a1.9 1.9 0 1 1-1.9-1.9v-2a3.9 3.9 0 1 0 3.9 3.9V6.1a4.6 4.6 0 0 0 2.8.9V5a2.6 2.6 0 0 1-2.8-2.5V1z"/></svg></a> -->
       </div>
     </div>
   </div>
@@ -2004,6 +1044,5 @@ footer .container { padding: 0 24px; }
   })();
 })();
 </script>
-
 </body>
 </html>
