@@ -10,30 +10,27 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="theme-color" content="#2D8B57" />
+<meta name="theme-color" content="#F5F4EF" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --green: #2D8B57;
+  --green: #267A4D;
   --green-dark: #1B6B3A;
   --green-50: #E8F5EC;
-  --bg: #FAFBF8;
+  --bg: #F5F4EF;
   --surface: #FFFFFF;
-  --border: #E5E7EB;
+  --border: #E6E4DB;
   --text: #1A1A2E;
-  --t2: #6B7280;
-  --t3: #9CA3AF;
+  --t2: #6B6A62;
+  --t3: #6B6A62;
   --container: 760px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px; line-height: 1.7;
   color: var(--text);
   background: var(--bg);
@@ -46,7 +43,7 @@ a:hover { text-decoration: underline; }
 .nav {
   position: sticky; top: 0; z-index: 50;
   height: 64px;
-  background: rgba(250, 251, 248, 0.85);
+  background: #F5F4EF;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 0.5px solid var(--border);
@@ -56,27 +53,7 @@ a:hover { text-decoration: underline; }
   max-width: 1140px; margin: 0 auto; padding: 0 24px;
 }
 .lockup { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
-.lockup .icon {
-  width: 32px; height: 32px; border-radius: 8px;
-  background: linear-gradient(145deg, #2D8B57 0%, #1B6B3A 100%);
-  position: relative; flex-shrink: 0;
-}
-.lockup .icon::before, .lockup .icon::after {
-  content: ""; position: absolute;
-  width: 7px; height: 16px; border-radius: 4px;
-  background: #fff; top: 8px;
-}
-.lockup .icon::before { left: 8px; }
-.lockup .icon::after  { left: 17px; opacity: 0.6; }
-.wordmark { font-size: 22px; font-weight: 600; letter-spacing: -1px; line-height: 1; }
-.wordmark .spl { color: var(--text); }
-.wordmark .its { color: var(--green); }
-
-/* Content */
-.container {
-  max-width: var(--container);
-  margin: 0 auto; padding: 0 24px;
-}
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
 .legal {
   padding: 64px 0 120px;
 }
@@ -118,10 +95,7 @@ a:hover { text-decoration: underline; }
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="lockup">
-      <div class="icon"></div>
-      <div class="wordmark"><span class="spl">spl</span><span class="its">its</span></div>
-    </a>
+    <a href="/" class="lockup" aria-label="Splits home"><img src="/splits-wordmark.svg" alt="splits" height="26" style="display:block;height:26px;width:auto"></a>
     <a href="/" style="font-size:14px;font-weight:500;color:var(--t2);">&larr; Back to home</a>
   </div>
 </nav>
