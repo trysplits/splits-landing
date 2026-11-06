@@ -615,11 +615,11 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
         <div class="phone" aria-label="Or just tell it: conversational split demo">
           <div class="phone-screen">
             <div class="phone-status"><span>9:41</span><span class="island"></span><span class="status-icons" aria-hidden="true"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="21" height="10.8" rx="3.2" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="2.2" width="17.6" height="7.6" rx="1.8" fill="currentColor"/></svg></span></div>
-            <div class="jtm-stage" id="jtm-stage" data-step="0">
+            <div class="jtm-stage" id="jtm-stage" data-step="2">
               <div class="jtm-frame f-input">
                 <div class="jtm-h"><span class="jtm-ic"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-close"/></svg></span><span class="jtm-brand"><span class="jtm-aimark"></span>Just tell me</span><span class="jtm-ic" style="visibility:hidden"></span></div>
                 <div class="jtm-input-body">
-                  <div class="jtm-prompt"><span id="jtm-typed"></span><span class="jtm-caret"></span></div>
+                  <div class="jtm-prompt"><span id="jtm-typed">Split $40 dinner with Jake</span><span class="jtm-caret"></span></div>
                   <div class="jtm-spacer"></div>
                   <div class="jtm-try">Try one</div>
                   <div class="jtm-chips">
@@ -1012,10 +1012,10 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   }
 
   const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-  let active = true;
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([e]) => { active = e.isIntersecting; }, { threshold: 0.2 }).observe(stage);
-  }
+  // Finished card is the default (markup). Animate only once the demo scrolls into view.
+  if (!('IntersectionObserver' in window)) return;
+  let active = false;
+  new IntersectionObserver(([e]) => { active = e.isIntersecting; }, { threshold: 0.2 }).observe(stage);
   const waitActive = async () => { while (!active) await sleep(250); };
 
   async function typeOut(str) {
@@ -1027,8 +1027,10 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   }
 
   (async function loop() {
+    let first = true;
     while (true) {
       await waitActive();
+      if (first) { first = false; await sleep(3000); await waitActive(); } // let the finished card be seen first
       stage.setAttribute('data-step', '0');
       typed.textContent = '';
       await sleep(550);
