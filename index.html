@@ -220,6 +220,8 @@ body.menu-open{overflow:hidden}
 .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 20px;border-radius:var(--r-md);font:600 16px var(--font);cursor:pointer;white-space:nowrap}
 .btn-primary{background:var(--green);color:#fff;border:0}
 .btn-primary:hover{background:var(--green-dark)}
+.btn-secondary{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+.btn-secondary:hover{color:var(--green-dark);border-color:var(--green-dark)}
 .btn[disabled]{opacity:.6;cursor:default}
 .waitlist-form-group.hidden{display:none}
 .updates-label{font-size:14px;font-weight:500;color:var(--secondary);margin:0 0 8px}
@@ -531,14 +533,14 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
           <p class="updates-label" id="hero-updates-label">Get product updates</p>
           <form class="waitlist-form" id="hero-form" aria-labelledby="hero-updates-label" novalidate>
             <input type="email" name="email" id="hero-email" placeholder="Enter your email" aria-label="Email address for product updates" aria-describedby="hero-form-error" required />
-            <button type="submit" class="btn btn-primary">Notify me</button>
+            <button type="submit" class="btn btn-secondary">Notify me</button>
           </form>
           <p class="waitlist-error" id="hero-form-error" role="alert">Please enter a valid email address.</p>
         </div>
         <div class="waitlist-success" id="hero-success" role="status"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg>
           You're on the list. We'll email you about new features and updates.
         </div>
-        <p class="fine reveal d4">Available on the App Store · Android coming soon</p>
+        <p class="fine reveal d4">Android app coming soon</p>
       </div>
       <div class="hero-mock-wrap">
         <div class="phone phone-lg"><img src="/screens/home.webp" width="786" height="1704" alt="Splits home screen: your balance and the people who owe you" loading="eager" fetchpriority="high" decoding="async" /></div>
@@ -559,7 +561,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
       <p class="body">Two ways to use Splits. Pick your moment.</p>
     </div>
     <div class="flow-label reveal">
-      <span class="eyebrow">Flow A: Receipt Split</span>
+      <span class="eyebrow">Receipt split</span>
       <p class="body-tight">The flashy one. Snap any receipt and your group settles in seconds.</p>
     </div>
     <div class="steps">
@@ -579,7 +581,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
         <p class="body-tight">Each person taps what they had. Tax and tip split proportionally. Done.</p></div></div>
       </div>
     </div>
-    <div class="flow-divider reveal"><span>Flow B: Quick Expenses</span></div>
+    <div class="flow-divider reveal"><span>Quick expenses</span></div>
     <div class="flow-b-card reveal">
       <div class="flow-b-copy">
         <span class="eyebrow">The everyday use case</span>
@@ -703,22 +705,22 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
       <p class="body">Everything you need to share money without the headache</p>
     </div>
     <div class="feature-showcase reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">AI-Powered Receipt Scanning</h3>
+      <div class="feature-showcase-copy"><h3 class="h3">AI receipt scanning</h3>
         <p>Snap any receipt: restaurant, bar, grocery store. Our AI reads every item, price, tax, and tip instantly. No manual entry, no typos, no spreadsheets.</p></div>
       <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/review.webp" width="786" height="1704" alt="AI-extracted items from a restaurant receipt" loading="lazy" decoding="async" /></div></div>
     </div>
     <div class="feature-showcase feature-showcase-reverse reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">Know Where You Stand</h3>
+      <div class="feature-showcase-copy"><h3 class="h3">Know where you stand</h3>
         <p>See your balance with every person at a glance. Who owes you, who you owe, all updated in real time. No more "hey, did I ever pay you back?"</p></div>
       <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/person.webp" width="786" height="1704" alt="Person detail showing the running balance and history with one person" loading="lazy" decoding="async" /></div></div>
     </div>
     <div class="feature-showcase reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">Settle Up in One Tap</h3>
+      <div class="feature-showcase-copy"><h3 class="h3">Settle up in one tap</h3>
         <p>Send a Venmo request, Cash App, or Zelle payment with the exact amount pre-filled. Or just mark it settled. The goal: $0 balance, zero awkwardness.</p></div>
       <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App, and Zelle options and the exact amount pre-filled" loading="lazy" decoding="async" /></div></div>
     </div>
     <div class="feature-showcase feature-showcase-reverse reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">No App? No Problem.</h3>
+      <div class="feature-showcase-copy"><h3 class="h3">No app? No problem.</h3>
         <p>When you share a split, your friends open it in their browser. No download, no signup required. They claim their items, see their total, and they're done.</p></div>
       <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/claim.webp" width="786" height="1704" alt="Claim screen where friends tap what they had. Friends use it in any browser, no app needed." loading="lazy" decoding="async" /></div></div>
     </div>
@@ -803,7 +805,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
         <p class="updates-label" id="cta-updates-label">Get product updates</p>
         <form class="waitlist-form" id="cta-form" aria-labelledby="cta-updates-label" novalidate>
             <input type="email" name="email" id="cta-email" placeholder="Enter your email" aria-label="Email address for product updates" aria-describedby="cta-form-error" required />
-            <button type="submit" class="btn btn-primary">Notify me</button>
+            <button type="submit" class="btn btn-secondary">Notify me</button>
           </form>
           <p class="waitlist-error" id="cta-form-error" role="alert">Please enter a valid email address.</p>
       </div>
