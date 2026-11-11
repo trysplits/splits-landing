@@ -1,0 +1,14 @@
+{
+  "name": "splits-landing-tests",
+  "private": true,
+  "description": "Tests for the static landing pages. Lives under _tests/ so Jekyll does not publish it.",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1"
+  }
+}
