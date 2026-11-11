@@ -60,6 +60,19 @@ test('.btn-secondary: green border and text, transparent fill (tokens only)', (t
   );
 });
 
+test('.btn-secondary border is 1px, like the kit\'s secondary button (1.5px is the input focus stroke)', (t) => {
+  const { document } = page(t, 'index.html');
+  const decls = rulesFor(document, '.btn-secondary');
+  // The shorthand uses var(), which jsdom leaves unexpanded, so read the width from it directly.
+  const widths = decls.flatMap((d) => {
+    const m = /^border(?:-(?:top|right|bottom|left))?(-width)?:(.*)$/.exec(d);
+    if (!m) return [];
+    return m[2].split(/\s+/).filter((v) => /^[\d.]+(px|em|rem)$|^(thin|medium|thick)$/.test(v));
+  });
+  assert.ok(widths.length > 0, `no border width in: ${decls.join('; ')}`);
+  for (const w of widths) assert.equal(w, '1px');
+});
+
 // ── L5 ────────────────────────────────────────────────────────────────
 
 test('index: the line under the hero badge says only "Android app coming soon"', (t) => {
