@@ -1,11 +1,11 @@
 {
   "name": "Splits",
   "short_name": "Splits",
-  "description": "Split bills fairly. Snap, claim, done.",
+  "description": "Settle money with your people.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAFBF8",
-  "theme_color": "#2D8B57",
+  "background_color": "#F5F4EF",
+  "theme_color": "#F5F4EF",
   "icons": [
     { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png" },
