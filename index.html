@@ -964,11 +964,16 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
       error.classList.remove('show');
     };
 
-    const showError = () => {
-      input.classList.add('invalid');
-      input.setAttribute('aria-invalid', 'true');
+    const showError = (msg, onInput) => {
+      error.textContent = msg;
+      input.classList.toggle('invalid', onInput);
+      if (onInput) {
+        input.setAttribute('aria-invalid', 'true');
+        input.focus();
+      } else {
+        input.removeAttribute('aria-invalid');
+      }
       error.classList.add('show');
-      input.focus();
     };
 
     form.addEventListener('submit', async (e) => {
@@ -976,18 +981,22 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
       const v = (input.value || '').trim();
       const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
       if (!valid) {
-        showError();
+        showError('Please enter a valid email address.', true);
         return;
       }
       clearError();
       btn.disabled = true;
       btn.textContent = 'Sending…';
-      await submitEmail(v, source);
+      const ok = await submitEmail(v, source);
+      btn.disabled = false;
+      btn.textContent = 'Notify me';
+      if (!ok) {
+        showError('Couldn’t sign you up. Try again.', false);
+        return;
+      }
       if (group) group.classList.add('hidden');
       else form.classList.add('hidden');
       success.classList.add('show');
-      btn.disabled = false;
-      btn.textContent = 'Notify me';
     });
 
     input.addEventListener('input', clearError);
