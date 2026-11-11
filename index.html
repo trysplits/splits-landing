@@ -841,17 +841,6 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 </footer>
 
 <script>
-/* ── NAV scroll state ───────────────────────────────────── */
-(function () {
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    if (window.scrollY > 8) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  };
-  document.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-
 /* ── Mobile nav menu ────────────────────────────────────── */
 (function () {
   const btn = document.getElementById('menu-btn');

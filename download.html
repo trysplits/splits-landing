@@ -140,7 +140,6 @@ a:hover { text-decoration: underline; }
   // the app, so, unlike those pages, it's correct for the fallback to land on the App Store.
   var ua = navigator.userAgent || navigator.vendor || '';
   var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-  var isAndroid = /Android/i.test(ua);
   var IOS_STORE = 'https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939';
 
   if (!isIOS) return; // Android has no live store listing yet; desktop just sees the page.
