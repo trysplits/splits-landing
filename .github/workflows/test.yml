@@ -2,7 +2,14 @@ name: test
 
 on:
   push:
+    branches: [main, develop]
   pull_request:
+
+# A branch push runs once, as its PR; main and develop run on push. A newer push to the same PR cancels
+# the superseded run.
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -10,6 +17,9 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # A release PR (develop → main) carries a commit the develop push already tested: skip it there.
+    if: github.event_name != 'pull_request' || github.head_ref != 'develop'
     defaults:
       run:
         working-directory: _tests
