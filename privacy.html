@@ -103,9 +103,9 @@ a:hover { text-decoration: underline; }
 <main class="container">
   <article class="legal">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 29, 2026</p>
+    <p class="updated">Last updated: November 12, 2026</p>
 
-    <p>Splits ("we," "us," or "our") operates the Splits mobile application and the website at trysplits.com. This Privacy Policy explains what information we collect, how we use it, and the choices you have.</p>
+    <p>Splits (“we,” “us,” or “our”) operates the Splits mobile application and the website at trysplits.com. This Privacy Policy explains what information we collect, how we use it, and the choices you have.</p>
 
     <h2>1. Information We Collect</h2>
 
@@ -113,19 +113,19 @@ a:hover { text-decoration: underline; }
     <p>When you create a Splits account, we collect your name and email address. Authentication is handled through AWS Cognito, a secure third-party identity service provided by Amazon Web Services.</p>
 
     <h3>Receipt images</h3>
-    <p>When you scan a receipt or attach a photo to an expense, we store the image in Amazon S3 with that split. People in the split can see it in the app, and anyone with the split's share link can see it on the web. Receipt images are deleted when the split is deleted or when you delete your account.</p>
+    <p>When you scan a receipt or attach a photo to an expense, we store the image in Amazon S3 with that split. People in the split can see it in the app, and anyone with the split’s share link can see it on the web. Receipt images are deleted when the split is deleted. When you delete your account, the receipt images of the splits you created are deleted too.</p>
 
     <h3>AI processing</h3>
-    <p>Splits uses Anthropic's Claude to read receipts and to understand expenses you describe with Just tell me. Scanning a receipt sends the photo to Anthropic. Just tell me sends your message, your name and the names of your friends on Splits, so it can tell who you mean. Emails, contacts, location and payment details are not sent. Anthropic processes this data only to provide the service and doesn't use it to train its models. The app asks for your permission before you use each feature for the first time.</p>
+    <p>Splits uses Anthropic’s Claude to read receipts, to understand expenses you describe with Just tell me, and to write the short AI summary on a split. Scanning a receipt sends the photo to Anthropic. Just tell me sends your message, your name and your friends’ names, so it can tell who you mean. An AI summary sends the names of the people in the split, its item names and the split’s title. Emails, contacts, location and payment details are not sent. Anthropic processes this data only to provide the service and doesn’t use it to train its models. The app asks for your permission before any of this is sent.</p>
 
     <h3>Usage data</h3>
     <p>We collect information about how you interact with the app, including splits created, items claimed, and session activity. This helps us improve the product and troubleshoot issues.</p>
 
     <h3>Participant information</h3>
-    <p>When participants (non-registered users) access a split via a shared link, we collect only the name they enter. Participants are not required to create an account or provide an email address.</p>
+    <p>When participants (non-registered users) access a split via a shared link, we collect only the name they enter. Participants are not required to create an account or provide an email address. The person who creates a split can also add participants themselves, by name and, if they choose, by email address.</p>
 
     <h3>Push notifications</h3>
-    <p>If you enable push notifications, we collect your device's push notification token to send you updates about your splits, such as when someone claims an item, confirms a settlement, or when you receive a reminder. You can disable push notifications at any time in your device settings.</p>
+    <p>If you enable push notifications, we collect your device’s push notification token to send you updates about your splits, such as when someone claims an item, confirms a settlement, or when you receive a reminder. You can disable push notifications at any time in your device settings.</p>
 
     <h3>Payment method handles</h3>
     <p>You can optionally save your Venmo username, Cash App tag, or Zelle email to make settling up easier. We store only the handle or username. We never collect or store credit card numbers, bank account numbers, or financial credentials.</p>
@@ -145,7 +145,7 @@ a:hover { text-decoration: underline; }
     <p>We do not sell your personal information. We share data only in the following circumstances:</p>
     <ul>
       <li><strong>With other split participants:</strong> When you create or join a split, your name and claimed items are visible to others in that split.</li>
-      <li><strong>Service providers:</strong> We use third-party services to operate Splits, including Amazon Web Services (hosting, storage, and authentication), Anthropic (AI receipt processing), and Railway (backend infrastructure). These providers access data only as needed to perform services on our behalf.</li>
+      <li><strong>Service providers:</strong> We use third-party services to operate Splits, including Amazon Web Services (storage and authentication), Anthropic (AI receipt processing, Just tell me and AI summaries), and Railway (backend infrastructure). We also use Resend (email), PostHog (analytics), Sentry (error reports), Expo (push notifications), GitHub Pages (website hosting), Cloudflare (the product updates and support forms on our website), and Airtable (the product updates mailing list). These providers access data only as needed to perform services on our behalf.</li>
       <li><strong>Legal requirements:</strong> We may disclose information if required by law, regulation, or legal process.</li>
     </ul>
 
@@ -153,7 +153,7 @@ a:hover { text-decoration: underline; }
     <p>Your data is stored on servers located in the United States. We use industry-standard security measures, including encrypted connections (HTTPS/TLS), secure authentication through AWS Cognito, and access-controlled cloud storage for receipt images.</p>
 
     <h2>5. Data Retention</h2>
-    <p>We retain your account information and split history for as long as your account is active. Receipt images are deleted when the split is deleted or when you delete your account. Payment method handles are retained while your account is active and deleted when you remove them or delete your account. You can request deletion of your account and associated data at any time by contacting us.</p>
+    <p>We retain your account information for as long as your account is active. Receipt images are deleted when the split is deleted. When you delete your account, the receipt images of the splits you created are deleted too. Payment method handles are retained while your account is active and deleted when you remove them or delete your account. You can delete your account at any time in the app, under Profile &rarr; Delete account. Splits you were part of stay after your account is deleted, with your name replaced by “Deleted User”. If you unsubscribe from payment reminder or monthly summary emails, we keep your email address on our unsubscribe list, even after you delete your account, so we don’t send you those emails again.</p>
 
     <h2>6. Your Rights and Choices</h2>
     <p>Depending on your location, you may have the right to:</p>
@@ -163,10 +163,10 @@ a:hover { text-decoration: underline; }
       <li>Request deletion of your account and personal data</li>
       <li>Withdraw consent for data processing where applicable</li>
     </ul>
-    <p><strong>Push notifications.</strong> You can disable notifications at any time through your device's system settings.</p>
+    <p><strong>Push notifications.</strong> You can disable notifications at any time through your device’s system settings.</p>
     <p>To exercise any of these rights, contact us at <a href="mailto:privacy@trysplits.com">privacy@trysplits.com</a>.</p>
 
-    <h2>7. Children's Privacy</h2>
+    <h2>7. Children’s Privacy</h2>
     <p>Splits is not intended for children under the age of 13. We do not knowingly collect personal information from children. If we learn that we have collected data from a child under 13, we will delete it promptly.</p>
 
     <h2>8. Changes to This Policy</h2>
