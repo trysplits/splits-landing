@@ -10,8 +10,8 @@
 // Commit the regenerated index.html with the faq.json change. _tests/faq.test.js fails when the
 // two drift apart, so a faq.json edit without a re-run can't pass.
 //
-// The splits-mobile app keeps a byte-identical copy of faq.json and pins its SHA-256 on both sides.
-// Edit the text here, regenerate, copy the file to the app and update both pinned constants.
+// The splits-mobile app reads https://trysplits.com/faq.json live (services/faqService.ts), so a merged
+// edit reaches the app without an app release. Editing steps: README.md.
 
 const fs = require('node:fs');
 const path = require('node:path');
