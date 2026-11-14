@@ -15,7 +15,8 @@ npm test
 JSON-LD `FAQPage` that search engines read, and the Help screen in the Splits app.
 
 1. Edit `faq.json` (repo root). Keep plain text: curly apostrophes and quotes, no em dashes, no markup. Keep
-   1 to 100 entries, each question and answer at most 2,000 characters, or the app ignores the file.
+   1 to 100 entries, each question and answer at most 2,000 characters, and no two questions the same (compared
+   ignoring case and outer spaces), or the app ignores the file.
 2. Regenerate the page: `cd _tests && npm run generate:faq`. This rewrites the two marked FAQ blocks in
    `index.html`.
 3. Run the tests: `npm test`. `faq.test.js` fails if `index.html` no longer matches `faq.json`.

@@ -52,11 +52,18 @@ test('faq.json: version 1, 2-space indent, trailing newline, UTF-8 without a BOM
 
 // The app (splits-mobile services/faqService.ts, validateFaq) ignores a file outside these limits and keeps
 // its last copy, so an edit past them would never reach the app.
-test('faq.json fits what the app accepts: 1 to 100 entries, q and a at most 2,000 characters', () => {
+test('faq.json fits what the app accepts: 1 to 100 entries, q and a at most 2,000 characters, no repeated question', () => {
   assert.ok(faq.questions.length >= 1 && faq.questions.length <= 100, `${faq.questions.length} entries`);
   for (const [i, { q, a }] of faq.questions.entries()) {
     assert.ok(q.length <= 2000, `questions[${i}].q is ${q.length} characters`);
     assert.ok(a.length <= 2000, `questions[${i}].a is ${a.length} characters`);
+  }
+  // Same rule as the app: questions compared trimmed and case-insensitively.
+  const seen = new Set();
+  for (const [i, { q }] of faq.questions.entries()) {
+    const key = q.trim().toLowerCase();
+    assert.ok(!seen.has(key), `questions[${i}] repeats an earlier question: ${q}`);
+    seen.add(key);
   }
 });
 
