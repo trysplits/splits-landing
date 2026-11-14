@@ -2,19 +2,14 @@
 
 // The FAQ has one source, faq.json. The visible FAQ and the JSON-LD FAQPage in index.html are
 // generated from it (generate-faq.js), and must say exactly the same thing, in the same order,
-// with no question that only search engines see.
+// with no question that only search engines see. The app reads https://trysplits.com/faq.json live,
+// so there is no app copy to keep in sync (editing steps: README.md).
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const { createHash } = require('node:crypto');
 const { loadPage } = require('./helpers/page');
 const { render, readFaq, FAQ_PATH, INDEX_PATH } = require('./generate-faq');
-
-// SHA-256 of faq.json. splits-mobile keeps a byte-identical copy for the in-app Help FAQ and pins the
-// SAME value. Change the text here, run `npm run generate:faq`, copy the file to the app byte for byte
-// and update every constant.
-const FAQ_SHA256 = 'b04a36713e2436be86d97b1973008b11f8f51e9fffb99af77a6ee95df175f159';
 
 const bytes = fs.readFileSync(FAQ_PATH);
 const faq = readFaq();
@@ -46,10 +41,6 @@ function types(node, out = []) {
 
 // ── the source file ───────────────────────────────────────────────────
 
-test('faq.json checksum matches the value pinned on every side', () => {
-  assert.equal(createHash('sha256').update(bytes).digest('hex'), FAQ_SHA256);
-});
-
 test('faq.json: version 1, 2-space indent, trailing newline, UTF-8 without a BOM', () => {
   const source = bytes.toString('utf8');
   assert.equal(faq.version, 1);
@@ -57,6 +48,23 @@ test('faq.json: version 1, 2-space indent, trailing newline, UTF-8 without a BOM
   assert.equal(source, `${JSON.stringify(JSON.parse(source), null, 2)}\n`);
   assert.deepEqual(Object.keys(JSON.parse(source)), ['version', 'questions']);
   for (const entry of faq.questions) assert.deepEqual(Object.keys(entry), ['q', 'a']);
+});
+
+// The app (splits-mobile services/faqService.ts, validateFaq) ignores a file outside these limits and keeps
+// its last copy, so an edit past them would never reach the app.
+test('faq.json fits what the app accepts: 1 to 100 entries, q and a at most 2,000 characters, no repeated question', () => {
+  assert.ok(faq.questions.length >= 1 && faq.questions.length <= 100, `${faq.questions.length} entries`);
+  for (const [i, { q, a }] of faq.questions.entries()) {
+    assert.ok(q.length <= 2000, `questions[${i}].q is ${q.length} characters`);
+    assert.ok(a.length <= 2000, `questions[${i}].a is ${a.length} characters`);
+  }
+  // Same rule as the app: questions compared trimmed and case-insensitively.
+  const seen = new Set();
+  for (const [i, { q }] of faq.questions.entries()) {
+    const key = q.trim().toLowerCase();
+    assert.ok(!seen.has(key), `questions[${i}] repeats an earlier question: ${q}`);
+    seen.add(key);
+  }
 });
 
 test('faq.json: plain text, curly apostrophes and quotes, no em dashes', () => {
