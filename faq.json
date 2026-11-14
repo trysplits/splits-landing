@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "q": "Do my friends need the app?",
+      "a": "No. Whoever creates the split uses the app. Everyone else gets a link that opens in any browser. On a receipt split, they add their name and tap the items they had. On a quick expense, they tap their name in the list and see their share and how to pay."
+    },
+    {
+      "q": "How does receipt scanning work?",
+      "a": "Take a photo of the receipt and Claude, an AI model made by Anthropic, reads the items, prices and tax, plus the tip if it’s printed. It usually takes a few seconds. You check the list and fix anything before you share it. If the items don’t add up to the receipt’s subtotal, Splits flags it so you can review it."
+    },
+    {
+      "q": "What gets sent to the AI?",
+      "a": "When you scan, the receipt photo. When you use Just tell me, your message, your name and the names of your friends on Splits, so it can tell who you mean. When you see an AI summary of a split, the names, items and split title. All of it goes to Anthropic to be processed, and Splits asks for your permission before using any of these. Our Privacy Policy has the details."
+    },
+    {
+      "q": "Which receipts work?",
+      "a": "Most printed receipts. Amounts are shown in US dollars, and Splits doesn’t convert other currencies yet."
+    },
+    {
+      "q": "How are tax and tip split?",
+      "a": "On a receipt split, by what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. On a quick expense, the whole amount is split the way you choose."
+    },
+    {
+      "q": "What about shared items, like appetizers?",
+      "a": "When several people claim the same item, its cost is divided equally between them."
+    },
+    {
+      "q": "What if nobody claims an item?",
+      "a": "The person who paid covers it. On a receipt split, once everyone else has paid, the creator or the payer can close the split, and anything left unclaimed stays with the payer."
+    },
+    {
+      "q": "Can I split something without a receipt?",
+      "a": "Yes. Use Quick add: enter the amount, pick who’s in and choose how to split it: equally, by exact amounts, by percentage or by shares. You can also mark someone else as the person who paid."
+    },
+    {
+      "q": "What is Just tell me?",
+      "a": "Type what happened in a sentence, like “Dinner was $60 with Jake and Sara, split equally”, and Splits sets up the split for you. You review it before saving."
+    },
+    {
+      "q": "How do balances with friends work?",
+      "a": "Splits keeps one running balance with each friend across every split and quick expense, so you always know who owes who. Settling up brings it back to zero."
+    },
+    {
+      "q": "How do I settle up?",
+      "a": "Open a friend’s balance or a split and tap Settle up or Pay. Splits opens Venmo or Cash App for you, or shows your friend’s Zelle details. Splits never moves money itself. You can also record a payment made in cash or another way."
+    },
+    {
+      "q": "What are labels?",
+      "a": "Labels group splits that belong together, like a trip or a shared home, so you can see the balances for that group in one place."
+    },
+    {
+      "q": "What is Smart Settle?",
+      "a": "Within a label, Smart Settle cuts down the number of payments. If Ben owes you and you owe Clara the same amount, Ben can pay Clara directly. The label’s owner turns it on, and it only includes people with a Splits account. Ben and Clara get a notice, and anyone whose money moved can undo it within 24 hours, as long as the new payment hasn’t been made."
+    },
+    {
+      "q": "How do reminders work?",
+      "a": "You can nudge a friend from their balance or send a reminder for a split. Splits also emails people who still owe, starting 10 days after a split and never more than once every 15 days. Reminder and monthly summary emails have an unsubscribe link."
+    },
+    {
+      "q": "Is Splits free?",
+      "a": "Yes, Splits is free."
+    },
+    {
+      "q": "Is there an Android app?",
+      "a": "Not yet. Friends on Android can still open any split link in their browser."
+    },
+    {
+      "q": "What happens to my receipt photos?",
+      "a": "A photo is kept with its split, and anyone with the split’s link can see it. It’s deleted when the split is deleted, or when you delete your account if you created the split."
+    },
+    {
+      "q": "How do I delete my account?",
+      "a": "Go to Profile, then Delete account. Your name, email, phone number and payment handles are removed. Splits you shared with others stay for them, with your name shown as “Deleted User”."
+    }
+  ]
+}

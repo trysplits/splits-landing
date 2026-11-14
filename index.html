@@ -62,9 +62,9 @@
     },
     "featureList": [
       "AI-powered receipt scanning",
-      "Relationship ledger: an always-current view of who owes who",
+      "Relationship ledger: one running balance with each friend",
       "Shareable link: no app required for friends",
-      "One-tap settle via Venmo, Cash App, or Zelle",
+      "Pay back with Venmo, Cash App or Zelle",
       "Proportional tax and tip splitting",
       "Real-time claim tracking dashboard",
       "Quick expense add: no receipt needed",
@@ -77,80 +77,164 @@
     "name": "Splits",
     "url": "https://trysplits.com",
     "logo": "https://trysplits.com/favicon.svg",
-    "description": "Splits helps you and your people settle money instantly, fairly, and without the awkwardness. AI receipt scanning, relationship ledger, one-tap settle."
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Do my friends need to download the app to split the bill?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nope! Only the person who paid needs the app. Everyone else just opens a link in their browser, enters their name, and taps what they had. No download required."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does the AI read receipts?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Splits uses advanced AI to extract every item, quantity, price, tax amount, and total from your receipt photo. It works in 2–5 seconds and handles most North American receipt formats."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How are tax and tip calculated when splitting a bill?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tax and tip are split proportionally based on what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. No more equal splits on unequal orders."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens with shared appetizers or items split between people?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "If multiple people claim the same item (like a shared plate of nachos), the cost is automatically divided equally among everyone who claimed it."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is Splits free to use?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Splits is free to use. Optional premium features are planned for the future, but the core split experience will always be free."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What payment methods are supported for paying people back?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Splits shows each person what they owe and suggests payment via Venmo, Cash App, or Zelle."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I track expenses other than restaurant receipts?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Absolutely. You can add any shared expense in seconds: Uber rides, groceries, rent, utilities, group trip costs. No receipt needed. Just log what you paid and who owes."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does Splits help with ongoing balances between friends or roommates?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Splits maintains a relationship ledger so you always know who owes who across all your shared expenses. See your balance with every person at a glance, all updated in real time."
-        }
-      }
-    ]
+    "description": "Splits helps you and your people settle money fairly and without the awkwardness. AI receipt scanning, one running balance with each friend, and pay back with Venmo, Cash App or Zelle."
   }
 ]
 </script>
+<!-- faq:jsonld:start (generated from faq.json by _tests/generate-faq.js; edit faq.json, not this block) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do my friends need the app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Whoever creates the split uses the app. Everyone else gets a link that opens in any browser. On a receipt split, they add their name and tap the items they had. On a quick expense, they tap their name in the list and see their share and how to pay."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does receipt scanning work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Take a photo of the receipt and Claude, an AI model made by Anthropic, reads the items, prices and tax, plus the tip if it’s printed. It usually takes a few seconds. You check the list and fix anything before you share it. If the items don’t add up to the receipt’s subtotal, Splits flags it so you can review it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What gets sent to the AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When you scan, the receipt photo. When you use Just tell me, your message, your name and the names of your friends on Splits, so it can tell who you mean. When you see an AI summary of a split, the names, items and split title. All of it goes to Anthropic to be processed, and Splits asks for your permission before using any of these. Our Privacy Policy has the details."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which receipts work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most printed receipts. Amounts are shown in US dollars, and Splits doesn’t convert other currencies yet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are tax and tip split?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a receipt split, by what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. On a quick expense, the whole amount is split the way you choose."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about shared items, like appetizers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When several people claim the same item, its cost is divided equally between them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if nobody claims an item?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The person who paid covers it. On a receipt split, once everyone else has paid, the creator or the payer can close the split, and anything left unclaimed stays with the payer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I split something without a receipt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use Quick add: enter the amount, pick who’s in and choose how to split it: equally, by exact amounts, by percentage or by shares. You can also mark someone else as the person who paid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Just tell me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Type what happened in a sentence, like “Dinner was $60 with Jake and Sara, split equally”, and Splits sets up the split for you. You review it before saving."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do balances with friends work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Splits keeps one running balance with each friend across every split and quick expense, so you always know who owes who. Settling up brings it back to zero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I settle up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open a friend’s balance or a split and tap Settle up or Pay. Splits opens Venmo or Cash App for you, or shows your friend’s Zelle details. Splits never moves money itself. You can also record a payment made in cash or another way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are labels?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Labels group splits that belong together, like a trip or a shared home, so you can see the balances for that group in one place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Smart Settle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Within a label, Smart Settle cuts down the number of payments. If Ben owes you and you owe Clara the same amount, Ben can pay Clara directly. The label’s owner turns it on, and it only includes people with a Splits account. Ben and Clara get a notice, and anyone whose money moved can undo it within 24 hours, as long as the new payment hasn’t been made."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do reminders work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can nudge a friend from their balance or send a reminder for a split. Splits also emails people who still owe, starting 10 days after a split and never more than once every 15 days. Reminder and monthly summary emails have an unsubscribe link."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Splits free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Splits is free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an Android app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. Friends on Android can still open any split link in their browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my receipt photos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A photo is kept with its split, and anyone with the split’s link can see it. It’s deleted when the split is deleted, or when you delete your account if you created the split."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I delete my account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Go to Profile, then Delete account. Your name, email, phone number and payment handles are removed. Splits you shared with others stay for them, with your name shown as “Deleted User”."
+      }
+    }
+  ]
+}
+</script>
+<!-- faq:jsonld:end -->
 
 <style>
 /* Splits landing, app look. Tokens mirror splits-mobile/theme/palette.ts (v2.2.1). No web fonts, no gradients. */
@@ -689,7 +773,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
       <div><div class="phone phone-md"><img src="/screens/claim.webp" width="786" height="1704" alt="Claim screen: tap the items you ordered, no app needed for friends" loading="lazy" decoding="async" /></div><p class="preview-cap">Their view: no app required</p></div>
     </div>
     <div class="grid-4 feature-row reveal d2">
-      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg></div><div class="ft-title">AI-powered scanning</div><div class="ft-body">Receipt read in under 5 seconds.</div></div>
+      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg></div><div class="ft-title">AI-powered scanning</div><div class="ft-body">Receipt read in seconds.</div></div>
       <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-link"/></svg></div><div class="ft-title">No app for friends</div><div class="ft-body">Works in any mobile browser.</div></div>
       <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-time"/></svg></div><div class="ft-title">Real-time updates</div><div class="ft-body">See claims as they happen.</div></div>
       <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg></div><div class="ft-title">Fair math</div><div class="ft-body">Tax and tip split proportionally.</div></div>
@@ -706,22 +790,22 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     </div>
     <div class="feature-showcase reveal">
       <div class="feature-showcase-copy"><h3 class="h3">AI receipt scanning</h3>
-        <p>Snap any receipt: restaurant, bar, grocery store. Our AI reads every item, price, tax, and tip instantly. No manual entry, no typos, no spreadsheets.</p></div>
+        <p>Snap any printed receipt: restaurant, bar, grocery store. AI reads the items, prices and tax, plus the tip if it’s printed, in a few seconds. You check the list before you share it.</p></div>
       <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/review.webp" width="786" height="1704" alt="AI-extracted items from a restaurant receipt" loading="lazy" decoding="async" /></div></div>
     </div>
     <div class="feature-showcase feature-showcase-reverse reveal">
       <div class="feature-showcase-copy"><h3 class="h3">Know where you stand</h3>
-        <p>See your balance with every person at a glance. Who owes you, who you owe, all updated in real time. No more "hey, did I ever pay you back?"</p></div>
+        <p>See your balance with each friend at a glance. Who owes you and who you owe, across every split and quick expense. No more “hey, did I ever pay you back?”</p></div>
       <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/person.webp" width="786" height="1704" alt="Person detail showing the running balance and history with one person" loading="lazy" decoding="async" /></div></div>
     </div>
     <div class="feature-showcase reveal">
       <div class="feature-showcase-copy"><h3 class="h3">Settle up in one tap</h3>
-        <p>Send a Venmo request, Cash App, or Zelle payment with the exact amount pre-filled. Or just mark it settled. The goal: $0 balance, zero awkwardness.</p></div>
-      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App, and Zelle options and the exact amount pre-filled" loading="lazy" decoding="async" /></div></div>
+        <p>Pay with Venmo or Cash App in a tap, or use your friend’s Zelle details. Splits never moves money itself.</p></div>
+      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App and Zelle options" loading="lazy" decoding="async" /></div></div>
     </div>
     <div class="feature-showcase feature-showcase-reverse reveal">
       <div class="feature-showcase-copy"><h3 class="h3">No app? No problem.</h3>
-        <p>When you share a split, your friends open it in their browser. No download, no signup required. They claim their items, see their total, and they're done.</p></div>
+        <p>When you share a split, your friends open it in their browser. No download, no signup required. On a receipt split, they tap the items they had. On a quick expense, they tap their name and see their share and how to pay.</p></div>
       <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/claim.webp" width="786" height="1704" alt="Claim screen where friends tap what they had. Friends use it in any browser, no app needed." loading="lazy" decoding="async" /></div></div>
     </div>
   </div>
@@ -767,7 +851,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     </div>
     <div class="grid-3">
       <div class="why-card card reveal"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-lock-closed"/></svg></div><div class="why-title">No limits. No paywalls.</div><div class="why-body">Unlike other apps, we don't limit your expenses or lock basic features behind a subscription. The full experience is free.</div></div>
-      <div class="why-card card reveal d1"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-link"/></svg></div><div class="why-title">Your friends don't need the app.</div><div class="why-body">Share a link. Your friends open it in any browser, claim their items, and see their total. No download, no account, no friction.</div></div>
+      <div class="why-card card reveal d1"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-link"/></svg></div><div class="why-title">Your friends don’t need the app.</div><div class="why-body">Share a link. Your friends open it in any browser and see their share. On a receipt, they tap what they had first. No download, no account, no friction.</div></div>
       <div class="why-card card reveal d2"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg></div><div class="why-title">AI does the work.</div><div class="why-body">Point your camera at any receipt. Our AI reads every item, price, tax, and tip in seconds. You snap and share. That's it.</div></div>
     </div>
   </div>
@@ -778,18 +862,44 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   <div class="container">
     <div class="section-head center reveal"><h2 class="h2">Questions?</h2></div>
     <div class="faq" id="faq-list">
-      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do my friends need to download the app?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
-        <div class="faq-a"><div class="faq-a-inner">Nope! Only the person who paid needs the app. Everyone else just opens a link in their browser, enters their name, and taps what they had.</div></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How does the AI read receipts?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
-        <div class="faq-a"><div class="faq-a-inner">We use advanced AI to extract every item, quantity, price, tax amount, and total from your receipt photo. It works in 2–5 seconds and handles most North American receipt formats.</div></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How are tax and tip calculated?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
-        <div class="faq-a"><div class="faq-a-inner">Tax and tip are split proportionally based on what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. No more equal splits on unequal orders.</div></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What about shared items like appetizers?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
-        <div class="faq-a"><div class="faq-a-inner">If multiple people claim the same item (like a shared plate of nachos), the cost is automatically divided equally among everyone who claimed it.</div></div></div>
+      <!-- faq:html:start (generated from faq.json by _tests/generate-faq.js; edit faq.json, not this block) -->
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do my friends need the app?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Whoever creates the split uses the app. Everyone else gets a link that opens in any browser. On a receipt split, they add their name and tap the items they had. On a quick expense, they tap their name in the list and see their share and how to pay.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How does receipt scanning work?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Take a photo of the receipt and Claude, an AI model made by Anthropic, reads the items, prices and tax, plus the tip if it’s printed. It usually takes a few seconds. You check the list and fix anything before you share it. If the items don’t add up to the receipt’s subtotal, Splits flags it so you can review it.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What gets sent to the AI?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">When you scan, the receipt photo. When you use Just tell me, your message, your name and the names of your friends on Splits, so it can tell who you mean. When you see an AI summary of a split, the names, items and split title. All of it goes to Anthropic to be processed, and Splits asks for your permission before using any of these. Our Privacy Policy has the details.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Which receipts work?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Most printed receipts. Amounts are shown in US dollars, and Splits doesn’t convert other currencies yet.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How are tax and tip split?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">On a receipt split, by what each person claimed. If you had 30% of the food, you pay 30% of the tax and tip. On a quick expense, the whole amount is split the way you choose.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What about shared items, like appetizers?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">When several people claim the same item, its cost is divided equally between them.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What if nobody claims an item?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">The person who paid covers it. On a receipt split, once everyone else has paid, the creator or the payer can close the split, and anything left unclaimed stays with the payer.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Can I split something without a receipt?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. Use Quick add: enter the amount, pick who’s in and choose how to split it: equally, by exact amounts, by percentage or by shares. You can also mark someone else as the person who paid.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What is Just tell me?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Type what happened in a sentence, like “Dinner was $60 with Jake and Sara, split equally”, and Splits sets up the split for you. You review it before saving.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How do balances with friends work?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Splits keeps one running balance with each friend across every split and quick expense, so you always know who owes who. Settling up brings it back to zero.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How do I settle up?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Open a friend’s balance or a split and tap Settle up or Pay. Splits opens Venmo or Cash App for you, or shows your friend’s Zelle details. Splits never moves money itself. You can also record a payment made in cash or another way.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What are labels?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Labels group splits that belong together, like a trip or a shared home, so you can see the balances for that group in one place.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What is Smart Settle?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Within a label, Smart Settle cuts down the number of payments. If Ben owes you and you owe Clara the same amount, Ben can pay Clara directly. The label’s owner turns it on, and it only includes people with a Splits account. Ben and Clara get a notice, and anyone whose money moved can undo it within 24 hours, as long as the new payment hasn’t been made.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How do reminders work?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">You can nudge a friend from their balance or send a reminder for a split. Splits also emails people who still owe, starting 10 days after a split and never more than once every 15 days. Reminder and monthly summary emails have an unsubscribe link.</div></div></div>
       <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is Splits free?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
-        <div class="faq-a"><div class="faq-a-inner">Splits is free to use. We plan to offer optional premium features in the future, but the core split experience will always be free.</div></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What payment methods are supported?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
-        <div class="faq-a"><div class="faq-a-inner">For now, Splits shows each person what they owe and suggests payment via Venmo, Cash App, or Zelle.</div></div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes, Splits is free.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is there an Android app?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Not yet. Friends on Android can still open any split link in their browser.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What happens to my receipt photos?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">A photo is kept with its split, and anyone with the split’s link can see it. It’s deleted when the split is deleted, or when you delete your account if you created the split.</div></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How do I delete my account?</span><svg class="ic chev" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Go to Profile, then Delete account. Your name, email, phone number and payment handles are removed. Splits you shared with others stay for them, with your name shown as “Deleted User”.</div></div></div>
+      <!-- faq:html:end -->
     </div>
   </div>
 </section>
