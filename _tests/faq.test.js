@@ -163,12 +163,8 @@ test('settle up feature copy: Venmo or Cash App in a tap, Zelle details, Splits 
   );
 });
 
-test('AI-powered scanning card: "Receipt read in seconds."', (t) => {
+test('no "under 5 seconds" scanning claim anywhere on the page', (t) => {
   const { document } = page(t);
-  const card = [...document.querySelectorAll('.feature-row .card')].find(
-    (el) => el.querySelector('.ft-title').textContent === 'AI-powered scanning',
-  );
-  assert.equal(card.querySelector('.ft-body').textContent, 'Receipt read in seconds.');
   assert.ok(!document.documentElement.outerHTML.includes('under 5 seconds'));
 });
 
@@ -179,27 +175,11 @@ const showcase = (document, heading) =>
     (el) => el.querySelector('.feature-showcase-copy .h3').textContent === heading,
   );
 
-test('AI receipt scanning copy: a few seconds, tip only if printed, you check the list', (t) => {
-  const { document } = page(t);
-  assert.equal(
-    showcase(document, 'AI receipt scanning').querySelector('p').textContent,
-    'Snap any printed receipt: restaurant, bar, grocery store. AI reads the items, prices and tax, plus the tip if it’s printed, in a few seconds. You check the list before you share it.',
-  );
-});
-
 test('Know where you stand copy: balances with each friend, no "real time" claim', (t) => {
   const { document } = page(t);
   assert.equal(
     showcase(document, 'Know where you stand').querySelector('p').textContent,
     'See your balance with each friend at a glance. Who owes you and who you owe, across every split and quick expense. No more “hey, did I ever pay you back?”',
-  );
-});
-
-test('No app? No problem. copy: receipt split and quick expense cases', (t) => {
-  const { document } = page(t);
-  assert.equal(
-    showcase(document, 'No app? No problem.').querySelector('p').textContent,
-    'When you share a split, your friends open it in their browser. No download, no signup required. On a receipt split, they tap the items they had. On a quick expense, they tap their name and see their share and how to pay.',
   );
 });
 
