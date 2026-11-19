@@ -438,17 +438,25 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 .fx-screens img.on{opacity:1}
 .fx-more{margin-top:64px}
 
-/* Hero reel: the three steps, crossfading. CSS only; one still frame with reduced motion. */
+/* Hero reel: home, the + sheet, camera, reading, review, share, claim. CSS only (generated timings, 16.0s loop);
+   one still frame with reduced motion. */
 .h1 span{display:block}
 .reel{position:relative}
 .reel img+img{position:absolute;inset:0}
-.reel img,.reel-steps .rs{opacity:0;animation:reel 9s linear infinite backwards}
-.reel img:nth-child(1),.reel-steps .rs:nth-child(1){animation-delay:-.36s}
-.reel img:nth-child(2),.reel-steps .rs:nth-child(2){animation-delay:2.64s}
-.reel img:nth-child(3),.reel-steps .rs:nth-child(3){animation-delay:5.64s}
+.reel img,.reel-steps .rs,.reel-tap{opacity:0;animation-duration:16.0s;animation-timing-function:linear;animation-iteration-count:infinite}
+.reel img:nth-of-type(1){animation-name:rf1}@keyframes rf1{0%{opacity:1}12.50%{opacity:1}14.69%{opacity:0}97.81%{opacity:0}100%{opacity:1}}
+.reel img:nth-of-type(2){animation-name:rf2}@keyframes rf2{0%{opacity:0}12.50%{opacity:0}14.69%{opacity:1}23.12%{opacity:1}25.31%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(3){animation-name:rf3}@keyframes rf3{0%{opacity:0}23.12%{opacity:0}25.31%{opacity:1}36.25%{opacity:1}38.44%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(4){animation-name:rf4}@keyframes rf4{0%{opacity:0}36.25%{opacity:0}38.44%{opacity:1}46.25%{opacity:1}48.44%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(5){animation-name:rf5}@keyframes rf5{0%{opacity:0}46.25%{opacity:0}48.44%{opacity:1}64.38%{opacity:1}66.56%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(6){animation-name:rf6}@keyframes rf6{0%{opacity:0}64.38%{opacity:0}66.56%{opacity:1}81.25%{opacity:1}83.44%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(7){animation-name:rf7}@keyframes rf7{0%{opacity:0}81.25%{opacity:0}83.44%{opacity:1}97.81%{opacity:1}100%{opacity:0}}
+.reel-steps .rs:nth-child(1){animation-name:rs1}@keyframes rs1{0%{opacity:1}64.38%{opacity:1}66.56%{opacity:0}97.81%{opacity:0}100%{opacity:1}}
+.reel-steps .rs:nth-child(2){animation-name:rs2}@keyframes rs2{0%{opacity:0}64.38%{opacity:0}66.56%{opacity:1}81.25%{opacity:1}83.44%{opacity:0}100%{opacity:0}}
+.reel-steps .rs:nth-child(3){animation-name:rs3}@keyframes rs3{0%{opacity:0}81.25%{opacity:0}83.44%{opacity:1}97.81%{opacity:1}100%{opacity:0}}
+.reel-tap{position:absolute;width:15%;aspect-ratio:1;border-radius:999px;background:rgba(255,255,255,.4);box-shadow:0 0 0 2px rgba(26,26,46,.28);pointer-events:none;animation-name:rtap}@keyframes rtap{0%{opacity:0;left:50%;top:90%;transform:translate(-50%,-50%) scale(.6)}8.44%{opacity:0;left:50%;top:90%;transform:translate(-50%,-50%) scale(.6)}9.87%{opacity:1;left:50%;top:90%;transform:translate(-50%,-50%) scale(1)}11.88%{opacity:0;left:50%;top:90%;transform:translate(-50%,-50%) scale(1.5)}19.06%{opacity:0;left:50%;top:65.5%;transform:translate(-50%,-50%) scale(.6)}20.50%{opacity:1;left:50%;top:65.5%;transform:translate(-50%,-50%) scale(1)}22.50%{opacity:0;left:50%;top:65.5%;transform:translate(-50%,-50%) scale(1.5)}32.19%{opacity:0;left:50%;top:85.7%;transform:translate(-50%,-50%) scale(.6)}33.63%{opacity:1;left:50%;top:85.7%;transform:translate(-50%,-50%) scale(1)}35.63%{opacity:0;left:50%;top:85.7%;transform:translate(-50%,-50%) scale(1.5)}60.31%{opacity:0;left:50%;top:92.6%;transform:translate(-50%,-50%) scale(.6)}61.75%{opacity:1;left:50%;top:92.6%;transform:translate(-50%,-50%) scale(1)}63.75%{opacity:0;left:50%;top:92.6%;transform:translate(-50%,-50%) scale(1.5)}77.19%{opacity:0;left:50%;top:46%;transform:translate(-50%,-50%) scale(.6)}78.62%{opacity:1;left:50%;top:46%;transform:translate(-50%,-50%) scale(1)}80.62%{opacity:0;left:50%;top:46%;transform:translate(-50%,-50%) scale(1.5)}100%{opacity:0;left:50%;top:90%;transform:translate(-50%,-50%) scale(.6)}}
 .reel-steps{display:grid;left:-132px;bottom:56px}
 .reel-steps .rs{grid-area:1/1;display:flex;align-items:center;gap:12px}
-@keyframes reel{0%{opacity:0}4%{opacity:1}33.3%{opacity:1}37.3%{opacity:0}100%{opacity:0}}
 
 /* Try it: a self-contained demo of the page friends see. No network, resets on reload. */
 .demo .phone{--pw:316px;border-radius:44px;padding:9px}
@@ -582,9 +590,9 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .jtm-caret,.jtm-typing .dots i{animation:none}
   .jtm-stage[data-step="2"] .jtm-card,.jtm-stage[data-step="3"] .jtm-done-check{animation:none}
   .jtm-frame,.js .reveal,.faq-a,.faq-q .chev{transition:none}
-  .reel img,.reel-steps .rs{animation:none}
+  .reel img,.reel-steps .rs,.reel-tap{animation:none}
   .fx-screens img{transition:none}
-  .reel img:nth-child(3),.reel-steps .rs:nth-child(3){opacity:1}
+  .reel img:nth-of-type(7),.reel-steps .rs:nth-child(3){opacity:1}
   html{scroll-behavior:auto}
 }
 
@@ -679,9 +687,14 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
       </div>
       <div class="hero-mock-wrap">
         <div class="phone phone-lg"><div class="reel">
-          <img src="/screens/review.webp" width="786" height="1704" alt="Step 1: the receipt, with every item read by AI" loading="eager" fetchpriority="high" decoding="async" />
+          <img src="/screens/home.webp" width="786" height="1704" alt="Splits home screen: your net balance, labels and the people you share with" loading="eager" fetchpriority="high" decoding="async" />
+          <img src="/screens/add-sheet.webp" width="786" height="1704" alt="The add menu: scan a receipt, just tell me, or quick add" loading="eager" decoding="async" />
+          <img src="/screens/camera.webp" width="786" height="1704" alt="The camera pointed at a restaurant receipt" loading="eager" decoding="async" />
+          <img src="/screens/reading.webp" width="786" height="1704" alt="Splits reading the receipt with AI" loading="eager" decoding="async" />
+          <img src="/screens/review.webp" width="786" height="1704" alt="Step 1: the receipt, with every item read by AI" loading="eager" decoding="async" />
           <img src="/screens/share.webp" width="786" height="1704" alt="Step 2: the split shared as a link" loading="eager" decoding="async" />
           <img src="/screens/claim.webp" width="786" height="1704" alt="Step 3: each person taps the items they had" loading="eager" decoding="async" />
+          <span class="reel-tap" aria-hidden="true"></span>
         </div></div>
         <div class="callout reel-steps" aria-hidden="true">
           <div class="rs"><div class="step-num">1</div><div><b>Snap the receipt</b><span>AI reads every item</span></div></div>
@@ -881,7 +894,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
         <button type="button" class="fx-item" aria-pressed="false" data-fx="3"><span class="fx-title">Fewer payments with Smart Settle</span><span class="fx-desc">Inside a label, Smart Settle cuts down the number of payments. If Ben owes you and you owe Clara the same amount, Ben pays Clara directly. The label’s owner turns it on, and anyone whose money moved can undo it within 24 hours, as long as the new payment hasn’t been made.</span></button>
       </div>
       <div class="fx-visual"><div class="phone phone-lg"><div class="fx-screens">
-        <img class="on" src="/screens/home.webp" width="786" height="1704" alt="Splits home screen: your balance and the people who owe you" loading="lazy" decoding="async" />
+        <img class="on" src="/screens/home.webp" width="786" height="1704" alt="Splits home screen: your net balance, labels and the people you share with" loading="lazy" decoding="async" />
         <img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App and Zelle options" loading="lazy" decoding="async" />
         <img src="/screens/labels.webp" width="786" height="1704" alt="History filtered to one label, showing what you owe across that trip’s splits" loading="lazy" decoding="async" />
         <img src="/screens/smart-settle.webp" width="786" height="1704" alt="Balances for one label after Smart Settle, showing who owes who and which payments were simplified" loading="lazy" decoding="async" />
