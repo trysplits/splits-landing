@@ -97,7 +97,7 @@ test('dashboard starts as the app would show it: 2 of 6 claimed, $48.10 collecte
 
 test('the dashboard\'s numbers add up to the bill', (t) => {
   const { document } = demo(t);
-  const paid = [...document.querySelectorAll('#dash .dash-row')].slice(0, 2).map((r) => cents(r.querySelector('small b')));
+  const paid = [...document.querySelectorAll('#dash-people .dash-row')].slice(0, 2).map((r) => cents(r.querySelector('small b')));
   assert.deepEqual(paid, [1690, 3120]);
   const open = [...document.querySelectorAll('#dash .dash-urow[data-u] b')].map(cents).reduce((a, b) => a + b, 0);
   assert.equal(open, 6300);
@@ -157,4 +157,68 @@ test('claiming everything left: 6 of 6, nothing unclaimed, and paying collects t
 test('the friend\'s page sits in a browser, with the app\'s web address', (t) => {
   const { document } = demo(t);
   assert.equal(document.querySelector('#try-it .saf-url').textContent.trim(), 'app.trysplits.com');
+});
+
+// ── Summary and participant details (2026-11-19) ──
+
+test('the Summary follows the split: who still owes, and what is unclaimed', (t) => {
+  const { $, items } = demo(t);
+  assert.equal($('dash-summary').textContent,
+    'Alex hasn\u2019t claimed anything yet. The Margherita pizza, Pasta al limone, Caesar salad and Tiramisu are unclaimed.');
+  items[0].click();
+  items[2].click();
+  assert.equal($('dash-summary').textContent, 'Alex still owes you $41.60. The Pasta al limone and Tiramisu are unclaimed.');
+  $('demo-done').click();
+  $('demo-paid').click();
+  assert.equal($('dash-summary').textContent, 'Everyone has paid you back. The Pasta al limone and Tiramisu are unclaimed.');
+  assert.equal($('dash-allpaid').hidden, false);
+  assert.equal($('dash-allpaid').textContent, 'Everyone paid \u00B7 2 items nobody claimed');
+});
+
+test('the markup\'s first Summary is what the script writes for the starting state', (t) => {
+  const html = require('node:fs').readFileSync(require('node:path').resolve(__dirname, '..', 'index.html'), 'utf8');
+  const { $ } = demo(t);
+  assert.ok(html.includes('<p id="dash-summary">' + $('dash-summary').textContent + '</p>'));
+});
+
+test('every participant row opens to its items and totals, and closes again', (t) => {
+  const { $, document } = demo(t);
+  const rows = [...document.querySelectorAll('#dash-people .dash-row')];
+  assert.equal(rows.length, 3);
+  for (const row of rows) {
+    const det = $(row.getAttribute('aria-controls'));
+    assert.equal(det.hidden, true);
+    row.click();
+    assert.equal(row.getAttribute('aria-expanded'), 'true');
+    assert.equal(det.hidden, false);
+    row.click();
+    assert.equal(det.hidden, true);
+  }
+});
+
+test('the payer\'s and Jake\'s details add up: item, 10% tax, 20% tip', (t) => {
+  const { $ } = demo(t);
+  for (const id of ['dash-sam-det', 'dash-jake-det']) {
+    const item = cents($(id).querySelector('.dd-item .num'));
+    const [sub, tax, tip] = [...$(id).querySelectorAll('.dd-line b')].map(cents);
+    assert.deepEqual([sub, tax, tip], [item, item / 10, item / 5]);
+    assert.equal(cents($(id).querySelector('.dd-total b')), sub + tax + tip);
+  }
+});
+
+test('claiming opens Alex\'s row with the items picked so far, and paying marks it paid', (t) => {
+  const { $, items } = demo(t);
+  assert.equal($('dash-alex-det').hidden, true);
+  items[0].click();
+  items[3].click();
+  assert.equal($('dash-alex-det').hidden, false);
+  assert.deepEqual([...$('dash-alex-items').querySelectorAll('.dd-item')].map((r) => r.textContent),
+    ['Margherita pizza$18.00', 'Tiramisu$9.00']);
+  assert.deepEqual(['dsub', 'dtax', 'dtip', 'dtot'].map((k) => $('dash-alex-' + k).textContent),
+    ['$27.00', '$2.70', '$5.40', '$35.10']);
+  assert.equal($('dash-alex-dpaid').hidden, true);
+  $('demo-done').click();
+  $('demo-paid').click();
+  assert.equal($('dash-alex-dpaid').hidden, false);
+  assert.ok($('dash-alex-amt').classList.contains('struck'));
 });

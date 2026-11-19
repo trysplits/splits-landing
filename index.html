@@ -539,6 +539,27 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 .dash-pill .ic{stroke-width:56;font-size:2.799cqw}
 .dash-pill[hidden]{display:none}
 .dash-row .chev{font-size:4.071cqw;color:var(--tertiary);stroke-width:40}
+.dash-note{background:var(--fill);border-radius:4.071cqw;padding:3.562cqw 4.071cqw;margin-top:3.562cqw}
+.dash-note span{display:block;font-size:3.308cqw;font-weight:600;color:var(--secondary)}
+.dash-note p{margin:1.018cqw 0 0;font-size:3.817cqw;line-height:1.4}
+.dash-allpaid{font-size:4.326cqw;font-weight:600;padding:5.089cqw 4.071cqw 0;margin-bottom:-3.562cqw}
+.dash-allpaid[hidden]{display:none}
+.dash-row{width:100%;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.dash-row .chev{transition:transform .2s}
+.dash-row[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.dash-nm small b.struck{text-decoration:line-through;color:var(--secondary)}
+.dash-det{padding:0 4.071cqw 3.562cqw}
+.dash-det[hidden]{display:none}
+.dd{background:var(--bg);border-radius:2.545cqw;padding:1.018cqw 3.053cqw 2.545cqw}
+.dd-item{display:flex;justify-content:space-between;gap:3.053cqw;padding:2.545cqw 0;border-bottom:.1.272cqw solid var(--hairline);font-size:3.562cqw}
+.dd-empty{padding:2.545cqw 0;border-bottom:.1.272cqw solid var(--hairline);font-size:3.562cqw;color:var(--secondary)}
+.dd-line{display:flex;justify-content:space-between;font-size:3.308cqw;color:var(--secondary);padding-top:1.527cqw}
+.dd-line b{color:var(--ink);font-weight:600}
+.dd-total{display:flex;justify-content:space-between;align-items:baseline;font-size:3.308cqw;font-weight:600;border-top:.1.272cqw solid var(--hairline);margin-top:2.036cqw;padding-top:2.036cqw}
+.dd-total b{font-size:4.071cqw}
+.dd-paid{display:flex;align-items:center;gap:1.527cqw;font-size:3.562cqw;font-weight:600;color:var(--green);margin-top:2.036cqw}
+.dd-paid .ic{stroke-width:48;font-size:3.562cqw}
+.dd-paid[hidden]{display:none}
 .dash-bar{flex-shrink:0;background:var(--surface);border-top:.1.272cqw solid var(--hairline);padding:3.562cqw 4.071cqw 5.598cqw;display:flex;flex-direction:column;gap:2.545cqw}
 .dash-bar[hidden]{display:none}
 .dash-bar p{margin:0;font-size:3.308cqw;line-height:1.4;color:var(--secondary)}
@@ -661,7 +682,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .jtm-stage[data-step="2"] .jtm-card,.jtm-stage[data-step="3"] .jtm-done-check{animation:none}
   .jtm-frame,.js .reveal,.faq-a,.faq-q .chev{transition:none}
   .reel img,.reel-steps .rs,.reel-tap{animation:none}
-  .fx-screens img,.dash-ring .bar,.dash-row{transition:none}
+  .fx-screens img,.dash-ring .bar,.dash-row,.dash-row .chev{transition:none}
   .reel img:nth-of-type(7),.reel-steps .rs:nth-child(3){opacity:1}
   html{scroll-behavior:auto}
 }
@@ -971,7 +992,9 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
                     <span class="by">Paid by <b>you</b></span>
                   </div>
                 </div>
+                <div class="dash-note"><span>Summary</span><p id="dash-summary">Alex hasn’t claimed anything yet. The Margherita pizza, Pasta al limone, Caesar salad and Tiramisu are unclaimed.</p></div>
                 <div id="dash-unclaimed">
+                  <div class="dash-allpaid" id="dash-allpaid" hidden></div>
                   <div class="dash-sec"><span>Unclaimed</span></div>
                   <div class="dash-list">
                     <div class="dash-urow" data-u="0"><span>Margherita pizza</span><b class="num">$18.00</b></div>
@@ -982,10 +1005,13 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
                   </div>
                 </div>
                 <div class="dash-sec"><span>Participants</span><span>3 of 3</span></div>
-                <div class="dash-list">
-                  <div class="dash-row"><span class="demo-av sam you">S</span><span class="dash-nm"><span><b>You</b> · paid the bill</span><small>1 item · <b class="num">$16.90</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
-                  <div class="dash-row"><span class="demo-av jake">J</span><span class="dash-nm"><span><b>Jake</b></span><small>1 item · <b class="num">$31.20</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
-                  <div class="dash-row" id="dash-alex"><span class="demo-av alex">A</span><span class="dash-nm"><span><b>Alex</b></span><small><span id="dash-alex-sub">0 items</span> · <b class="num" id="dash-alex-amt">$0.00</b></small></span><em class="dash-pill" id="dash-alex-pill" hidden><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
+                <div class="dash-list" id="dash-people">
+                  <button type="button" class="dash-row" aria-expanded="false" aria-controls="dash-sam-det"><span class="demo-av sam you">S</span><span class="dash-nm"><span><b>You</b> · paid the bill</span><small>1 item · <b class="num">$16.90</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+                  <div class="dash-det" id="dash-sam-det" hidden><div class="dd"><div><div class="dd-item"><span>Margarita</span><span class="num">$13.00</span></div></div><div class="dd-line"><span>Subtotal</span><b class="num">$13.00</b></div><div class="dd-line"><span>Tax</span><b class="num">$1.30</b></div><div class="dd-line"><span>Tip</span><b class="num">$2.60</b></div><div class="dd-total"><span>Total</span><b class="num">$16.90</b></div><div class="dd-paid"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
+                  <button type="button" class="dash-row" aria-expanded="false" aria-controls="dash-jake-det"><span class="demo-av jake">J</span><span class="dash-nm"><span><b>Jake</b></span><small>1 item · <b class="num struck">$31.20</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+                  <div class="dash-det" id="dash-jake-det" hidden><div class="dd"><div><div class="dd-item"><span>Burger</span><span class="num">$24.00</span></div></div><div class="dd-line"><span>Subtotal</span><b class="num">$24.00</b></div><div class="dd-line"><span>Tax</span><b class="num">$2.40</b></div><div class="dd-line"><span>Tip</span><b class="num">$4.80</b></div><div class="dd-total"><span>Total</span><b class="num">$31.20</b></div><div class="dd-paid"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
+                  <button type="button" class="dash-row" id="dash-alex" aria-expanded="false" aria-controls="dash-alex-det"><span class="demo-av alex">A</span><span class="dash-nm"><span><b>Alex</b></span><small><span id="dash-alex-sub">0 items</span> · <b class="num" id="dash-alex-amt">$0.00</b></small></span><em class="dash-pill" id="dash-alex-pill" hidden><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+                  <div class="dash-det" id="dash-alex-det" hidden><div class="dd"><div id="dash-alex-items"></div><div class="dd-line"><span>Subtotal</span><b class="num" id="dash-alex-dsub">$0.00</b></div><div class="dd-line"><span>Tax</span><b class="num" id="dash-alex-dtax">$0.00</b></div><div class="dd-line"><span>Tip</span><b class="num" id="dash-alex-dtip">$0.00</b></div><div class="dd-total"><span>Total</span><b class="num" id="dash-alex-dtot">$0.00</b></div><div class="dd-paid" id="dash-alex-dpaid" hidden><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
                 </div>
               </div>
               <div class="dash-bar" id="dash-bar">
@@ -1416,17 +1442,49 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     $('dash-cover-btn').textContent = 'Close split \u00B7 you cover ' + fmt(cover);
     $('dash-alex-sub').textContent = mine === 1 ? '1 item' : mine + ' items';
     $('dash-alex-amt').textContent = fmt(s.tot);
+    $('dash-alex-amt').classList.toggle('struck', paid);
     $('dash-alex-pill').hidden = !paid;
+    // Alex's details: the items he has claimed so far, as the payer would see them.
+    const name = (b) => b.querySelector('.demo-nm').textContent;
+    const picked = items.filter((b, i) => pressed[i]);
+    $('dash-alex-items').innerHTML = picked.length === 0 ? '<div class="dd-empty">Nothing claimed yet</div>'
+      : picked.map((b) => '<div class="dd-item"><span>' + name(b) + '</span><span class="num">' + fmt(Number(b.dataset.cents)) + '</span></div>').join('');
+    $('dash-alex-dsub').textContent = fmt(s.sub);
+    $('dash-alex-dtax').textContent = fmt(s.tax);
+    $('dash-alex-dtip').textContent = fmt(s.tip);
+    $('dash-alex-dtot').textContent = fmt(s.tot);
+    $('dash-alex-dpaid').hidden = !paid;
+    // Summary and the "Everyone paid" line.
+    const list = (a) => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+    const left = items.filter((b, i) => !pressed[i]).map(name);
+    const who = paid ? 'Everyone has paid you back.'
+      : mine === 0 ? 'Alex hasn\u2019t claimed anything yet.' : 'Alex still owes you ' + fmt(s.tot) + '.';
+    const what = left.length === 0 ? 'Every item is claimed.'
+      : 'The ' + list(left) + (left.length === 1 ? ' is' : ' are') + ' unclaimed.';
+    $('dash-summary').textContent = who + ' ' + what;
+    const all = $('dash-allpaid');
+    all.hidden = !(paid && open > 0);
+    all.textContent = 'Everyone paid \u00B7 ' + (open === 1 ? '1 item' : open + ' items') + ' nobody claimed';
     if (flash) {
       const row = $('dash-alex');
       row.classList.add('flash');
       setTimeout(() => row.classList.remove('flash'), 60);
     }
   };
-  // Bring Alex's row into view inside the dashboard (it scrolls, like the app).
+  // Participant rows open and close, like the app's.
+  const toggle = (row, open) => {
+    const det = $(row.getAttribute('aria-controls'));
+    const next = open === undefined ? row.getAttribute('aria-expanded') !== 'true' : open;
+    row.setAttribute('aria-expanded', next ? 'true' : 'false');
+    det.hidden = !next;
+  };
+  document.querySelectorAll('#dash-people .dash-row').forEach((row) => row.addEventListener('click', () => toggle(row)));
+  // Open Alex's row and bring it into view inside the dashboard (it scrolls, like the app).
   const showAlex = () => {
     const box = $('dash-scroll');
-    if (box) box.scrollTop = box.scrollHeight;
+    if (!box) return;
+    toggle($('dash-alex'), true);
+    box.scrollTop = box.scrollHeight;
   };
   const render = (flash) => {
     const s = sums();
@@ -1438,6 +1496,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   items.forEach((b) => b.addEventListener('click', () => {
     b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
     render(true);
+    showAlex();
   }));
   done.addEventListener('click', () => {
     $('demo-owe').textContent = fmt(sums().tot);
@@ -1460,6 +1519,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     finish.dataset.paid = 'false';
     $('demo-finish-title').innerHTML = 'You owe Sam <span class="num" id="demo-owe">$0.00</span>';
     $('demo-finish-sub').textContent = 'Your items, plus your share of tax and tip. Pay Sam however you like, then mark it as paid.';
+    document.querySelectorAll('#dash-people .dash-row').forEach((row) => toggle(row, false));
     if ($('dash-scroll')) $('dash-scroll').scrollTop = 0;
     render();
   });
