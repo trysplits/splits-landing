@@ -370,15 +370,6 @@ body.menu-open{overflow:hidden}
 .uc-title{font-size:17px;font-weight:600;margin-top:16px}
 .uc-body{font-size:14px;color:var(--secondary);margin-top:6px;line-height:1.5}
 
-/* Features */
-.feature-showcase{display:flex;align-items:center;gap:80px;margin-top:64px}
-.feature-showcase:first-of-type{margin-top:0}
-.feature-showcase-reverse{flex-direction:row-reverse}
-.feature-showcase-copy{flex:1}
-.feature-showcase-copy p{font-size:19px;line-height:1.5;color:var(--secondary);margin:12px 0 0;text-wrap:pretty}
-.feature-showcase-visual{display:flex;justify-content:center}
-.feature-showcase .h3{font-size:36px;letter-spacing:-.8px;line-height:1.12;font-weight:700}
-
 /* Stat */
 .pain-section{background:var(--ink);color:#fff;padding:96px 0;text-align:center}
 .pain-stat{font-size:96px;font-weight:700;letter-spacing:-3px;line-height:1}
@@ -430,6 +421,22 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 .js .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .js .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.08s!important}.d2{transition-delay:.16s!important}.d3{transition-delay:.24s!important}.d4{transition-delay:.32s!important}
+
+/* Features: pick a feature on the left, its screen shows on the right. Without JS every description shows. */
+.fx{display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center}
+.fx-list{display:flex;flex-direction:column;gap:8px}
+.fx-item{display:block;width:100%;text-align:left;background:none;border:0;border-radius:var(--r-lg);padding:18px 22px;font:inherit;color:var(--ink);cursor:pointer}
+.fx-item[aria-pressed="true"]{background:var(--surface)}
+.fx-title{display:block;font-size:24px;font-weight:600;letter-spacing:-.4px;line-height:1.2;color:var(--secondary)}
+.fx-item[aria-pressed="true"] .fx-title,.fx-item:hover .fx-title{color:var(--ink)}
+.fx-desc{display:block;font-size:17px;line-height:1.5;color:var(--secondary);margin-top:8px;text-wrap:pretty}
+.js .fx-item[aria-pressed="false"] .fx-desc{display:none}
+.fx-visual{display:flex;justify-content:center}
+.fx-screens{position:relative}
+.fx-screens img{opacity:0;transition:opacity .3s ease}
+.fx-screens img+img{position:absolute;inset:0}
+.fx-screens img.on{opacity:1}
+.fx-more{margin-top:64px}
 
 /* Hero reel: the three steps, crossfading. CSS only; one still frame with reduced motion. */
 .h1 span{display:block}
@@ -576,6 +583,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .jtm-stage[data-step="2"] .jtm-card,.jtm-stage[data-step="3"] .jtm-done-check{animation:none}
   .jtm-frame,.js .reveal,.faq-a,.faq-q .chev{transition:none}
   .reel img,.reel-steps .rs{animation:none}
+  .fx-screens img{transition:none}
   .reel img:nth-child(3),.reel-steps .rs:nth-child(3){opacity:1}
   html{scroll-behavior:auto}
 }
@@ -593,9 +601,8 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .step{align-items:center}
   .step-head{max-width:420px}
   .flow-b-card{flex-direction:column;padding:28px}
-  .feature-showcase,.feature-showcase-reverse{flex-direction:column;gap:32px;align-items:center;text-align:left}
-  .feature-showcase-copy{width:100%}
   .jtm-grid{grid-template-columns:1fr;gap:44px}
+  .fx{grid-template-columns:1fr;gap:40px}
   .jtm-copy{max-width:none}
   .jtm-title{font-size:34px}
 }
@@ -622,12 +629,11 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .grid-5 .uc-title{margin-top:0}
   .flow-b-examples{grid-template-columns:1fr}
   .flow-b-card{padding:20px}
-  .feature-showcase .h3{font-size:28px}
-  .feature-showcase-copy p{font-size:17px}
   .pain-stat{font-size:64px}.pain-headline{font-size:20px}
   .foot-grid{flex-direction:column}.foot-cols{gap:40px}
   .foot-bottom{flex-direction:column;gap:12px;align-items:flex-start}
   .jtm-title{font-size:30px}.jtm-sub{font-size:17px}
+  .fx-item{padding:14px 16px}.fx-title{font-size:20px}.fx-desc{font-size:16px}.fx-more{margin-top:40px}
   .jtm .phone,.demo .phone{--pw:min(316px,calc(100vw - 48px))}
 }
 </style>
@@ -864,18 +870,27 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 <section id="features" class="section band-tint" data-screen-label="05 Features">
   <div class="container">
     <div class="section-head reveal">
-      <h2 class="h2">Built for real life</h2>
-      <p class="body">After the split: one balance per friend, and a quick way to pay it back.</p>
+      <h2 class="h2">More than a receipt scanner</h2>
+      <p class="body">What keeps the money straight after the bill is split.</p>
     </div>
-    <div class="feature-showcase reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">Know where you stand</h3>
-        <p>See your balance with each friend at a glance. Who owes you and who you owe, across every split and quick expense. No more “hey, did I ever pay you back?”</p></div>
-      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/person.webp" width="786" height="1704" alt="Person detail showing the running balance and history with one person" loading="lazy" decoding="async" /></div></div>
+    <div class="fx reveal" id="fx">
+      <div class="fx-list">
+        <button type="button" class="fx-item" aria-pressed="true" data-fx="0"><span class="fx-title">Know where you stand</span><span class="fx-desc">See your balance with each friend at a glance. Who owes you and who you owe, across every split and quick expense. No more “hey, did I ever pay you back?”</span></button>
+        <button type="button" class="fx-item" aria-pressed="false" data-fx="1"><span class="fx-title">Settle up in one tap</span><span class="fx-desc">Pay with Venmo or Cash App in a tap, or use your friend’s Zelle details. Splits never moves money itself.</span></button>
+        <button type="button" class="fx-item" aria-pressed="false" data-fx="2"><span class="fx-title">Keep a trip or a home together</span><span class="fx-desc">Labels group splits that belong together, like a trip or a shared home. See what everyone owes for that group in one place.</span></button>
+        <button type="button" class="fx-item" aria-pressed="false" data-fx="3"><span class="fx-title">Fewer payments with Smart Settle</span><span class="fx-desc">Inside a label, Smart Settle cuts down the number of payments. If Ben owes you and you owe Clara the same amount, Ben pays Clara directly. The label’s owner turns it on, and anyone whose money moved can undo it within 24 hours, as long as the new payment hasn’t been made.</span></button>
+      </div>
+      <div class="fx-visual"><div class="phone phone-lg"><div class="fx-screens">
+        <img class="on" src="/screens/person.webp" width="786" height="1704" alt="Person detail showing the running balance and history with one person" loading="lazy" decoding="async" />
+        <img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App and Zelle options" loading="lazy" decoding="async" />
+        <img src="/screens/labels.webp" width="786" height="1704" alt="History filtered to one label, showing what you owe across that trip’s splits" loading="lazy" decoding="async" />
+        <img src="/screens/smart-settle.webp" width="786" height="1704" alt="Balances for one label after Smart Settle, showing who owes who and which payments were simplified" loading="lazy" decoding="async" />
+      </div></div></div>
     </div>
-    <div class="feature-showcase feature-showcase-reverse reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">Settle up in one tap</h3>
-        <p>Pay with Venmo or Cash App in a tap, or use your friend’s Zelle details. Splits never moves money itself.</p></div>
-      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App and Zelle options" loading="lazy" decoding="async" /></div></div>
+    <div class="grid-3 fx-more">
+      <div class="card reveal"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-chatbubble"/></svg></div><div class="ft-title">Reminders that do the asking</div><div class="ft-body">Nudge a friend from their balance, or let Splits email the people who still owe. You don’t have to be the one chasing.</div></div>
+      <div class="card reveal d1"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg></div><div class="ft-title">Split it any way</div><div class="ft-body">Equal, exact amounts, percentages or shares. Quick add handles the uneven ones too.</div></div>
+      <div class="card reveal d2"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-time"/></svg></div><div class="ft-title">Always know what’s open</div><div class="ft-body">Your dashboard updates as friends claim their items, so you can see what’s still unclaimed and who has paid.</div></div>
     </div>
   </div>
 </section>
@@ -921,7 +936,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     <div class="grid-3">
       <div class="why-card card reveal"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-lock-closed"/></svg></div><div class="why-title">No limits. No paywalls.</div><div class="why-body">Unlike other apps, we don't limit your expenses or lock basic features behind a subscription. The full experience is free.</div></div>
       <div class="why-card card reveal d1"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-link"/></svg></div><div class="why-title">Your friends don’t need the app.</div><div class="why-body">Share a link. Your friends open it in any browser and see their share. On a receipt, they tap what they had first. No download, no account, no friction.</div></div>
-      <div class="why-card card reveal d2"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-pricetag"/></svg></div><div class="why-title">Fewer payments after a trip.</div><div class="why-body">Put a trip’s or a home’s splits under one label. With Smart Settle on, Splits works out who pays who so the group makes fewer transfers.</div></div>
+      <div class="why-card card reveal d2"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg></div><div class="why-title">AI does the work.</div><div class="why-body">Point your camera at any receipt. Our AI reads every item, price, tax, and tip in seconds. You snap and share. That's it.</div></div>
     </div>
   </div>
 </section>
@@ -1175,6 +1190,18 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   };
 
   wire('cta-form', 'cta-success', 'cta-form-error', 'footer-cta');
+})();
+
+/* ── Features: pick one, see its screen ─────────────────── */
+(function () {
+  const fx = document.getElementById('fx');
+  if (!fx) return;
+  const items = [...fx.querySelectorAll('.fx-item')];
+  const screens = [...fx.querySelectorAll('.fx-screens img')];
+  items.forEach((btn, i) => btn.addEventListener('click', () => {
+    items.forEach((b, n) => b.setAttribute('aria-pressed', n === i ? 'true' : 'false'));
+    screens.forEach((img, n) => img.classList.toggle('on', n === i));
+  }));
 })();
 
 /* ── "Try it" demo: tap items, see your total. Fixed receipt, no network. ──

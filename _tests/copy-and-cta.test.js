@@ -111,8 +111,13 @@ test('support: "We usually reply within a day." on the page and in the meta desc
 
 test('index: feature headings are in sentence case', (t) => {
   const { document } = page(t, 'index.html');
-  const headings = [...document.querySelectorAll('.feature-showcase-copy .h3')].map(text);
-  assert.deepEqual(headings, ['Know where you stand', 'Settle up in one tap']);
+  const headings = [...document.querySelectorAll('#fx .fx-title')].map(text);
+  assert.deepEqual(headings, [
+    'Know where you stand',
+    'Settle up in one tap',
+    'Keep a trip or a home together',
+    'Fewer payments with Smart Settle',
+  ]);
 });
 
 test('index: the two flow labels are "Receipt split" and "Quick expenses"', (t) => {

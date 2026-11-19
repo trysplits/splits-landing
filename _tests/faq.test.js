@@ -154,11 +154,11 @@ test('JSON-LD featureList: "Pay back with Venmo, Cash App or Zelle"', (t) => {
 
 test('settle up feature copy: Venmo or Cash App in a tap, Zelle details, Splits never moves money', (t) => {
   const { document } = page(t);
-  const settle = [...document.querySelectorAll('.feature-showcase-copy')].find(
-    (el) => el.querySelector('.h3').textContent === 'Settle up in one tap',
+  const settle = [...document.querySelectorAll('.fx-item')].find(
+    (el) => el.querySelector('.fx-title').textContent === 'Settle up in one tap',
   );
   assert.equal(
-    settle.querySelector('p').textContent,
+    settle.querySelector('.fx-desc').textContent,
     'Pay with Venmo or Cash App in a tap, or use your friend’s Zelle details. Splits never moves money itself.',
   );
 });
@@ -170,15 +170,13 @@ test('no "under 5 seconds" scanning claim anywhere on the page', (t) => {
 
 // ── landing lines brought in line with the FAQ (owner, 2026-11-14) ──
 
-const showcase = (document, heading) =>
-  [...document.querySelectorAll('.feature-showcase')].find(
-    (el) => el.querySelector('.feature-showcase-copy .h3').textContent === heading,
-  );
+const feature = (document, heading) =>
+  [...document.querySelectorAll('.fx-item')].find((el) => el.querySelector('.fx-title').textContent === heading);
 
 test('Know where you stand copy: balances with each friend, no "real time" claim', (t) => {
   const { document } = page(t);
   assert.equal(
-    showcase(document, 'Know where you stand').querySelector('p').textContent,
+    feature(document, 'Know where you stand').querySelector('.fx-desc').textContent,
     'See your balance with each friend at a glance. Who owes you and who you owe, across every split and quick expense. No more “hey, did I ever pay you back?”',
   );
 });
@@ -186,7 +184,7 @@ test('Know where you stand copy: balances with each friend, no "real time" claim
 test('settle image alt: no "exact amount pre-filled"', (t) => {
   const { document } = page(t);
   assert.equal(
-    showcase(document, 'Settle up in one tap').querySelector('img').getAttribute('alt'),
+    document.querySelector('#fx img[src$="settle.webp"]:not([src$="smart-settle.webp"])').getAttribute('alt'),
     'Settle up screen with Venmo, Cash App and Zelle options',
   );
 });
@@ -219,4 +217,41 @@ test('balances are never described as real time; live claims still are', () => {
   assert.ok(!/updated in real time/i.test(html));
   assert.ok(html.includes('Real-time claim tracking dashboard'));
   assert.ok(html.includes('See claims as they happen.'));
+});
+
+// ── Features section (2026-11-18): labels, Smart Settle and reminders, worded as the FAQ words them ──
+
+test('labels and Smart Settle copy matches the FAQ', (t) => {
+  const { document } = page(t);
+  assert.equal(
+    feature(document, 'Keep a trip or a home together').querySelector('.fx-desc').textContent,
+    'Labels group splits that belong together, like a trip or a shared home. See what everyone owes for that group in one place.',
+  );
+  assert.equal(
+    feature(document, 'Fewer payments with Smart Settle').querySelector('.fx-desc').textContent,
+    'Inside a label, Smart Settle cuts down the number of payments. If Ben owes you and you owe Clara the same amount, Ben pays Clara directly. The label’s owner turns it on, and anyone whose money moved can undo it within 24 hours, as long as the new payment hasn’t been made.',
+  );
+});
+
+test('picking a feature shows its screen, and only that feature is pressed', (t) => {
+  const { document } = page(t);
+  const items = [...document.querySelectorAll('#fx .fx-item')];
+  const screens = [...document.querySelectorAll('#fx .fx-screens img')];
+  assert.equal(items.length, 4);
+  assert.equal(screens.length, items.length);
+  assert.deepEqual(screens.map((s) => s.classList.contains('on')), [true, false, false, false]);
+  items[3].click();
+  assert.deepEqual(items.map((b) => b.getAttribute('aria-pressed')), ['false', 'false', 'false', 'true']);
+  assert.deepEqual(screens.map((s) => s.classList.contains('on')), [false, false, false, true]);
+  assert.match(screens[3].getAttribute('src'), /smart-settle\.webp$/);
+});
+
+test('every feature screen is a file in the repo and has alt text', (t) => {
+  const { document } = page(t);
+  const root = require('node:path').resolve(__dirname, '..');
+  for (const img of document.querySelectorAll('#fx .fx-screens img')) {
+    const file = require('node:path').join(root, img.getAttribute('src'));
+    assert.ok(require('node:fs').existsSync(file), img.getAttribute('src'));
+    assert.ok(img.getAttribute('alt').length > 20);
+  }
 });
