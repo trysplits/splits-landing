@@ -466,14 +466,14 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 .demo .phone-screen{aspect-ratio:786/1704;border-radius:36px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;position:relative}
 .demo-stage{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
 .demo-claim{flex:1;min-height:0;display:flex;flex-direction:column}
-.demo-head{padding:6px 18px 10px;border-bottom:.5px solid var(--hairline)}
+.demo-head{padding:2px 18px 8px;border-bottom:.5px solid var(--hairline)}
 .demo-pill{display:inline-block;background:var(--warning-soft);color:var(--warning-text);font-size:12px;font-weight:500;border-radius:999px;padding:2px 8px;margin-bottom:6px}
 .demo-from{font-size:13px;color:var(--secondary)}
-.demo-name{font-size:22px;font-weight:700;letter-spacing:-.3px;line-height:1.2}
+.demo-name{font-size:20px;font-weight:700;letter-spacing:-.3px;line-height:1.2}
 .demo-meta{font-size:13px;color:var(--secondary);margin-top:2px}
-.demo-hint{font-size:13px;font-weight:600;color:var(--secondary);padding:10px 18px 6px}
+.demo-hint{font-size:13px;font-weight:600;color:var(--secondary);padding:8px 18px 5px}
 .demo-items{flex:0 1 auto;min-height:0;overflow:auto;margin:0 14px;background:var(--surface);border-radius:var(--r-lg)}
-.demo-item{width:100%;display:flex;align-items:center;gap:12px;min-height:46px;padding:0 14px;background:none;border:0;border-bottom:.5px solid var(--hairline);font:500 15px/1.3 var(--font);color:var(--ink);text-align:left;cursor:pointer}
+.demo-item{width:100%;display:flex;align-items:center;gap:12px;min-height:41px;padding:0 14px;background:none;border:0;border-bottom:.5px solid var(--hairline);font:500 15px/1.3 var(--font);color:var(--ink);text-align:left;cursor:pointer}
 .demo-item:last-child{border-bottom:0}
 .demo-item.taken{cursor:default;color:var(--secondary)}
 .demo-nm{flex:1;min-width:0}
@@ -487,44 +487,75 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 .demo-av.priya{background:#F7E9E3;color:#7D3E24}
 .demo-av.sam{background:var(--lake-soft);color:var(--lake-text)}
 .demo-av.alex{background:#F6EFDE;color:#78560B}
-/* The payer's dashboard, driven by the claim page beside it. */
-.dash{flex:1;min-height:0;display:flex;flex-direction:column;padding:0 14px 14px}
-.dash-h{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 10px;font-size:20px}
-.dash-h .ic{stroke-width:40}
-.dash-sp{width:20px}
-.dash-ttl{font-size:15px;font-weight:600;text-align:center;line-height:1.25}
-.dash-ttl span{display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;font-weight:500;color:var(--secondary)}
-.dash-ttl i{width:6px;height:6px;border-radius:999px;background:var(--green-graphic)}
-.dash-card{display:flex;align-items:center;gap:16px;background:var(--surface);border-radius:var(--r-lg);padding:16px}
-.dash-ring{position:relative;width:72px;height:72px;flex-shrink:0}
+/* The payer's dashboard, laid out as the app's and driven by the claim page beside it. Sizes are the app's
+   points converted to cqw, so the screen scales with the phone like the screenshots do. */
+.dash-screen{container-type:inline-size}
+.dash{flex:1;min-height:0;display:flex;flex-direction:column;font-size:4.071cqw}
+.dash-h{display:flex;align-items:center;justify-content:space-between;padding:0.509cqw 5.598cqw 2.545cqw;font-size:6.616cqw;flex-shrink:0}
+.dash-h .ic{stroke-width:44}
+.dash-kebab{display:flex;flex-direction:column;gap:1.018cqw;width:6.616cqw;align-items:center}
+.dash-kebab i{width:1.145cqw;height:1.145cqw;border-radius:254.198cqw;background:var(--ink)}
+.dash-ttl{font-size:4.326cqw;font-weight:600;text-align:center;line-height:1.25}
+.dash-ttl span{display:flex;align-items:center;justify-content:center;gap:1.272cqw;font-size:3.053cqw;font-weight:500;color:var(--secondary)}
+.dash-ttl i{width:1.527cqw;height:1.527cqw;border-radius:254.198cqw;background:var(--green-graphic)}
+.dash-scroll{flex:1;min-height:0;overflow-y:auto;padding:1.018cqw 4.071cqw 4.071cqw;scrollbar-width:none}
+.dash-scroll::-webkit-scrollbar{display:none}
+.dash-card{display:flex;align-items:center;gap:4.071cqw;background:var(--surface);border-radius:4.071cqw;padding:5.089cqw 4.071cqw}
+.dash-ring{position:relative;width:23.919cqw;height:23.919cqw;flex-shrink:0}
 .dash-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.dash-ring circle{fill:none;stroke-width:6}
+.dash-ring circle{fill:none;stroke-width:5.5}
 .dash-ring .trk{stroke:var(--fill)}
 .dash-ring .bar{stroke:var(--green-graphic);stroke-linecap:round;transition:stroke-dashoffset .4s ease}
 .dash-ring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
-.dash-ring b{font-size:17px;font-weight:600}
-.dash-ring span{font-size:11px;color:var(--secondary)}
-.dash-sum{display:flex;flex-direction:column;line-height:1.2}
-.dash-sum span{font-size:12px;font-weight:600;color:var(--secondary)}
-.dash-sum b{font-size:28px;font-weight:700;letter-spacing:-.6px}
-.dash-sum small{font-size:12px;color:var(--secondary)}
-.dash-note{background:var(--fill);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;line-height:1.4;margin-top:10px}
-.dash-sec{display:flex;justify-content:space-between;font-size:12px;color:var(--secondary);padding:14px 4px 6px}
+.dash-ring b{font-size:5.089cqw;font-weight:600}
+.dash-ring span{font-size:2.799cqw;color:var(--secondary)}
+.dash-sum{display:flex;flex-direction:column;gap:0.509cqw;min-width:0;line-height:1.25}
+.dash-sum .lbl{font-size:3.308cqw;font-weight:600;color:var(--secondary)}
+.dash-sum .amt{font-size:3.308cqw;color:var(--secondary)}
+.dash-sum .amt b{font-size:6.107cqw;font-weight:700;letter-spacing:-.1.272cqw;color:var(--ink)}
+.dash-sum .paid{display:flex;align-items:center;font-size:3.308cqw;color:var(--secondary)}
+.dash-sum .dot{width:2.799cqw;height:2.799cqw;border-radius:254.198cqw;border:0.382cqw solid var(--surface);background:#ECE7F5;box-sizing:content-box}
+.dash-sum .dot.a{background:#4A72B8}
+.dash-sum .dot.b{background:#C8553A;margin-left:-1.272cqw;margin-right:1.527cqw}
+.dash-sum .by{font-size:3.308cqw;color:var(--secondary)}
+.dash-sum .by b{color:var(--ink);font-weight:600}
+.dash-sec{display:flex;justify-content:space-between;font-size:3.308cqw;color:var(--secondary);padding:5.089cqw 4.071cqw 2.036cqw}
 .dash-sec span:first-child{font-weight:600}
-.dash-list{background:var(--surface);border-radius:var(--r-lg);overflow:hidden}
-.dash-row{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 14px;border-bottom:.5px solid var(--hairline);transition:background .6s ease}
-.dash-row:last-child{border-bottom:0}
+.dash-list{background:var(--surface);border-radius:4.071cqw;overflow:hidden}
+.dash-urow{display:flex;align-items:center;justify-content:space-between;gap:3.053cqw;min-height:11.959cqw;margin-left:4.071cqw;padding-right:4.071cqw;border-bottom:.1.272cqw solid var(--hairline);font-size:4.071cqw}
+.dash-urow b{font-weight:600}
+.dash-urow.tax{border-bottom:0;color:var(--secondary)}
+.dash-urow.tax b{color:var(--secondary)}
+.dash-urow[hidden]{display:none}
+.dash-row{display:flex;align-items:center;gap:3.053cqw;min-height:18.830cqw;padding:0 4.071cqw;transition:background .6s ease}
 .dash-row.flash{background:var(--green-soft);transition:none}
-.dash-nm{flex:1;min-width:0;font-size:15px;font-weight:500;line-height:1.25}
-.dash-nm small{display:block;font-size:12px;font-weight:400;color:var(--secondary)}
-.dash-amt{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:15px;font-weight:600}
-.dash-pill{font-style:normal;font-size:11px;font-weight:500;background:var(--green-soft);color:var(--green-dark);border-radius:999px;padding:1px 8px}
+.dash-row .demo-av{width:10.178cqw;height:10.178cqw;font-size:3.817cqw}
+.dash-row .demo-av.you{box-shadow:0 0 0 0.509cqw var(--surface),0 0 0 0.891cqw var(--green-graphic)}
+.dash-nm{flex:1;min-width:0;display:flex;flex-direction:column;font-size:4.071cqw;line-height:1.3;color:var(--secondary)}
+.dash-nm>span b{color:var(--ink);font-weight:600}
+.dash-nm small{font-size:3.308cqw;color:var(--secondary)}
+.dash-nm small b{color:var(--ink);font-weight:600}
+.dash-pill{display:inline-flex;align-items:center;gap:0.763cqw;font-style:normal;font-size:3.053cqw;font-weight:500;background:var(--green-soft);color:var(--green-dark);border-radius:254.198cqw;padding:0.763cqw 2.290cqw}
+.dash-pill .ic{stroke-width:56;font-size:2.799cqw}
 .dash-pill[hidden]{display:none}
-.demo-bar{flex-shrink:0;background:var(--surface);border-top:.5px solid var(--hairline);padding:10px 18px 16px;margin-top:auto}
+.dash-row .chev{font-size:4.071cqw;color:var(--tertiary);stroke-width:40}
+.dash-bar{flex-shrink:0;background:var(--surface);border-top:.1.272cqw solid var(--hairline);padding:3.562cqw 4.071cqw 5.598cqw;display:flex;flex-direction:column;gap:2.545cqw}
+.dash-bar[hidden]{display:none}
+.dash-bar p{margin:0;font-size:3.308cqw;line-height:1.4;color:var(--secondary)}
+.dash-btn{display:flex;align-items:center;justify-content:center;height:12.214cqw;border-radius:2.545cqw;font-size:4.071cqw;font-weight:600;color:var(--green);border:0.254cqw solid var(--green)}
+.dash-btn.primary{background:var(--green);color:#fff}
+/* The browser bar under the friend's page: it is a website, not the app. */
+.saf{flex-shrink:0;background:var(--fill);border-top:.5px solid var(--hairline);padding:8px 14px 12px}
+.saf-url{display:flex;align-items:center;justify-content:center;gap:6px;height:32px;border-radius:var(--r-md);background:var(--surface);font-size:13px;color:var(--ink)}
+.saf-url .ic{font-size:11px;color:var(--secondary);stroke-width:40}
+.saf-tools{display:flex;justify-content:space-between;padding:10px 18px 0;font-size:19px;color:var(--green)}
+.saf-tools .ic{stroke-width:36}
+.saf-tools .dim{color:var(--tertiary)}
+.demo-bar{flex-shrink:0;background:var(--surface);border-top:.5px solid var(--hairline);padding:8px 18px 12px;margin-top:auto}
 .demo-tot{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;font-weight:500}
 .demo-tot b{font-size:22px;font-weight:600}
 .demo-brk{font-size:12px;color:var(--secondary);margin-top:2px}
-.demo-done,.demo-again{width:100%;height:48px;border-radius:var(--r-md);font:600 16px var(--font);cursor:pointer;margin-top:12px}
+.demo-done,.demo-again{width:100%;height:44px;border-radius:var(--r-md);font:600 16px var(--font);cursor:pointer;margin-top:10px}
 .demo-done{background:var(--green);color:#fff;border:0}
 .demo-done[disabled]{opacity:.45;cursor:default}
 .demo-again{background:transparent;color:var(--green);border:1px solid var(--green);max-width:200px}
@@ -535,6 +566,8 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 .demo-finish-check .ic{stroke-width:40}
 .demo-finish-title{font-size:22px;font-weight:700;letter-spacing:-.3px}
 .demo-finish-sub{font-size:14px;color:var(--secondary);margin-top:6px;line-height:1.45}
+.demo-finish .demo-done{max-width:200px;margin-top:16px}
+.demo-finish[data-paid="true"] #demo-paid{display:none}
 
 /* Or just tell it: the app's "Just tell me" card, animated */
 .jtm-grid{display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center}
@@ -875,7 +908,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     </div>
     <div class="preview-phones reveal d1">
       <div>
-        <div class="phone" aria-label="Demo of the page friends see">
+        <div class="phone" aria-label="Demo of the web page friends see in their browser">
           <div class="phone-screen">
             <div class="phone-status"><span>9:41</span><span class="island"></span><span class="status-icons" aria-hidden="true"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="21" height="10.8" rx="3.2" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="2.2" width="17.6" height="7.6" rx="1.8" fill="currentColor"/></svg></span></div>
             <div class="demo-stage" id="demo" data-done="false">
@@ -892,7 +925,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
                   <button type="button" class="demo-item" data-cents="2200" aria-pressed="false"><span class="demo-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span><span class="demo-nm">Pasta al limone</span><span class="demo-pr num">$22.00</span></button>
                   <div class="demo-item taken"><span class="demo-av jake">J</span><span class="demo-nm">Burger<small>Jake</small></span><span class="demo-pr num">$24.00</span></div>
                   <button type="button" class="demo-item" data-cents="1400" aria-pressed="false"><span class="demo-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span><span class="demo-nm">Caesar salad</span><span class="demo-pr num">$14.00</span></button>
-                  <div class="demo-item taken"><span class="demo-av priya">P</span><span class="demo-nm">Margarita<small>Priya</small></span><span class="demo-pr num">$13.00</span></div>
+                  <div class="demo-item taken"><span class="demo-av sam">S</span><span class="demo-nm">Margarita<small>Sam</small></span><span class="demo-pr num">$13.00</span></div>
                   <button type="button" class="demo-item" data-cents="900" aria-pressed="false"><span class="demo-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span><span class="demo-nm">Tiramisu</span><span class="demo-pr num">$9.00</span></button>
                 </div>
                 <div class="demo-bar">
@@ -901,34 +934,64 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
                   <button type="button" class="demo-done" id="demo-done" disabled>I’m done</button>
                 </div>
               </div>
-              <div class="demo-finish" id="demo-finish" role="status">
+              <div class="demo-finish" id="demo-finish" role="status" data-paid="false">
                 <span class="demo-finish-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span>
-                <div class="demo-finish-title">You owe Sam <span class="num" id="demo-owe">$0.00</span></div>
-                <div class="demo-finish-sub">Your items, plus your share of tax and tip. That took one link and no download.</div>
+                <div class="demo-finish-title" id="demo-finish-title">You owe Sam <span class="num" id="demo-owe">$0.00</span></div>
+                <div class="demo-finish-sub" id="demo-finish-sub">Your items, plus your share of tax and tip. Pay Sam however you like, then mark it as paid.</div>
+                <button type="button" class="demo-done" id="demo-paid">Mark as paid</button>
                 <button type="button" class="demo-again" id="demo-again">Start over</button>
+              </div>
+            </div>
+            <div class="saf" aria-hidden="true">
+              <div class="saf-url"><svg class="ic"><use href="#i-lock-closed"/></svg>app.trysplits.com</div>
+              <div class="saf-tools">
+                <svg class="ic" style="transform:rotate(90deg)"><use href="#i-chevron-down"/></svg>
+                <svg class="ic dim" style="transform:rotate(-90deg)"><use href="#i-chevron-down"/></svg>
+                <svg class="ic" viewBox="0 0 512 512"><path d="M336 192h40a40 40 0 0140 40v192a40 40 0 01-40 40H136a40 40 0 01-40-40V232a40 40 0 0140-40h40M336 128l-80-80-80 80M256 321V48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                <svg class="ic"><use href="#i-copy"/></svg>
               </div>
             </div>
           </div>
         </div>
-        <p class="preview-cap">The friend’s view. Tap to claim, no app required.</p>
+        <p class="preview-cap">The friend’s view, in their browser. No app required.</p>
       </div>
       <div>
-        <div class="phone" aria-label="Demo of the dashboard the payer sees">
-          <div class="phone-screen">
+        <div class="phone" aria-label="Demo of the dashboard the payer sees in the app">
+          <div class="phone-screen dash-screen">
             <div class="phone-status"><span>9:41</span><span class="island"></span><span class="status-icons" aria-hidden="true"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="21" height="10.8" rx="3.2" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="2.2" width="17.6" height="7.6" rx="1.8" fill="currentColor"/></svg></span></div>
-            <div class="dash" id="dash" aria-live="polite">
-              <div class="dash-h"><svg class="ic" aria-hidden="true" focusable="false" style="transform:rotate(90deg)"><use href="#i-chevron-down"/></svg><div class="dash-ttl">Casa Luna Kitchen<span><i></i>Live</span></div><span class="dash-sp"></span></div>
-              <div class="dash-card">
-                <div class="dash-ring"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" class="trk"/><circle cx="32" cy="32" r="26" class="bar" id="dash-ring" stroke-dasharray="163.36" stroke-dashoffset="108.91"/></svg><div><b class="num" id="dash-count">2/6</b><span>items</span></div></div>
-                <div class="dash-sum"><span>Claimed</span><b class="num" id="dash-claimed">$48.10</b><small class="num">of $130.00</small></div>
+            <div class="dash" id="dash">
+              <div class="dash-h"><svg class="ic" aria-hidden="true" focusable="false" style="transform:rotate(90deg)"><use href="#i-chevron-down"/></svg><div class="dash-ttl">Casa Luna Kitchen<span><i></i>Live</span></div><span class="dash-kebab" aria-hidden="true"><i></i><i></i><i></i></span></div>
+              <div class="dash-scroll" id="dash-scroll" tabindex="0" aria-label="Dashboard, scrollable">
+                <div class="dash-card">
+                  <div class="dash-ring"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="27" class="trk"/><circle cx="32" cy="32" r="27" class="bar" id="dash-ring" stroke-dasharray="169.65" stroke-dashoffset="113.10"/></svg><div><b class="num" id="dash-count">2/6</b><span>Items</span></div></div>
+                  <div class="dash-sum">
+                    <span class="lbl">Collected</span>
+                    <span class="amt num"><b id="dash-collected">$48.10</b> of $130.00</span>
+                    <span class="paid"><i class="dot a"></i><i class="dot b"></i><span id="dash-paidback">1 of 2 paid you back</span></span>
+                    <span class="by">Paid by <b>you</b></span>
+                  </div>
+                </div>
+                <div id="dash-unclaimed">
+                  <div class="dash-sec"><span>Unclaimed</span></div>
+                  <div class="dash-list">
+                    <div class="dash-urow" data-u="0"><span>Margherita pizza</span><b class="num">$18.00</b></div>
+                    <div class="dash-urow" data-u="1"><span>Pasta al limone</span><b class="num">$22.00</b></div>
+                    <div class="dash-urow" data-u="2"><span>Caesar salad</span><b class="num">$14.00</b></div>
+                    <div class="dash-urow" data-u="3"><span>Tiramisu</span><b class="num">$9.00</b></div>
+                    <div class="dash-urow tax"><span>Their share of tax &amp; tip</span><b class="num" id="dash-utax">$18.90</b></div>
+                  </div>
+                </div>
+                <div class="dash-sec"><span>Participants</span><span>3 of 3</span></div>
+                <div class="dash-list">
+                  <div class="dash-row"><span class="demo-av sam you">S</span><span class="dash-nm"><span><b>You</b> · paid the bill</span><small>1 item · <b class="num">$16.90</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
+                  <div class="dash-row"><span class="demo-av jake">J</span><span class="dash-nm"><span><b>Jake</b></span><small>1 item · <b class="num">$31.20</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
+                  <div class="dash-row" id="dash-alex"><span class="demo-av alex">A</span><span class="dash-nm"><span><b>Alex</b></span><small><span id="dash-alex-sub">0 items</span> · <b class="num" id="dash-alex-amt">$0.00</b></small></span><em class="dash-pill" id="dash-alex-pill" hidden><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></div>
+                </div>
               </div>
-              <div class="dash-note" id="dash-open">4 items are unclaimed.</div>
-              <div class="dash-sec"><span>Participants</span><span>4 people</span></div>
-              <div class="dash-list">
-                <div class="dash-row"><span class="demo-av sam">S</span><span class="dash-nm">Sam<small>Paid the bill</small></span><span class="dash-amt num">$130.00</span></div>
-                <div class="dash-row"><span class="demo-av jake">J</span><span class="dash-nm">Jake<small>1 item</small></span><span class="dash-amt num">$31.20</span></div>
-                <div class="dash-row"><span class="demo-av priya">P</span><span class="dash-nm">Priya<small>1 item</small></span><span class="dash-amt num">$16.90</span></div>
-                <div class="dash-row" id="dash-alex"><span class="demo-av alex">A</span><span class="dash-nm">Alex<small id="dash-alex-sub">Just opened the link</small></span><span class="dash-amt num"><span id="dash-alex-amt">$0.00</span><em class="dash-pill" id="dash-alex-pill" hidden>Done</em></span></div>
+              <div class="dash-bar" id="dash-bar">
+                <p id="dash-cover-note">If nobody claims them, you cover the $81.90 (tax and tip included) and the split closes.</p>
+                <span class="dash-btn primary" id="dash-cover-btn">Close split · you cover $81.90</span>
+                <span class="dash-btn">Ask people to claim</span>
               </div>
             </div>
           </div>
@@ -1328,29 +1391,42 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
       .reduce((n, b) => n + Number(b.dataset.cents), 0);
     return { sub, tax: sub / 10, tip: sub / 5, tot: sub + sub / 10 + sub / 5 };
   };
-  // The payer's dashboard beside it. Jake and Priya claimed one item each before you opened the link.
-  const OTHERS = { items: 2, cents: 4810 }, ALL_ITEMS = 6, RING = 163.36;
+  // The payer's dashboard beside it. Sam (the payer) and Jake each claimed one item and are marked paid.
+  const OTHERS = { items: 2, cents: 4810 }, ALL_ITEMS = 6, BILL = 13000, RING = 169.65;
   const $ = (id) => document.getElementById(id);
+  const finish = $('demo-finish');
+  const isPaid = () => finish.dataset.paid === 'true';
   const dash = (flash) => {
     if (!$('dash')) return;
     const s = sums();
-    const mine = items.filter((b) => b.getAttribute('aria-pressed') === 'true').length;
+    const pressed = items.map((b) => b.getAttribute('aria-pressed') === 'true');
+    const mine = pressed.filter(Boolean).length;
     const claimed = OTHERS.items + mine, open = ALL_ITEMS - claimed;
-    const isDone = stage.dataset.done === 'true';
+    const cover = BILL - OTHERS.cents - s.tot;           // what nobody has claimed, tax and tip included
+    const paid = isPaid();
     $('dash-count').textContent = claimed + '/' + ALL_ITEMS;
     $('dash-ring').setAttribute('stroke-dashoffset', (RING * (1 - claimed / ALL_ITEMS)).toFixed(2));
-    $('dash-claimed').textContent = fmt(OTHERS.cents + s.tot);
-    $('dash-open').textContent = open === 0 ? 'Every item is claimed.'
-      : open === 1 ? '1 item is unclaimed.' : open + ' items are unclaimed.';
-    $('dash-alex-sub').textContent = isDone ? (mine === 1 ? '1 item' : mine + ' items')
-      : mine === 0 ? 'Just opened the link' : 'Claiming, ' + (mine === 1 ? '1 item' : mine + ' items') + ' so far';
+    $('dash-collected').textContent = fmt(OTHERS.cents + (paid ? s.tot : 0));
+    $('dash-paidback').textContent = paid ? 'All 2 paid you back' : '1 of 2 paid you back';
+    document.querySelectorAll('#dash .dash-urow[data-u]').forEach((row, i) => { row.hidden = pressed[i]; });
+    $('dash-utax').textContent = fmt(cover - cover / 1.3);
+    $('dash-unclaimed').hidden = open === 0;
+    $('dash-bar').hidden = open === 0;
+    $('dash-cover-note').textContent = 'If nobody claims them, you cover the ' + fmt(cover) + ' (tax and tip included) and the split closes.';
+    $('dash-cover-btn').textContent = 'Close split \u00B7 you cover ' + fmt(cover);
+    $('dash-alex-sub').textContent = mine === 1 ? '1 item' : mine + ' items';
     $('dash-alex-amt').textContent = fmt(s.tot);
-    $('dash-alex-pill').hidden = !isDone;
+    $('dash-alex-pill').hidden = !paid;
     if (flash) {
       const row = $('dash-alex');
       row.classList.add('flash');
       setTimeout(() => row.classList.remove('flash'), 60);
     }
+  };
+  // Bring Alex's row into view inside the dashboard (it scrolls, like the app).
+  const showAlex = () => {
+    const box = $('dash-scroll');
+    if (box) box.scrollTop = box.scrollHeight;
   };
   const render = (flash) => {
     const s = sums();
@@ -1364,14 +1440,27 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     render(true);
   }));
   done.addEventListener('click', () => {
-    owe.textContent = fmt(sums().tot);
+    $('demo-owe').textContent = fmt(sums().tot);
     stage.dataset.done = 'true';
     dash(true);
+    showAlex();
+    $('demo-paid').focus();
+  });
+  $('demo-paid').addEventListener('click', () => {
+    finish.dataset.paid = 'true';
+    $('demo-finish-title').textContent = 'Paid. Sam can see it.';
+    $('demo-finish-sub').textContent = 'That took one link and no download.';
+    dash(true);
+    showAlex();
     again.focus();
   });
   again.addEventListener('click', () => {
     items.forEach((b) => b.setAttribute('aria-pressed', 'false'));
     stage.dataset.done = 'false';
+    finish.dataset.paid = 'false';
+    $('demo-finish-title').innerHTML = 'You owe Sam <span class="num" id="demo-owe">$0.00</span>';
+    $('demo-finish-sub').textContent = 'Your items, plus your share of tax and tip. Pay Sam however you like, then mark it as paid.';
+    if ($('dash-scroll')) $('dash-scroll').scrollTop = 0;
     render();
   });
   render();

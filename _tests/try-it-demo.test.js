@@ -52,8 +52,13 @@ test('claiming items updates the total, then done shows what you owe, and start 
   $('demo-done').click();
   assert.equal($('demo').dataset.done, 'true');
   assert.equal($('demo-owe').textContent, '$23.40');
+  $('demo-paid').click();
+  assert.equal($('demo-finish').dataset.paid, 'true');
+  assert.equal($('demo-finish-title').textContent, 'Paid. Sam can see it.');
   $('demo-again').click();
   assert.equal($('demo').dataset.done, 'false');
+  assert.equal($('demo-finish').dataset.paid, 'false');
+  assert.equal($('demo-owe').textContent, '$0.00');
   assert.equal($('demo-total').textContent, '$0.00');
   assert.equal(fetchCalls.length, 0);
 });
@@ -72,44 +77,84 @@ test('items other people claimed are not buttons', (t) => {
 });
 
 // ── The payer's dashboard reacts to the claim page beside it (2026-11-19) ──
+// Laid out as the app's dashboard: Collected counts what has been paid, the ring counts claimed items,
+// the Unclaimed list and the "you cover" amount are what nobody has claimed yet.
 
-test('dashboard starts with the two items other people claimed', (t) => {
-  const { $ } = demo(t);
+const unclaimedNames = (document) => [...document.querySelectorAll('#dash .dash-urow[data-u]')]
+  .filter((r) => !r.hidden).map((r) => r.querySelector('span').textContent);
+
+test('dashboard starts as the app would show it: 2 of 6 claimed, $48.10 collected, $81.90 to cover', (t) => {
+  const { $, document } = demo(t);
   assert.equal($('dash-count').textContent, '2/6');
-  assert.equal($('dash-claimed').textContent, '$48.10'); // $24.00 + $13.00, plus 10% tax and 20% tip
-  assert.equal($('dash-open').textContent, '4 items are unclaimed.');
-  assert.equal($('dash-alex-sub').textContent, 'Just opened the link');
+  assert.equal($('dash-collected').textContent, '$48.10'); // Sam $16.90 + Jake $31.20, both paid
+  assert.equal($('dash-paidback').textContent, '1 of 2 paid you back');
+  assert.deepEqual(unclaimedNames(document), ['Margherita pizza', 'Pasta al limone', 'Caesar salad', 'Tiramisu']);
+  assert.equal($('dash-utax').textContent, '$18.90'); // 30% of the $63.00 nobody claimed
+  assert.equal($('dash-cover-btn').textContent, 'Close split \u00B7 you cover $81.90');
+  assert.match($('dash-cover-note').textContent, /you cover the \$81\.90 \(tax and tip included\)/);
   assert.equal($('dash-alex-pill').hidden, true);
 });
 
-test('the rows other people claimed add up to the dashboard\'s starting total', (t) => {
+test('the dashboard\'s numbers add up to the bill', (t) => {
   const { document } = demo(t);
-  const rows = [...document.querySelectorAll('#dash .dash-row')].slice(1, 3).map((r) => cents(r.querySelector('.dash-amt')));
-  assert.deepEqual(rows, [3120, 1690]);
-  assert.equal(rows[0] + rows[1], 4810);
+  const paid = [...document.querySelectorAll('#dash .dash-row')].slice(0, 2).map((r) => cents(r.querySelector('small b')));
+  assert.deepEqual(paid, [1690, 3120]);
+  const open = [...document.querySelectorAll('#dash .dash-urow[data-u] b')].map(cents).reduce((a, b) => a + b, 0);
+  assert.equal(open, 6300);
+  assert.equal(paid[0] + paid[1] + open + open * 0.3, 13000);
 });
 
-test('claiming on the left updates the dashboard on the right, and done marks Alex as done', (t) => {
-  const { $, items } = demo(t);
-  items[0].click(); // $18.00
+test('the unclaimed rows on the dashboard are the tappable items on the claim page, in order', (t) => {
+  const { document, items } = demo(t);
+  const rows = [...document.querySelectorAll('#dash .dash-urow[data-u]')];
+  assert.equal(rows.length, items.length);
+  rows.forEach((r, i) => {
+    assert.equal(r.querySelector('span').textContent, items[i].querySelector('.demo-nm').textContent);
+    assert.equal(cents(r.querySelector('b')), Number(items[i].dataset.cents));
+  });
+});
+
+test('claiming on the left moves the dashboard: ring, unclaimed list, cover amount and Alex\'s row', (t) => {
+  const { $, document, items } = demo(t);
+  items[0].click(); // Margherita pizza, $18.00
   assert.equal($('dash-count').textContent, '3/6');
-  assert.equal($('dash-claimed').textContent, '$71.50');
-  assert.equal($('dash-alex-amt').textContent, '$23.40');
-  assert.equal($('dash-alex-sub').textContent, 'Claiming, 1 item so far');
-  assert.equal($('dash-open').textContent, '3 items are unclaimed.');
-  $('demo-done').click();
+  assert.deepEqual(unclaimedNames(document), ['Pasta al limone', 'Caesar salad', 'Tiramisu']);
+  assert.equal($('dash-cover-btn').textContent, 'Close split \u00B7 you cover $58.50');
+  assert.equal($('dash-utax').textContent, '$13.50');
   assert.equal($('dash-alex-sub').textContent, '1 item');
+  assert.equal($('dash-alex-amt').textContent, '$23.40');
+  assert.equal($('dash-collected').textContent, '$48.10'); // claimed is not paid
+});
+
+test('Mark as paid on the left shows Paid on the dashboard and adds to Collected', (t) => {
+  const { $, items } = demo(t);
+  items[0].click();
+  $('demo-done').click();
+  assert.equal($('dash-alex-pill').hidden, true);
+  $('demo-paid').click();
   assert.equal($('dash-alex-pill').hidden, false);
+  assert.equal($('dash-collected').textContent, '$71.50');
+  assert.equal($('dash-paidback').textContent, 'All 2 paid you back');
   $('demo-again').click();
   assert.equal($('dash-count').textContent, '2/6');
+  assert.equal($('dash-collected').textContent, '$48.10');
   assert.equal($('dash-alex-pill').hidden, true);
 });
 
-test('claiming everything left fills the dashboard: 6 of 6 and the whole bill', (t) => {
-  const { $, items } = demo(t);
+test('claiming everything left: 6 of 6, nothing unclaimed, and paying collects the whole bill', (t) => {
+  const { $, document, items } = demo(t);
   items.forEach((b) => b.click());
   assert.equal($('dash-count').textContent, '6/6');
-  assert.equal($('dash-claimed').textContent, '$130.00');
-  assert.equal($('dash-open').textContent, 'Every item is claimed.');
+  assert.deepEqual(unclaimedNames(document), []);
+  assert.equal($('dash-unclaimed').hidden, true);
+  assert.equal($('dash-bar').hidden, true);
   assert.equal($('dash-ring').getAttribute('stroke-dashoffset'), '0.00');
+  $('demo-done').click();
+  $('demo-paid').click();
+  assert.equal($('dash-collected').textContent, '$130.00');
+});
+
+test('the friend\'s page sits in a browser, with the app\'s web address', (t) => {
+  const { document } = demo(t);
+  assert.equal(document.querySelector('#try-it .saf-url').textContent.trim(), 'app.trysplits.com');
 });
