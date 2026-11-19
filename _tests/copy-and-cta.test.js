@@ -29,8 +29,17 @@ function rulesFor(doc, selector) {
 
 // ── L3 ────────────────────────────────────────────────────────────────
 
+// The hero has no form since the 2026-11-18 focus pass: the badge is its only action, and the
+// Android line links down to the form in the final CTA.
+test('hero: the App Store badge is the only call to action, with no form', (t) => {
+  const { document } = page(t, 'index.html');
+  const hero = document.querySelector('#top');
+  assert.equal(hero.querySelectorAll('form').length, 0);
+  assert.equal(hero.querySelectorAll('.btn-primary').length, 0);
+  assert.equal(hero.querySelectorAll('.app-store-badge').length, 1);
+});
+
 for (const [label, formId, sectionSel] of [
-  ['hero', 'hero-form', '#top'],
   ['final CTA', 'cta-form', '#cta'],
 ]) {
   test(`${label}: "Notify me" is a secondary (outline) button`, (t) => {
@@ -75,10 +84,12 @@ test('.btn-secondary border is 1px, like the kit\'s secondary button (1.5px is t
 
 // ── L5 ────────────────────────────────────────────────────────────────
 
-test('index: the line under the hero badge says only "Android app coming soon"', (t) => {
+test('index: the line under the hero badge is the Android note, linking to the signup form', (t) => {
   const { document } = page(t, 'index.html');
-  const fine = [...document.querySelectorAll('#top .fine')].map(text);
-  assert.deepEqual(fine, ['Android app coming soon']);
+  const fine = [...document.querySelectorAll('#top .fine')];
+  assert.deepEqual(fine.map(text), ['Android app coming soon. Get an email when it’s ready']);
+  assert.equal(fine[0].querySelector('a').getAttribute('href'), '#cta');
+  assert.ok(document.querySelector('#cta #cta-form'));
   assert.ok(!document.body.textContent.includes('Available on the App Store'));
 });
 
@@ -100,12 +111,12 @@ test('support: "We usually reply within a day." on the page and in the meta desc
 
 test('index: feature headings are in sentence case', (t) => {
   const { document } = page(t, 'index.html');
-  const headings = [...document.querySelectorAll('.feature-showcase-copy .h3')].map(text);
+  const headings = [...document.querySelectorAll('#fx .fx-title')].map(text);
   assert.deepEqual(headings, [
-    'AI receipt scanning',
     'Know where you stand',
     'Settle up in one tap',
-    'No app? No problem.',
+    'Keep a trip or a home together',
+    'Fewer payments with Smart Settle',
   ]);
 });
 
