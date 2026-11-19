@@ -92,7 +92,7 @@ test('dashboard starts as the app would show it: 2 of 6 claimed, $48.10 collecte
   assert.equal($('dash-utax').textContent, '$18.90'); // 30% of the $63.00 nobody claimed
   assert.equal($('dash-cover-btn').textContent, 'Close split \u00B7 you cover $81.90');
   assert.match($('dash-cover-note').textContent, /you cover the \$81\.90 \(tax and tip included\)/);
-  assert.equal($('dash-alex-pill').hidden, true);
+  assert.equal($('dash-alex-status').textContent, 'Claiming');
 });
 
 test('the dashboard\'s numbers add up to the bill', (t) => {
@@ -130,15 +130,15 @@ test('Mark as paid on the left shows Paid on the dashboard and adds to Collected
   const { $, items } = demo(t);
   items[0].click();
   $('demo-done').click();
-  assert.equal($('dash-alex-pill').hidden, true);
+  assert.equal($('dash-alex-status').textContent, 'Unpaid');
   $('demo-paid').click();
-  assert.equal($('dash-alex-pill').hidden, false);
+  assert.equal($('dash-alex-status').textContent, 'Paid');
   assert.equal($('dash-collected').textContent, '$71.50');
   assert.equal($('dash-paidback').textContent, 'All 2 paid you back');
   $('demo-again').click();
   assert.equal($('dash-count').textContent, '2/6');
   assert.equal($('dash-collected').textContent, '$48.10');
-  assert.equal($('dash-alex-pill').hidden, true);
+  assert.equal($('dash-alex-status').textContent, 'Claiming');
 });
 
 test('claiming everything left: 6 of 6, nothing unclaimed, and paying collects the whole bill', (t) => {
@@ -221,4 +221,19 @@ test('claiming opens Alex\'s row with the items picked so far, and paying marks 
   $('demo-paid').click();
   assert.equal($('dash-alex-dpaid').hidden, false);
   assert.ok($('dash-alex-amt').classList.contains('struck'));
+});
+
+test('Alex\'s status chip: Claiming while picking, Unpaid after "I\u2019m done", Paid after "Mark as paid"', (t) => {
+  const { $, items } = demo(t);
+  const chip = $('dash-alex-status');
+  const state = () => [chip.dataset.status, chip.textContent];
+  assert.deepEqual(state(), ['claiming', 'Claiming']);
+  items[0].click();
+  assert.deepEqual(state(), ['claiming', 'Claiming']);
+  $('demo-done').click();
+  assert.deepEqual(state(), ['unpaid', 'Unpaid']);
+  $('demo-paid').click();
+  assert.deepEqual(state(), ['paid', 'Paid']);
+  $('demo-again').click();
+  assert.deepEqual(state(), ['claiming', 'Claiming']);
 });

@@ -537,7 +537,11 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 .dash-nm small b{color:var(--ink);font-weight:600}
 .dash-pill{display:inline-flex;align-items:center;gap:0.763cqw;font-style:normal;font-size:3.053cqw;font-weight:500;background:var(--green-soft);color:var(--green-dark);border-radius:254.198cqw;padding:0.763cqw 2.290cqw}
 .dash-pill .ic{stroke-width:56;font-size:2.799cqw}
-.dash-pill[hidden]{display:none}
+.dash-pill i{display:none;width:1.781cqw;height:1.781cqw;border-radius:254.198cqw;background:#D4983A;margin-right:0.509cqw}
+.dash-pill[data-status="claiming"]{background:var(--warning-soft);color:var(--warning-text)}
+.dash-pill[data-status="unpaid"]{background:var(--lake-soft);color:var(--lake-text)}
+.dash-pill[data-status="claiming"] i{display:block}
+.dash-pill[data-status="claiming"] .ic,.dash-pill[data-status="unpaid"] .ic{display:none}
 .dash-row .chev{font-size:4.071cqw;color:var(--tertiary);stroke-width:40}
 .dash-note{background:var(--fill);border-radius:4.071cqw;padding:3.562cqw 4.071cqw;margin-top:3.562cqw}
 .dash-note span{display:block;font-size:3.308cqw;font-weight:600;color:var(--secondary)}
@@ -1010,7 +1014,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
                   <div class="dash-det" id="dash-sam-det" hidden><div class="dd"><div><div class="dd-item"><span>Margarita</span><span class="num">$13.00</span></div></div><div class="dd-line"><span>Subtotal</span><b class="num">$13.00</b></div><div class="dd-line"><span>Tax</span><b class="num">$1.30</b></div><div class="dd-line"><span>Tip</span><b class="num">$2.60</b></div><div class="dd-total"><span>Total</span><b class="num">$16.90</b></div><div class="dd-paid"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
                   <button type="button" class="dash-row" aria-expanded="false" aria-controls="dash-jake-det"><span class="demo-av jake">J</span><span class="dash-nm"><span><b>Jake</b></span><small>1 item · <b class="num struck">$31.20</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
                   <div class="dash-det" id="dash-jake-det" hidden><div class="dd"><div><div class="dd-item"><span>Burger</span><span class="num">$24.00</span></div></div><div class="dd-line"><span>Subtotal</span><b class="num">$24.00</b></div><div class="dd-line"><span>Tax</span><b class="num">$2.40</b></div><div class="dd-line"><span>Tip</span><b class="num">$4.80</b></div><div class="dd-total"><span>Total</span><b class="num">$31.20</b></div><div class="dd-paid"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
-                  <button type="button" class="dash-row" id="dash-alex" aria-expanded="false" aria-controls="dash-alex-det"><span class="demo-av alex">A</span><span class="dash-nm"><span><b>Alex</b></span><small><span id="dash-alex-sub">0 items</span> · <b class="num" id="dash-alex-amt">$0.00</b></small></span><em class="dash-pill" id="dash-alex-pill" hidden><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+                  <button type="button" class="dash-row" id="dash-alex" aria-expanded="false" aria-controls="dash-alex-det"><span class="demo-av alex">A</span><span class="dash-nm"><span><b>Alex</b></span><small><span id="dash-alex-sub">0 items</span> · <b class="num" id="dash-alex-amt">$0.00</b></small></span><em class="dash-pill" id="dash-alex-status" data-status="claiming"><i></i><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg><span>Claiming</span></em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
                   <div class="dash-det" id="dash-alex-det" hidden><div class="dd"><div id="dash-alex-items"></div><div class="dd-line"><span>Subtotal</span><b class="num" id="dash-alex-dsub">$0.00</b></div><div class="dd-line"><span>Tax</span><b class="num" id="dash-alex-dtax">$0.00</b></div><div class="dd-line"><span>Tip</span><b class="num" id="dash-alex-dtip">$0.00</b></div><div class="dd-total"><span>Total</span><b class="num" id="dash-alex-dtot">$0.00</b></div><div class="dd-paid" id="dash-alex-dpaid" hidden><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
                 </div>
               </div>
@@ -1430,6 +1434,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     const claimed = OTHERS.items + mine, open = ALL_ITEMS - claimed;
     const cover = BILL - OTHERS.cents - s.tot;           // what nobody has claimed, tax and tip included
     const paid = isPaid();
+    const isDone = stage.dataset.done === 'true';
     $('dash-count').textContent = claimed + '/' + ALL_ITEMS;
     $('dash-ring').setAttribute('stroke-dashoffset', (RING * (1 - claimed / ALL_ITEMS)).toFixed(2));
     $('dash-collected').textContent = fmt(OTHERS.cents + (paid ? s.tot : 0));
@@ -1443,7 +1448,10 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     $('dash-alex-sub').textContent = mine === 1 ? '1 item' : mine + ' items';
     $('dash-alex-amt').textContent = fmt(s.tot);
     $('dash-alex-amt').classList.toggle('struck', paid);
-    $('dash-alex-pill').hidden = !paid;
+    // Status chip, as the app shows it: Claiming while picking, Unpaid once done, Paid once marked paid.
+    const status = paid ? 'paid' : isDone ? 'unpaid' : 'claiming';
+    $('dash-alex-status').dataset.status = status;
+    $('dash-alex-status').querySelector('span').textContent = status === 'paid' ? 'Paid' : status === 'unpaid' ? 'Unpaid' : 'Claiming';
     // Alex's details: the items he has claimed so far, as the payer would see them.
     const name = (b) => b.querySelector('.demo-nm').textContent;
     const picked = items.filter((b, i) => pressed[i]);
