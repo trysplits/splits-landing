@@ -255,3 +255,42 @@ test('every feature screen is a file in the repo and has alt text', (t) => {
     assert.ok(img.getAttribute('alt').length > 20);
   }
 });
+
+// ── Short FAQ (2026-11-19): six questions first, the rest behind one button ──
+
+const FIRST_SIX = [
+  'Do my friends need the app?',
+  'How does receipt scanning work?',
+  'How are tax and tip split?',
+  'How do I settle up?',
+  'Is Splits free?',
+  'Is there an Android app?',
+];
+
+test('the six questions shown first all exist in faq.json', () => {
+  const root = require('node:path').resolve(__dirname, '..');
+  const all = JSON.parse(require('node:fs').readFileSync(require('node:path').join(root, 'faq.json'), 'utf8'))
+    .questions.map((q) => q.question || q.q);
+  for (const q of FIRST_SIX) assert.ok(all.includes(q), `faq.json no longer has: ${q}`);
+});
+
+test('the FAQ opens with six questions and a button that shows the rest', (t) => {
+  const { document } = page(t);
+  const items = [...document.querySelectorAll('#faq-list .faq-item')];
+  const shown = () => items.filter((el) => !el.classList.contains('faq-later'))
+    .map((el) => el.querySelector('.faq-q span').textContent);
+  assert.deepEqual(shown(), FIRST_SIX);
+  const more = document.getElementById('faq-more');
+  const btn = document.getElementById('faq-more-btn');
+  assert.equal(more.hidden, false);
+  assert.equal(btn.textContent, `Show all ${items.length} questions`);
+  btn.click();
+  assert.equal(shown().length, items.length);
+  assert.equal(more.hidden, true);
+});
+
+test('the "show all" button is hidden in the markup, so every question shows without JavaScript', () => {
+  const html = fs.readFileSync(INDEX_PATH, 'utf8');
+  assert.match(html, /<div class="faq-more" id="faq-more" hidden>/);
+  assert.ok(!/class="faq-item[^"]*faq-later/.test(html));
+});

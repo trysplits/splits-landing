@@ -393,6 +393,9 @@ body.menu-open{overflow:hidden}
 .faq-item.open .faq-a{grid-template-rows:1fr}
 .faq-a-inner{overflow:hidden;min-height:0;color:var(--secondary);font-size:16px;padding:0 4px}
 .faq-item.open .faq-a-inner{padding-bottom:20px}
+.faq-item.faq-later{display:none}
+.faq-more{display:flex;justify-content:center;margin-top:28px}
+.faq-more[hidden]{display:none}
 
 /* Final CTA */
 .final-cta{background:var(--green);padding:96px 0;text-align:center;color:#fff}
@@ -424,13 +427,12 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 
 /* Features: pick a feature on the left, its screen shows on the right. Without JS every description shows. */
 .fx{display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center}
-.fx-list{display:flex;flex-direction:column;gap:8px}
-.fx-item{display:block;width:100%;text-align:left;background:none;border:0;border-radius:var(--r-lg);padding:18px 22px;font:inherit;color:var(--ink);cursor:pointer}
+.fx-list{display:flex;flex-direction:column;gap:4px}
+.fx-item{display:block;width:100%;text-align:left;background:none;border:0;border-radius:var(--r-lg);padding:16px 22px;font:inherit;color:var(--ink);cursor:pointer}
 .fx-item[aria-pressed="true"]{background:var(--surface)}
-.fx-title{display:block;font-size:24px;font-weight:600;letter-spacing:-.4px;line-height:1.2;color:var(--secondary)}
+.fx-title{display:block;font-size:22px;font-weight:600;letter-spacing:-.4px;line-height:1.2;color:var(--secondary)}
 .fx-item[aria-pressed="true"] .fx-title,.fx-item:hover .fx-title{color:var(--ink)}
-.fx-desc{display:block;font-size:17px;line-height:1.5;color:var(--secondary);margin-top:8px;text-wrap:pretty}
-.js .fx-item[aria-pressed="false"] .fx-desc{display:none}
+.fx-desc{display:block;font-size:16px;line-height:1.5;color:var(--secondary);margin-top:6px;text-wrap:pretty}
 .fx-visual{display:flex;justify-content:center}
 .fx-screens{position:relative}
 .fx-screens img{opacity:0;transition:opacity .3s ease}
@@ -460,8 +462,8 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 
 /* Try it: a self-contained demo of the page friends see. No network, resets on reload. */
 .demo .phone{--pw:316px;border-radius:44px;padding:9px}
-.demo .phone-dash{--pw:302px}
-.demo .phone-screen{height:640px;border-radius:36px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;position:relative}
+.demo .phone img{border-radius:36px}
+.demo .phone-screen{aspect-ratio:786/1704;border-radius:36px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;position:relative}
 .demo-stage{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
 .demo-claim{flex:1;min-height:0;display:flex;flex-direction:column}
 .demo-head{padding:6px 18px 10px;border-bottom:.5px solid var(--hairline)}
@@ -611,6 +613,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .flow-b-card{flex-direction:column;padding:28px}
   .jtm-grid{grid-template-columns:1fr;gap:44px}
   .fx{grid-template-columns:1fr;gap:40px}
+  .js .fx-item[aria-pressed="false"] .fx-desc{display:none}
   .jtm-copy{max-width:none}
   .jtm-title{font-size:34px}
 }
@@ -874,7 +877,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
         </div>
         <p class="preview-cap">Their view. Tap to claim, no app required.</p>
       </div>
-      <div><div class="phone phone-dash"><img src="/screens/dashboard.webp" width="786" height="1704" alt="Split dashboard showing who has claimed what and payment status" loading="lazy" decoding="async" /></div><p class="preview-cap">Your view. See claims as they happen.</p></div>
+      <div><div class="phone"><img src="/screens/dashboard.webp" width="786" height="1704" alt="Split dashboard showing who has claimed what and payment status" loading="lazy" decoding="async" /></div><p class="preview-cap">Your view. See claims as they happen.</p></div>
     </div>
   </div>
 </section>
@@ -998,6 +1001,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
         <div class="faq-a"><div class="faq-a-inner">Go to Profile, then Delete account. Your name, email, phone number and payment handles are removed. Splits you shared with others stay for them, with your name shown as “Deleted User”.</div></div></div>
       <!-- faq:html:end -->
     </div>
+    <div class="faq-more" id="faq-more" hidden><button type="button" class="btn btn-secondary" id="faq-more-btn">Show all questions</button></div>
   </div>
 </section>
 
@@ -1112,6 +1116,32 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   els.forEach(el => { if (!el.classList.contains('in')) io.observe(el); });
 })();
 
+/* ── FAQ: the six most asked first, the rest behind one button ──
+   The order of faq.json is the app's Help order, so the short list is picked here by question text. */
+(function () {
+  const FIRST = [
+    'Do my friends need the app?',
+    'How does receipt scanning work?',
+    'How are tax and tip split?',
+    'How do I settle up?',
+    'Is Splits free?',
+    'Is there an Android app?',
+  ];
+  const more = document.getElementById('faq-more');
+  const btn = document.getElementById('faq-more-btn');
+  const items = [...document.querySelectorAll('#faq-list .faq-item')];
+  const later = items.filter((el) => !FIRST.includes(el.querySelector('.faq-q span').textContent));
+  if (!more || !btn || later.length === 0 || later.length === items.length) return;
+  later.forEach((el) => el.classList.add('faq-later'));
+  btn.textContent = 'Show all ' + items.length + ' questions';
+  more.hidden = false;
+  btn.addEventListener('click', () => {
+    later.forEach((el) => el.classList.remove('faq-later'));
+    more.hidden = true;
+    later[0].querySelector('.faq-q').focus();
+  });
+})();
+
 /* ── FAQ accordion (single open at a time) ──────────────── */
 (function () {
   const items = document.querySelectorAll('.faq-item');
@@ -1211,10 +1241,16 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   if (!fx) return;
   const items = [...fx.querySelectorAll('.fx-item')];
   const screens = [...fx.querySelectorAll('.fx-screens img')];
-  items.forEach((btn, i) => btn.addEventListener('click', () => {
+  const pick = (i) => {
     items.forEach((b, n) => b.setAttribute('aria-pressed', n === i ? 'true' : 'false'));
     screens.forEach((img, n) => img.classList.toggle('on', n === i));
-  }));
+  };
+  // Click everywhere; with a mouse, pointing at a feature is enough.
+  const hover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  items.forEach((btn, i) => {
+    btn.addEventListener('click', () => pick(i));
+    if (hover) btn.addEventListener('mouseenter', () => pick(i));
+  });
 })();
 
 /* ── "Try it" demo: tap items, see your total. Fixed receipt, no network. ──
