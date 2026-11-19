@@ -70,3 +70,46 @@ test('items other people claimed are not buttons', (t) => {
   assert.equal(taken.length, 2);
   for (const el of taken) assert.notEqual(el.tagName, 'BUTTON');
 });
+
+// ── The payer's dashboard reacts to the claim page beside it (2026-11-19) ──
+
+test('dashboard starts with the two items other people claimed', (t) => {
+  const { $ } = demo(t);
+  assert.equal($('dash-count').textContent, '2/6');
+  assert.equal($('dash-claimed').textContent, '$48.10'); // $24.00 + $13.00, plus 10% tax and 20% tip
+  assert.equal($('dash-open').textContent, '4 items are unclaimed.');
+  assert.equal($('dash-alex-sub').textContent, 'Just opened the link');
+  assert.equal($('dash-alex-pill').hidden, true);
+});
+
+test('the rows other people claimed add up to the dashboard\'s starting total', (t) => {
+  const { document } = demo(t);
+  const rows = [...document.querySelectorAll('#dash .dash-row')].slice(1, 3).map((r) => cents(r.querySelector('.dash-amt')));
+  assert.deepEqual(rows, [3120, 1690]);
+  assert.equal(rows[0] + rows[1], 4810);
+});
+
+test('claiming on the left updates the dashboard on the right, and done marks Alex as done', (t) => {
+  const { $, items } = demo(t);
+  items[0].click(); // $18.00
+  assert.equal($('dash-count').textContent, '3/6');
+  assert.equal($('dash-claimed').textContent, '$71.50');
+  assert.equal($('dash-alex-amt').textContent, '$23.40');
+  assert.equal($('dash-alex-sub').textContent, 'Claiming, 1 item so far');
+  assert.equal($('dash-open').textContent, '3 items are unclaimed.');
+  $('demo-done').click();
+  assert.equal($('dash-alex-sub').textContent, '1 item');
+  assert.equal($('dash-alex-pill').hidden, false);
+  $('demo-again').click();
+  assert.equal($('dash-count').textContent, '2/6');
+  assert.equal($('dash-alex-pill').hidden, true);
+});
+
+test('claiming everything left fills the dashboard: 6 of 6 and the whole bill', (t) => {
+  const { $, items } = demo(t);
+  items.forEach((b) => b.click());
+  assert.equal($('dash-count').textContent, '6/6');
+  assert.equal($('dash-claimed').textContent, '$130.00');
+  assert.equal($('dash-open').textContent, 'Every item is claimed.');
+  assert.equal($('dash-ring').getAttribute('stroke-dashoffset'), '0.00');
+});
