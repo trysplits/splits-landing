@@ -370,15 +370,6 @@ body.menu-open{overflow:hidden}
 .uc-title{font-size:17px;font-weight:600;margin-top:16px}
 .uc-body{font-size:14px;color:var(--secondary);margin-top:6px;line-height:1.5}
 
-/* Features */
-.feature-showcase{display:flex;align-items:center;gap:80px;margin-top:64px}
-.feature-showcase:first-of-type{margin-top:0}
-.feature-showcase-reverse{flex-direction:row-reverse}
-.feature-showcase-copy{flex:1}
-.feature-showcase-copy p{font-size:19px;line-height:1.5;color:var(--secondary);margin:12px 0 0;text-wrap:pretty}
-.feature-showcase-visual{display:flex;justify-content:center}
-.feature-showcase .h3{font-size:36px;letter-spacing:-.8px;line-height:1.12;font-weight:700}
-
 /* Stat */
 .pain-section{background:var(--ink);color:#fff;padding:96px 0;text-align:center}
 .pain-stat{font-size:96px;font-weight:700;letter-spacing:-3px;line-height:1}
@@ -402,6 +393,9 @@ body.menu-open{overflow:hidden}
 .faq-item.open .faq-a{grid-template-rows:1fr}
 .faq-a-inner{overflow:hidden;min-height:0;color:var(--secondary);font-size:16px;padding:0 4px}
 .faq-item.open .faq-a-inner{padding-bottom:20px}
+.faq-item.faq-later{display:none}
+.faq-more{display:flex;justify-content:center;margin-top:28px}
+.faq-more[hidden]{display:none}
 
 /* Final CTA */
 .final-cta{background:var(--green);padding:96px 0;text-align:center;color:#fff}
@@ -430,6 +424,175 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 .js .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .js .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.08s!important}.d2{transition-delay:.16s!important}.d3{transition-delay:.24s!important}.d4{transition-delay:.32s!important}
+
+/* Features: pick a feature on the left, its screen shows on the right. Without JS every description shows. */
+.fx{display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center}
+.fx-list{display:flex;flex-direction:column;gap:4px}
+.fx-item{display:block;width:100%;text-align:left;background:none;border:0;border-radius:var(--r-lg);padding:16px 22px;font:inherit;color:var(--ink);cursor:pointer}
+.fx-item[aria-pressed="true"]{background:var(--surface)}
+.fx-title{display:block;font-size:22px;font-weight:600;letter-spacing:-.4px;line-height:1.2;color:var(--secondary)}
+.fx-item[aria-pressed="true"] .fx-title,.fx-item:hover .fx-title{color:var(--ink)}
+.fx-desc{display:block;font-size:16px;line-height:1.5;color:var(--secondary);margin-top:6px;text-wrap:pretty}
+.fx-visual{display:flex;justify-content:center}
+.fx-screens{position:relative}
+.fx-screens img{opacity:0;transition:opacity .3s ease}
+.fx-screens img+img{position:absolute;inset:0}
+.fx-screens img.on{opacity:1}
+.fx-more{margin-top:64px}
+
+/* Hero reel: home, the + sheet, camera, reading, review, share, claim. CSS only (generated timings, 16.0s loop);
+   one still frame with reduced motion. */
+.h1 span{display:block}
+.reel{position:relative}
+.reel img+img{position:absolute;inset:0}
+.reel img,.reel-steps .rs,.reel-tap{opacity:0;animation-duration:16.0s;animation-timing-function:linear;animation-iteration-count:infinite}
+.reel img:nth-of-type(1){animation-name:rf1}@keyframes rf1{0%{opacity:1}12.50%{opacity:1}14.69%{opacity:0}97.81%{opacity:0}100%{opacity:1}}
+.reel img:nth-of-type(2){animation-name:rf2}@keyframes rf2{0%{opacity:0}12.50%{opacity:0}14.69%{opacity:1}23.12%{opacity:1}25.31%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(3){animation-name:rf3}@keyframes rf3{0%{opacity:0}23.12%{opacity:0}25.31%{opacity:1}36.25%{opacity:1}38.44%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(4){animation-name:rf4}@keyframes rf4{0%{opacity:0}36.25%{opacity:0}38.44%{opacity:1}46.25%{opacity:1}48.44%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(5){animation-name:rf5}@keyframes rf5{0%{opacity:0}46.25%{opacity:0}48.44%{opacity:1}64.38%{opacity:1}66.56%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(6){animation-name:rf6}@keyframes rf6{0%{opacity:0}64.38%{opacity:0}66.56%{opacity:1}81.25%{opacity:1}83.44%{opacity:0}100%{opacity:0}}
+.reel img:nth-of-type(7){animation-name:rf7}@keyframes rf7{0%{opacity:0}81.25%{opacity:0}83.44%{opacity:1}97.81%{opacity:1}100%{opacity:0}}
+.reel-steps .rs:nth-child(1){animation-name:rs1}@keyframes rs1{0%{opacity:1}64.38%{opacity:1}66.56%{opacity:0}97.81%{opacity:0}100%{opacity:1}}
+.reel-steps .rs:nth-child(2){animation-name:rs2}@keyframes rs2{0%{opacity:0}64.38%{opacity:0}66.56%{opacity:1}81.25%{opacity:1}83.44%{opacity:0}100%{opacity:0}}
+.reel-steps .rs:nth-child(3){animation-name:rs3}@keyframes rs3{0%{opacity:0}81.25%{opacity:0}83.44%{opacity:1}97.81%{opacity:1}100%{opacity:0}}
+.reel-tap{position:absolute;width:15%;aspect-ratio:1;border-radius:999px;background:rgba(255,255,255,.4);box-shadow:0 0 0 2px rgba(26,26,46,.28);pointer-events:none;animation-name:rtap}@keyframes rtap{0%{opacity:0;left:50%;top:90%;transform:translate(-50%,-50%) scale(.6)}8.44%{opacity:0;left:50%;top:90%;transform:translate(-50%,-50%) scale(.6)}9.87%{opacity:1;left:50%;top:90%;transform:translate(-50%,-50%) scale(1)}11.88%{opacity:0;left:50%;top:90%;transform:translate(-50%,-50%) scale(1.5)}19.06%{opacity:0;left:50%;top:65.5%;transform:translate(-50%,-50%) scale(.6)}20.50%{opacity:1;left:50%;top:65.5%;transform:translate(-50%,-50%) scale(1)}22.50%{opacity:0;left:50%;top:65.5%;transform:translate(-50%,-50%) scale(1.5)}32.19%{opacity:0;left:50%;top:85.7%;transform:translate(-50%,-50%) scale(.6)}33.63%{opacity:1;left:50%;top:85.7%;transform:translate(-50%,-50%) scale(1)}35.63%{opacity:0;left:50%;top:85.7%;transform:translate(-50%,-50%) scale(1.5)}60.31%{opacity:0;left:50%;top:92.6%;transform:translate(-50%,-50%) scale(.6)}61.75%{opacity:1;left:50%;top:92.6%;transform:translate(-50%,-50%) scale(1)}63.75%{opacity:0;left:50%;top:92.6%;transform:translate(-50%,-50%) scale(1.5)}77.19%{opacity:0;left:50%;top:46%;transform:translate(-50%,-50%) scale(.6)}78.62%{opacity:1;left:50%;top:46%;transform:translate(-50%,-50%) scale(1)}80.62%{opacity:0;left:50%;top:46%;transform:translate(-50%,-50%) scale(1.5)}100%{opacity:0;left:50%;top:90%;transform:translate(-50%,-50%) scale(.6)}}
+.reel-steps{display:grid;left:-132px;bottom:56px}
+.reel-steps .rs{grid-area:1/1;display:flex;align-items:center;gap:12px}
+
+/* Try it: a self-contained demo of the page friends see. No network, resets on reload. */
+.demo .phone{--pw:316px;border-radius:44px;padding:9px}
+.demo .phone img{border-radius:36px}
+.demo .phone-screen{aspect-ratio:786/1704;border-radius:36px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;position:relative}
+.demo-stage{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
+.demo-claim{flex:1;min-height:0;display:flex;flex-direction:column}
+.demo-head{padding:2px 18px 8px;border-bottom:.5px solid var(--hairline)}
+.demo-pill{display:inline-block;background:var(--warning-soft);color:var(--warning-text);font-size:12px;font-weight:500;border-radius:999px;padding:2px 8px;margin-bottom:6px}
+.demo-from{font-size:13px;color:var(--secondary)}
+.demo-name{font-size:20px;font-weight:700;letter-spacing:-.3px;line-height:1.2}
+.demo-meta{font-size:13px;color:var(--secondary);margin-top:2px}
+.demo-hint{font-size:13px;font-weight:600;color:var(--secondary);padding:8px 18px 5px}
+.demo-items{flex:0 1 auto;min-height:0;overflow:auto;margin:0 14px;background:var(--surface);border-radius:var(--r-lg)}
+.demo-item{width:100%;display:flex;align-items:center;gap:12px;min-height:41px;padding:0 14px;background:none;border:0;border-bottom:.5px solid var(--hairline);font:500 15px/1.3 var(--font);color:var(--ink);text-align:left;cursor:pointer}
+.demo-item:last-child{border-bottom:0}
+.demo-item.taken{cursor:default;color:var(--secondary)}
+.demo-nm{flex:1;min-width:0}
+.demo-nm small{display:block;font-size:11px;line-height:1.2;font-weight:400;color:var(--secondary)}
+.demo-pr{font-weight:600}
+.demo-check{width:24px;height:24px;border-radius:999px;border:1.5px solid var(--hairline);display:inline-flex;align-items:center;justify-content:center;color:transparent;font-size:15px;flex-shrink:0}
+.demo-check .ic{stroke-width:44}
+.demo-item[aria-pressed="true"] .demo-check{background:var(--green);border-color:var(--green);color:#fff}
+.demo-av{width:24px;height:24px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.demo-av.jake{background:#ECE7F5;color:#483672}
+.demo-av.priya{background:#F7E9E3;color:#7D3E24}
+.demo-av.sam{background:var(--lake-soft);color:var(--lake-text)}
+.demo-av.alex{background:#F6EFDE;color:#78560B}
+/* The payer's dashboard, laid out as the app's and driven by the claim page beside it. Sizes are the app's
+   points converted to cqw, so the screen scales with the phone like the screenshots do. */
+.dash-screen{container-type:inline-size}
+.dash{flex:1;min-height:0;display:flex;flex-direction:column;font-size:4.071cqw}
+.dash-h{display:flex;align-items:center;justify-content:space-between;padding:0.509cqw 5.598cqw 2.545cqw;font-size:6.616cqw;flex-shrink:0}
+.dash-h .ic{stroke-width:44}
+.dash-kebab{display:flex;flex-direction:column;gap:1.018cqw;width:6.616cqw;align-items:center}
+.dash-kebab i{width:1.145cqw;height:1.145cqw;border-radius:254.198cqw;background:var(--ink)}
+.dash-ttl{font-size:4.326cqw;font-weight:600;text-align:center;line-height:1.25}
+.dash-ttl span{display:flex;align-items:center;justify-content:center;gap:1.272cqw;font-size:3.053cqw;font-weight:500;color:var(--secondary)}
+.dash-ttl i{width:1.527cqw;height:1.527cqw;border-radius:254.198cqw;background:var(--green-graphic)}
+.dash-scroll{flex:1;min-height:0;overflow-y:auto;padding:1.018cqw 4.071cqw 4.071cqw;scrollbar-width:none}
+.dash-scroll::-webkit-scrollbar{display:none}
+.dash-card{display:flex;align-items:center;gap:4.071cqw;background:var(--surface);border-radius:4.071cqw;padding:5.089cqw 4.071cqw}
+.dash-ring{position:relative;width:23.919cqw;height:23.919cqw;flex-shrink:0}
+.dash-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dash-ring circle{fill:none;stroke-width:5.5}
+.dash-ring .trk{stroke:var(--fill)}
+.dash-ring .bar{stroke:var(--green-graphic);stroke-linecap:round;transition:stroke-dashoffset .4s ease}
+.dash-ring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.dash-ring b{font-size:5.089cqw;font-weight:600}
+.dash-ring span{font-size:2.799cqw;color:var(--secondary)}
+.dash-sum{display:flex;flex-direction:column;gap:0.509cqw;min-width:0;line-height:1.25}
+.dash-sum .lbl{font-size:3.308cqw;font-weight:600;color:var(--secondary)}
+.dash-sum .amt{font-size:3.308cqw;color:var(--secondary)}
+.dash-sum .amt b{font-size:6.107cqw;font-weight:700;letter-spacing:-.1.272cqw;color:var(--ink)}
+.dash-sum .paid{display:flex;align-items:center;font-size:3.308cqw;color:var(--secondary)}
+.dash-sum .dot{width:2.799cqw;height:2.799cqw;border-radius:254.198cqw;border:0.382cqw solid var(--surface);background:#ECE7F5;box-sizing:content-box}
+.dash-sum .dot.a{background:#4A72B8}
+.dash-sum .dot.b{background:#C8553A;margin-left:-1.272cqw;margin-right:1.527cqw}
+.dash-sum .by{font-size:3.308cqw;color:var(--secondary)}
+.dash-sum .by b{color:var(--ink);font-weight:600}
+.dash-sec{display:flex;justify-content:space-between;font-size:3.308cqw;color:var(--secondary);padding:5.089cqw 4.071cqw 2.036cqw}
+.dash-sec span:first-child{font-weight:600}
+.dash-list{background:var(--surface);border-radius:4.071cqw;overflow:hidden}
+.dash-urow{display:flex;align-items:center;justify-content:space-between;gap:3.053cqw;min-height:11.959cqw;margin-left:4.071cqw;padding-right:4.071cqw;border-bottom:.1.272cqw solid var(--hairline);font-size:4.071cqw}
+.dash-urow b{font-weight:600}
+.dash-urow.tax{border-bottom:0;color:var(--secondary)}
+.dash-urow.tax b{color:var(--secondary)}
+.dash-urow[hidden]{display:none}
+.dash-row{display:flex;align-items:center;gap:3.053cqw;min-height:18.830cqw;padding:0 4.071cqw;transition:background .6s ease}
+.dash-row.flash{background:var(--green-soft);transition:none}
+.dash-row .demo-av{width:10.178cqw;height:10.178cqw;font-size:3.817cqw}
+.dash-row .demo-av.you{box-shadow:0 0 0 0.509cqw var(--surface),0 0 0 0.891cqw var(--green-graphic)}
+.dash-nm{flex:1;min-width:0;display:flex;flex-direction:column;font-size:4.071cqw;line-height:1.3;color:var(--secondary)}
+.dash-nm>span b{color:var(--ink);font-weight:600}
+.dash-nm small{font-size:3.308cqw;color:var(--secondary)}
+.dash-nm small b{color:var(--ink);font-weight:600}
+.dash-pill{display:inline-flex;align-items:center;gap:0.763cqw;font-style:normal;font-size:3.053cqw;font-weight:500;background:var(--green-soft);color:var(--green-dark);border-radius:254.198cqw;padding:0.763cqw 2.290cqw}
+.dash-pill .ic{stroke-width:56;font-size:2.799cqw}
+.dash-pill i{display:none;width:1.781cqw;height:1.781cqw;border-radius:254.198cqw;background:#D4983A;margin-right:0.509cqw}
+.dash-pill[data-status="claiming"]{background:var(--warning-soft);color:var(--warning-text)}
+.dash-pill[data-status="unpaid"]{background:var(--lake-soft);color:var(--lake-text)}
+.dash-pill[data-status="claiming"] i{display:block}
+.dash-pill[data-status="claiming"] .ic,.dash-pill[data-status="unpaid"] .ic{display:none}
+.dash-row .chev{font-size:4.071cqw;color:var(--tertiary);stroke-width:40}
+.dash-note{background:var(--fill);border-radius:4.071cqw;padding:3.562cqw 4.071cqw;margin-top:3.562cqw}
+.dash-note span{display:block;font-size:3.308cqw;font-weight:600;color:var(--secondary)}
+.dash-note p{margin:1.018cqw 0 0;font-size:3.817cqw;line-height:1.4}
+.dash-allpaid{font-size:4.326cqw;font-weight:600;padding:5.089cqw 4.071cqw 0;margin-bottom:-3.562cqw}
+.dash-allpaid[hidden]{display:none}
+.dash-row{width:100%;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.dash-row .chev{transition:transform .2s}
+.dash-row[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.dash-nm small b.struck{text-decoration:line-through;color:var(--secondary)}
+.dash-det{padding:0 4.071cqw 3.562cqw}
+.dash-det[hidden]{display:none}
+.dd{background:var(--bg);border-radius:2.545cqw;padding:1.018cqw 3.053cqw 2.545cqw}
+.dd-item{display:flex;justify-content:space-between;gap:3.053cqw;padding:2.545cqw 0;border-bottom:.1.272cqw solid var(--hairline);font-size:3.562cqw}
+.dd-empty{padding:2.545cqw 0;border-bottom:.1.272cqw solid var(--hairline);font-size:3.562cqw;color:var(--secondary)}
+.dd-line{display:flex;justify-content:space-between;font-size:3.308cqw;color:var(--secondary);padding-top:1.527cqw}
+.dd-line b{color:var(--ink);font-weight:600}
+.dd-total{display:flex;justify-content:space-between;align-items:baseline;font-size:3.308cqw;font-weight:600;border-top:.1.272cqw solid var(--hairline);margin-top:2.036cqw;padding-top:2.036cqw}
+.dd-total b{font-size:4.071cqw}
+.dd-paid{display:flex;align-items:center;gap:1.527cqw;font-size:3.562cqw;font-weight:600;color:var(--green);margin-top:2.036cqw}
+.dd-paid .ic{stroke-width:48;font-size:3.562cqw}
+.dd-paid[hidden]{display:none}
+.dash-bar{flex-shrink:0;background:var(--surface);border-top:.1.272cqw solid var(--hairline);padding:3.562cqw 4.071cqw 5.598cqw;display:flex;flex-direction:column;gap:2.545cqw}
+.dash-bar[hidden]{display:none}
+.dash-bar p{margin:0;font-size:3.308cqw;line-height:1.4;color:var(--secondary)}
+.dash-btn{display:flex;align-items:center;justify-content:center;height:12.214cqw;border-radius:2.545cqw;font-size:4.071cqw;font-weight:600;color:var(--green);border:0.254cqw solid var(--green)}
+.dash-btn.primary{background:var(--green);color:#fff}
+/* The browser bar under the friend's page: it is a website, not the app. */
+.saf{flex-shrink:0;background:var(--fill);border-top:.5px solid var(--hairline);padding:8px 14px 12px}
+.saf-url{display:flex;align-items:center;justify-content:center;gap:6px;height:32px;border-radius:var(--r-md);background:var(--surface);font-size:13px;color:var(--ink)}
+.saf-url .ic{font-size:11px;color:var(--secondary);stroke-width:40}
+.saf-tools{display:flex;justify-content:space-between;padding:10px 18px 0;font-size:19px;color:var(--green)}
+.saf-tools .ic{stroke-width:36}
+.saf-tools .dim{color:var(--tertiary)}
+.demo-bar{flex-shrink:0;background:var(--surface);border-top:.5px solid var(--hairline);padding:8px 18px 12px;margin-top:auto}
+.demo-tot{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;font-weight:500}
+.demo-tot b{font-size:22px;font-weight:600}
+.demo-brk{font-size:12px;color:var(--secondary);margin-top:2px}
+.demo-done,.demo-again{width:100%;height:44px;border-radius:var(--r-md);font:600 16px var(--font);cursor:pointer;margin-top:10px}
+.demo-done{background:var(--green);color:#fff;border:0}
+.demo-done[disabled]{opacity:.45;cursor:default}
+.demo-again{background:transparent;color:var(--green);border:1px solid var(--green);max-width:200px}
+.demo-finish{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 28px}
+.demo-stage[data-done="true"] .demo-finish{display:flex}
+.demo-stage[data-done="true"] .demo-claim{visibility:hidden}
+.demo-finish-check{width:64px;height:64px;border-radius:999px;background:var(--green-soft);color:var(--green-graphic);display:inline-flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:14px}
+.demo-finish-check .ic{stroke-width:40}
+.demo-finish-title{font-size:22px;font-weight:700;letter-spacing:-.3px}
+.demo-finish-sub{font-size:14px;color:var(--secondary);margin-top:6px;line-height:1.45}
+.demo-finish .demo-done{max-width:200px;margin-top:16px}
+.demo-finish[data-paid="true"] #demo-paid{display:none}
 
 /* Or just tell it: the app's "Just tell me" card, animated */
 .jtm-grid{display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center}
@@ -522,6 +685,9 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .jtm-caret,.jtm-typing .dots i{animation:none}
   .jtm-stage[data-step="2"] .jtm-card,.jtm-stage[data-step="3"] .jtm-done-check{animation:none}
   .jtm-frame,.js .reveal,.faq-a,.faq-q .chev{transition:none}
+  .reel img,.reel-steps .rs,.reel-tap{animation:none}
+  .fx-screens img,.dash-ring .bar,.dash-row,.dash-row .chev{transition:none}
+  .reel img:nth-of-type(7),.reel-steps .rs:nth-child(3){opacity:1}
   html{scroll-behavior:auto}
 }
 
@@ -530,7 +696,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .container,.nav-inner{padding-left:32px;padding-right:32px}
   .h1{font-size:52px}.h2{font-size:36px}
   .hero-grid{grid-template-columns:1fr;gap:48px}
-  .callout{left:0}
+  .callout,.reel-steps{left:0}
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .grid-5{grid-template-columns:repeat(2,1fr)}
   .grid-3{grid-template-columns:1fr}
@@ -538,9 +704,9 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .step{align-items:center}
   .step-head{max-width:420px}
   .flow-b-card{flex-direction:column;padding:28px}
-  .feature-showcase,.feature-showcase-reverse{flex-direction:column;gap:32px;align-items:center;text-align:left}
-  .feature-showcase-copy{width:100%}
   .jtm-grid{grid-template-columns:1fr;gap:44px}
+  .fx{grid-template-columns:1fr;gap:40px}
+  .js .fx-item[aria-pressed="false"] .fx-desc{display:none}
   .jtm-copy{max-width:none}
   .jtm-title{font-size:34px}
 }
@@ -559,7 +725,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .section-head{margin-bottom:32px}
   .waitlist-form{flex-direction:column;max-width:none}
   .btn{width:100%}
-  .callout{left:-4px;bottom:48px}
+  .callout,.reel-steps{left:-4px;bottom:48px}
   .phone-lg{--pw:260px}
   .preview-phones{flex-direction:column;align-items:center;gap:32px}
   .grid-4,.grid-5{grid-template-columns:1fr}
@@ -567,13 +733,12 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   .grid-5 .uc-title{margin-top:0}
   .flow-b-examples{grid-template-columns:1fr}
   .flow-b-card{padding:20px}
-  .feature-showcase .h3{font-size:28px}
-  .feature-showcase-copy p{font-size:17px}
   .pain-stat{font-size:64px}.pain-headline{font-size:20px}
   .foot-grid{flex-direction:column}.foot-cols{gap:40px}
   .foot-bottom{flex-direction:column;gap:12px;align-items:flex-start}
   .jtm-title{font-size:30px}.jtm-sub{font-size:17px}
-  .jtm .phone{--pw:min(316px,calc(100vw - 48px))}
+  .fx-item{padding:14px 16px}.fx-title{font-size:20px}.fx-desc{font-size:16px}.fx-more{margin-top:40px}
+  .jtm .phone,.demo .phone{--pw:min(316px,calc(100vw - 48px))}
 }
 </style>
 </head>
@@ -609,28 +774,28 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   <div class="container">
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1 class="h1 reveal d1">Settle money with your people.</h1>
-        <p class="hero-lead reveal d2">From restaurant bills to rent, Uber rides to group trips, Splits tracks every shared expense and helps you settle up in seconds.</p>
-        <p class="hero-strong reveal d2">No awkward conversations. No mental math. No chasing.</p>
+        <span class="eyebrow reveal">Settle money with your people</span>
+        <h1 class="h1 reveal d1"><span>Snap the receipt.</span> <span>Send a link.</span> <span>Everyone pays their part.</span></h1>
+        <p class="hero-lead reveal d2">Splits reads the bill with AI. Your friends open the link in any browser and tap what they had. Tax and tip are split fairly.</p>
+        <p class="hero-strong reveal d2">No app for them. No limits for you. Free.</p>
         <div class="hero-cta reveal d3"><a class="app-store-badge " href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer"><img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="eager" /></a></div>
-        <div class="waitlist-form-group reveal d4">
-          <p class="updates-label" id="hero-updates-label">Get product updates</p>
-          <form class="waitlist-form" id="hero-form" aria-labelledby="hero-updates-label" novalidate>
-            <input type="email" name="email" id="hero-email" placeholder="Enter your email" aria-label="Email address for product updates" aria-describedby="hero-form-error" required />
-            <button type="submit" class="btn btn-secondary">Notify me</button>
-          </form>
-          <p class="waitlist-error" id="hero-form-error" role="alert">Please enter a valid email address.</p>
-        </div>
-        <div class="waitlist-success" id="hero-success" role="status"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg>
-          You're on the list. We'll email you about new features and updates.
-        </div>
-        <p class="fine reveal d4">Android app coming soon</p>
+        <p class="fine reveal d4">Android app coming soon. <a href="#cta">Get an email when it’s ready</a></p>
       </div>
       <div class="hero-mock-wrap">
-        <div class="phone phone-lg"><img src="/screens/home.webp" width="786" height="1704" alt="Splits home screen: your balance and the people who owe you" loading="eager" fetchpriority="high" decoding="async" /></div>
-        <div class="callout" aria-hidden="true">
-          <div class="tick"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></div>
-          <div><b>Sofia settled up</b><span>You're owed <em class="num">$168.40</em></span></div>
+        <div class="phone phone-lg"><div class="reel">
+          <img src="/screens/home.webp" width="786" height="1704" alt="Splits home screen: your net balance, labels and the people you share with" loading="eager" fetchpriority="high" decoding="async" />
+          <img src="/screens/add-sheet.webp" width="786" height="1704" alt="The add menu: scan a receipt, just tell me, or quick add" loading="eager" decoding="async" />
+          <img src="/screens/camera.webp" width="786" height="1704" alt="The camera pointed at a restaurant receipt" loading="eager" decoding="async" />
+          <img src="/screens/reading.webp" width="786" height="1704" alt="Splits reading the receipt with AI" loading="eager" decoding="async" />
+          <img src="/screens/review.webp" width="786" height="1704" alt="Step 1: the receipt, with every item read by AI" loading="eager" decoding="async" />
+          <img src="/screens/share.webp" width="786" height="1704" alt="Step 2: the split shared as a link" loading="eager" decoding="async" />
+          <img src="/screens/claim.webp" width="786" height="1704" alt="Step 3: each person taps the items they had" loading="eager" decoding="async" />
+          <span class="reel-tap" aria-hidden="true"></span>
+        </div></div>
+        <div class="callout reel-steps" aria-hidden="true">
+          <div class="rs"><div class="step-num">1</div><div><b>Snap the receipt</b><span>AI reads every item</span></div></div>
+          <div class="rs"><div class="step-num">2</div><div><b>Send a link</b><span>No app needed for friends</span></div></div>
+          <div class="rs"><div class="step-num">3</div><div><b>Everyone claims</b><span>Tax and tip split fairly</span></div></div>
         </div>
       </div>
     </div>
@@ -642,11 +807,11 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   <div class="container">
     <div class="section-head reveal">
       <h2 class="h2">How it works</h2>
-      <p class="body">Two ways to use Splits. Pick your moment.</p>
+      <p class="body">From a photo to a fair split in three steps.</p>
     </div>
     <div class="flow-label reveal">
       <span class="eyebrow">Receipt split</span>
-      <p class="body-tight">The flashy one. Snap any receipt and your group settles in seconds.</p>
+      <p class="body-tight">Snap any receipt and your group sorts it out from their own phones.</p>
     </div>
     <div class="steps">
       <div class="step reveal">
@@ -759,24 +924,110 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   </div>
 </section>
 
-<!-- ── APP PREVIEW ─────────────────────────────────────────── -->
-<section class="section band-white" data-screen-label="04 App preview">
+<!-- ── TRY IT ──────────────────────────────────────────────── -->
+<section id="try-it" class="section band-white demo" data-screen-label="04 Try it">
   <div class="container">
     <div class="section-head center reveal">
-      <h2 class="h2">See it in action</h2>
-      <p class="body">The creator sees a live dashboard. Friends see a simple claim screen.</p>
+      <h2 class="h2">Try it. Tap what you had.</h2>
+      <p class="body">Play the friend who got the link. Tap your items on the left and watch the payer’s dashboard update on the right.</p>
     </div>
     <div class="preview-phones reveal d1">
-      <!-- Dashboard: creator view -->
-      <div><div class="phone phone-md"><img src="/screens/dashboard.webp" width="786" height="1704" alt="Split dashboard showing who has claimed what and payment status" loading="lazy" decoding="async" /></div><p class="preview-cap">Your view: who has claimed, who has paid</p></div>
-      <!-- Claim: in-app screen for now; the web claim page gets its own restyle and image later -->
-      <div><div class="phone phone-md"><img src="/screens/claim.webp" width="786" height="1704" alt="Claim screen: tap the items you ordered, no app needed for friends" loading="lazy" decoding="async" /></div><p class="preview-cap">Their view: no app required</p></div>
-    </div>
-    <div class="grid-4 feature-row reveal d2">
-      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg></div><div class="ft-title">AI-powered scanning</div><div class="ft-body">Receipt read in seconds.</div></div>
-      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-link"/></svg></div><div class="ft-title">No app for friends</div><div class="ft-body">Works in any mobile browser.</div></div>
-      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-time"/></svg></div><div class="ft-title">Real-time updates</div><div class="ft-body">See claims as they happen.</div></div>
-      <div class="card"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg></div><div class="ft-title">Fair math</div><div class="ft-body">Tax and tip split proportionally.</div></div>
+      <div>
+        <div class="phone" aria-label="Demo of the web page friends see in their browser">
+          <div class="phone-screen">
+            <div class="phone-status"><span>9:41</span><span class="island"></span><span class="status-icons" aria-hidden="true"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="21" height="10.8" rx="3.2" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="2.2" width="17.6" height="7.6" rx="1.8" fill="currentColor"/></svg></span></div>
+            <div class="demo-stage" id="demo" data-done="false">
+              <div class="demo-claim">
+                <div class="demo-head">
+                  <span class="demo-pill">Demo · you’re Alex</span>
+                  <div class="demo-from">Sam split a bill from</div>
+                  <div class="demo-name">Casa Luna Kitchen</div>
+                  <div class="demo-meta num">$130.00 · 6 items</div>
+                </div>
+                <div class="demo-hint">Tap what you had</div>
+                <div class="demo-items" id="demo-items">
+                  <button type="button" class="demo-item" data-cents="1800" aria-pressed="false"><span class="demo-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span><span class="demo-nm">Margherita pizza</span><span class="demo-pr num">$18.00</span></button>
+                  <button type="button" class="demo-item" data-cents="2200" aria-pressed="false"><span class="demo-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span><span class="demo-nm">Pasta al limone</span><span class="demo-pr num">$22.00</span></button>
+                  <div class="demo-item taken"><span class="demo-av jake">J</span><span class="demo-nm">Burger<small>Jake</small></span><span class="demo-pr num">$24.00</span></div>
+                  <button type="button" class="demo-item" data-cents="1400" aria-pressed="false"><span class="demo-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span><span class="demo-nm">Caesar salad</span><span class="demo-pr num">$14.00</span></button>
+                  <div class="demo-item taken"><span class="demo-av sam">S</span><span class="demo-nm">Margarita<small>Sam</small></span><span class="demo-pr num">$13.00</span></div>
+                  <button type="button" class="demo-item" data-cents="900" aria-pressed="false"><span class="demo-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span><span class="demo-nm">Tiramisu</span><span class="demo-pr num">$9.00</span></button>
+                </div>
+                <div class="demo-bar">
+                  <div class="demo-tot"><span>Your total</span><b class="num" id="demo-total" aria-live="polite">$0.00</b></div>
+                  <div class="demo-brk num" id="demo-break">Items $0.00 + Tax $0.00 + Tip $0.00</div>
+                  <button type="button" class="demo-done" id="demo-done" disabled>I’m done</button>
+                </div>
+              </div>
+              <div class="demo-finish" id="demo-finish" role="status" data-paid="false">
+                <span class="demo-finish-check"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-checkmark"/></svg></span>
+                <div class="demo-finish-title" id="demo-finish-title">You owe Sam <span class="num" id="demo-owe">$0.00</span></div>
+                <div class="demo-finish-sub" id="demo-finish-sub">Your items, plus your share of tax and tip. Pay Sam however you like, then mark it as paid.</div>
+                <button type="button" class="demo-done" id="demo-paid">Mark as paid</button>
+                <button type="button" class="demo-again" id="demo-again">Start over</button>
+              </div>
+            </div>
+            <div class="saf" aria-hidden="true">
+              <div class="saf-url"><svg class="ic"><use href="#i-lock-closed"/></svg>app.trysplits.com</div>
+              <div class="saf-tools">
+                <svg class="ic" style="transform:rotate(90deg)"><use href="#i-chevron-down"/></svg>
+                <svg class="ic dim" style="transform:rotate(-90deg)"><use href="#i-chevron-down"/></svg>
+                <svg class="ic" viewBox="0 0 512 512"><path d="M336 192h40a40 40 0 0140 40v192a40 40 0 01-40 40H136a40 40 0 01-40-40V232a40 40 0 0140-40h40M336 128l-80-80-80 80M256 321V48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                <svg class="ic"><use href="#i-copy"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="preview-cap">The friend’s view, in their browser. No app required.</p>
+      </div>
+      <div>
+        <div class="phone" aria-label="Demo of the dashboard the payer sees in the app">
+          <div class="phone-screen dash-screen">
+            <div class="phone-status"><span>9:41</span><span class="island"></span><span class="status-icons" aria-hidden="true"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="21" height="10.8" rx="3.2" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="2.2" width="17.6" height="7.6" rx="1.8" fill="currentColor"/></svg></span></div>
+            <div class="dash" id="dash">
+              <div class="dash-h"><svg class="ic" aria-hidden="true" focusable="false" style="transform:rotate(90deg)"><use href="#i-chevron-down"/></svg><div class="dash-ttl">Casa Luna Kitchen<span><i></i>Live</span></div><span class="dash-kebab" aria-hidden="true"><i></i><i></i><i></i></span></div>
+              <div class="dash-scroll" id="dash-scroll" tabindex="0" aria-label="Dashboard, scrollable">
+                <div class="dash-card">
+                  <div class="dash-ring"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="27" class="trk"/><circle cx="32" cy="32" r="27" class="bar" id="dash-ring" stroke-dasharray="169.65" stroke-dashoffset="113.10"/></svg><div><b class="num" id="dash-count">2/6</b><span>Items</span></div></div>
+                  <div class="dash-sum">
+                    <span class="lbl">Collected</span>
+                    <span class="amt num"><b id="dash-collected">$48.10</b> of $130.00</span>
+                    <span class="paid"><i class="dot a"></i><i class="dot b"></i><span id="dash-paidback">1 of 2 paid you back</span></span>
+                    <span class="by">Paid by <b>you</b></span>
+                  </div>
+                </div>
+                <div class="dash-note"><span>Summary</span><p id="dash-summary">Alex hasn’t claimed anything yet. The Margherita pizza, Pasta al limone, Caesar salad and Tiramisu are unclaimed.</p></div>
+                <div id="dash-unclaimed">
+                  <div class="dash-allpaid" id="dash-allpaid" hidden></div>
+                  <div class="dash-sec"><span>Unclaimed</span></div>
+                  <div class="dash-list">
+                    <div class="dash-urow" data-u="0"><span>Margherita pizza</span><b class="num">$18.00</b></div>
+                    <div class="dash-urow" data-u="1"><span>Pasta al limone</span><b class="num">$22.00</b></div>
+                    <div class="dash-urow" data-u="2"><span>Caesar salad</span><b class="num">$14.00</b></div>
+                    <div class="dash-urow" data-u="3"><span>Tiramisu</span><b class="num">$9.00</b></div>
+                    <div class="dash-urow tax"><span>Their share of tax &amp; tip</span><b class="num" id="dash-utax">$18.90</b></div>
+                  </div>
+                </div>
+                <div class="dash-sec"><span>Participants</span><span>3 of 3</span></div>
+                <div class="dash-list" id="dash-people">
+                  <button type="button" class="dash-row" aria-expanded="false" aria-controls="dash-sam-det"><span class="demo-av sam you">S</span><span class="dash-nm"><span><b>You</b> · paid the bill</span><small>1 item · <b class="num">$16.90</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+                  <div class="dash-det" id="dash-sam-det" hidden><div class="dd"><div><div class="dd-item"><span>Margarita</span><span class="num">$13.00</span></div></div><div class="dd-line"><span>Subtotal</span><b class="num">$13.00</b></div><div class="dd-line"><span>Tax</span><b class="num">$1.30</b></div><div class="dd-line"><span>Tip</span><b class="num">$2.60</b></div><div class="dd-total"><span>Total</span><b class="num">$16.90</b></div><div class="dd-paid"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
+                  <button type="button" class="dash-row" aria-expanded="false" aria-controls="dash-jake-det"><span class="demo-av jake">J</span><span class="dash-nm"><span><b>Jake</b></span><small>1 item · <b class="num struck">$31.20</b></small></span><em class="dash-pill"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Paid</em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+                  <div class="dash-det" id="dash-jake-det" hidden><div class="dd"><div><div class="dd-item"><span>Burger</span><span class="num">$24.00</span></div></div><div class="dd-line"><span>Subtotal</span><b class="num">$24.00</b></div><div class="dd-line"><span>Tax</span><b class="num">$2.40</b></div><div class="dd-line"><span>Tip</span><b class="num">$4.80</b></div><div class="dd-total"><span>Total</span><b class="num">$31.20</b></div><div class="dd-paid"><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
+                  <button type="button" class="dash-row" id="dash-alex" aria-expanded="false" aria-controls="dash-alex-det"><span class="demo-av alex">A</span><span class="dash-nm"><span><b>Alex</b></span><small><span id="dash-alex-sub">0 items</span> · <b class="num" id="dash-alex-amt">$0.00</b></small></span><em class="dash-pill" id="dash-alex-status" data-status="claiming"><i></i><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg><span>Claiming</span></em><svg class="ic chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+                  <div class="dash-det" id="dash-alex-det" hidden><div class="dd"><div id="dash-alex-items"></div><div class="dd-line"><span>Subtotal</span><b class="num" id="dash-alex-dsub">$0.00</b></div><div class="dd-line"><span>Tax</span><b class="num" id="dash-alex-dtax">$0.00</b></div><div class="dd-line"><span>Tip</span><b class="num" id="dash-alex-dtip">$0.00</b></div><div class="dd-total"><span>Total</span><b class="num" id="dash-alex-dtot">$0.00</b></div><div class="dd-paid" id="dash-alex-dpaid" hidden><svg class="ic" aria-hidden="true"><use href="#i-checkmark"/></svg>Marked as paid</div></div></div>
+                </div>
+              </div>
+              <div class="dash-bar" id="dash-bar">
+                <p id="dash-cover-note">If nobody claims them, you cover the $81.90 (tax and tip included) and the split closes.</p>
+                <span class="dash-btn primary" id="dash-cover-btn">Close split · you cover $81.90</span>
+                <span class="dash-btn">Ask people to claim</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="preview-cap">The payer’s view. See claims as they happen.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -785,28 +1036,27 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
 <section id="features" class="section band-tint" data-screen-label="05 Features">
   <div class="container">
     <div class="section-head reveal">
-      <h2 class="h2">Built for real life</h2>
-      <p class="body">Everything you need to share money without the headache</p>
+      <h2 class="h2">More than a receipt scanner</h2>
+      <p class="body">What keeps the money straight after the bill is split.</p>
     </div>
-    <div class="feature-showcase reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">AI receipt scanning</h3>
-        <p>Snap any printed receipt: restaurant, bar, grocery store. AI reads the items, prices and tax, plus the tip if it’s printed, in a few seconds. You check the list before you share it.</p></div>
-      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/review.webp" width="786" height="1704" alt="AI-extracted items from a restaurant receipt" loading="lazy" decoding="async" /></div></div>
+    <div class="fx reveal" id="fx">
+      <div class="fx-list">
+        <button type="button" class="fx-item" aria-pressed="true" data-fx="0"><span class="fx-title">Know where you stand</span><span class="fx-desc">See your balance with each friend at a glance. Who owes you and who you owe, across every split and quick expense. No more “hey, did I ever pay you back?”</span></button>
+        <button type="button" class="fx-item" aria-pressed="false" data-fx="1"><span class="fx-title">Settle up in one tap</span><span class="fx-desc">Pay with Venmo or Cash App in a tap, or use your friend’s Zelle details. Splits never moves money itself.</span></button>
+        <button type="button" class="fx-item" aria-pressed="false" data-fx="2"><span class="fx-title">Keep a trip or a home together</span><span class="fx-desc">Labels group splits that belong together, like a trip or a shared home. See what everyone owes for that group in one place.</span></button>
+        <button type="button" class="fx-item" aria-pressed="false" data-fx="3"><span class="fx-title">Fewer payments with Smart Settle</span><span class="fx-desc">Inside a label, Smart Settle cuts down the number of payments. If Ben owes you and you owe Clara the same amount, Ben pays Clara directly. The label’s owner turns it on, and anyone whose money moved can undo it within 24 hours, as long as the new payment hasn’t been made.</span></button>
+      </div>
+      <div class="fx-visual"><div class="phone phone-lg"><div class="fx-screens">
+        <img class="on" src="/screens/home.webp" width="786" height="1704" alt="Splits home screen: your net balance, labels and the people you share with" loading="lazy" decoding="async" />
+        <img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App and Zelle options" loading="lazy" decoding="async" />
+        <img src="/screens/labels.webp" width="786" height="1704" alt="History filtered to one label, showing what you owe across that trip’s splits" loading="lazy" decoding="async" />
+        <img src="/screens/smart-settle.webp" width="786" height="1704" alt="Balances for one label after Smart Settle, showing who owes who and which payments were simplified" loading="lazy" decoding="async" />
+      </div></div></div>
     </div>
-    <div class="feature-showcase feature-showcase-reverse reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">Know where you stand</h3>
-        <p>See your balance with each friend at a glance. Who owes you and who you owe, across every split and quick expense. No more “hey, did I ever pay you back?”</p></div>
-      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/person.webp" width="786" height="1704" alt="Person detail showing the running balance and history with one person" loading="lazy" decoding="async" /></div></div>
-    </div>
-    <div class="feature-showcase reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">Settle up in one tap</h3>
-        <p>Pay with Venmo or Cash App in a tap, or use your friend’s Zelle details. Splits never moves money itself.</p></div>
-      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/settle.webp" width="786" height="1704" alt="Settle up screen with Venmo, Cash App and Zelle options" loading="lazy" decoding="async" /></div></div>
-    </div>
-    <div class="feature-showcase feature-showcase-reverse reveal">
-      <div class="feature-showcase-copy"><h3 class="h3">No app? No problem.</h3>
-        <p>When you share a split, your friends open it in their browser. No download, no signup required. On a receipt split, they tap the items they had. On a quick expense, they tap their name and see their share and how to pay.</p></div>
-      <div class="feature-showcase-visual"><div class="phone phone-sm"><img src="/screens/claim.webp" width="786" height="1704" alt="Claim screen where friends tap what they had. Friends use it in any browser, no app needed." loading="lazy" decoding="async" /></div></div>
+    <div class="grid-3 fx-more">
+      <div class="card reveal"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-chatbubble"/></svg></div><div class="ft-title">Reminders that do the asking</div><div class="ft-body">Nudge a friend from their balance, or let Splits email the people who still owe. You don’t have to be the one chasing.</div></div>
+      <div class="card reveal d1"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg></div><div class="ft-title">Split it any way</div><div class="ft-body">Equal, exact amounts, percentages or shares. Quick add handles the uneven ones too.</div></div>
+      <div class="card reveal d2"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-time"/></svg></div><div class="ft-title">Always know what’s open</div><div class="ft-body">Your dashboard updates as friends claim their items, so you can see what’s still unclaimed and who has paid.</div></div>
     </div>
   </div>
 </section>
@@ -847,7 +1097,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   <div class="container">
     <div class="section-head center reveal">
       <h2 class="h2">Built different</h2>
-      <p class="body">Why people choose Splits over everything else</p>
+      <p class="body">Three things you get with Splits</p>
     </div>
     <div class="grid-3">
       <div class="why-card card reveal"><div class="tile"><svg class="ic " aria-hidden="true" focusable="false"><use href="#i-lock-closed"/></svg></div><div class="why-title">No limits. No paywalls.</div><div class="why-body">Unlike other apps, we don't limit your expenses or lock basic features behind a subscription. The full experience is free.</div></div>
@@ -901,6 +1151,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
         <div class="faq-a"><div class="faq-a-inner">Go to Profile, then Delete account. Your name, email, phone number and payment handles are removed. Splits you shared with others stay for them, with your name shown as “Deleted User”.</div></div></div>
       <!-- faq:html:end -->
     </div>
+    <div class="faq-more" id="faq-more" hidden><button type="button" class="btn btn-secondary" id="faq-more-btn">Show all questions</button></div>
   </div>
 </section>
 
@@ -912,7 +1163,7 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
       <p class="body reveal d1">Download Splits and start splitting bills today.</p>
       <div class="hero-cta reveal d2"><a class="app-store-badge " href="https://apps.apple.com/app/splits-split-bills-with-ai/id6780665939" rel="noopener noreferrer"><img src="/app-store-badge-black.png" alt="Download on the App Store" width="239" height="80" loading="lazy" /></a></div>
       <div class="waitlist-form-group reveal d3">
-        <p class="updates-label" id="cta-updates-label">Get product updates</p>
+        <p class="updates-label" id="cta-updates-label">Get product updates, including the Android launch</p>
         <form class="waitlist-form" id="cta-form" aria-labelledby="cta-updates-label" novalidate>
             <input type="email" name="email" id="cta-email" placeholder="Enter your email" aria-label="Email address for product updates" aria-describedby="cta-form-error" required />
             <button type="submit" class="btn btn-secondary">Notify me</button>
@@ -1015,6 +1266,32 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
   els.forEach(el => { if (!el.classList.contains('in')) io.observe(el); });
 })();
 
+/* ── FAQ: the six most asked first, the rest behind one button ──
+   The order of faq.json is the app's Help order, so the short list is picked here by question text. */
+(function () {
+  const FIRST = [
+    'Do my friends need the app?',
+    'How does receipt scanning work?',
+    'How are tax and tip split?',
+    'How do I settle up?',
+    'Is Splits free?',
+    'Is there an Android app?',
+  ];
+  const more = document.getElementById('faq-more');
+  const btn = document.getElementById('faq-more-btn');
+  const items = [...document.querySelectorAll('#faq-list .faq-item')];
+  const later = items.filter((el) => !FIRST.includes(el.querySelector('.faq-q span').textContent));
+  if (!more || !btn || later.length === 0 || later.length === items.length) return;
+  later.forEach((el) => el.classList.add('faq-later'));
+  btn.textContent = 'Show all ' + items.length + ' questions';
+  more.hidden = false;
+  btn.addEventListener('click', () => {
+    later.forEach((el) => el.classList.remove('faq-later'));
+    more.hidden = true;
+    later[0].querySelector('.faq-q').focus();
+  });
+})();
+
 /* ── FAQ accordion (single open at a time) ──────────────── */
 (function () {
   const items = document.querySelectorAll('.faq-item');
@@ -1105,8 +1382,156 @@ footer{padding:56px 0 40px;border-top:.5px solid var(--hairline);background:var(
     input.addEventListener('input', clearError);
   };
 
-  wire('hero-form', 'hero-success', 'hero-form-error', 'hero');
   wire('cta-form', 'cta-success', 'cta-form-error', 'footer-cta');
+})();
+
+/* ── Features: pick one, see its screen ─────────────────── */
+(function () {
+  const fx = document.getElementById('fx');
+  if (!fx) return;
+  const items = [...fx.querySelectorAll('.fx-item')];
+  const screens = [...fx.querySelectorAll('.fx-screens img')];
+  const pick = (i) => {
+    items.forEach((b, n) => b.setAttribute('aria-pressed', n === i ? 'true' : 'false'));
+    screens.forEach((img, n) => img.classList.toggle('on', n === i));
+  };
+  // Click everywhere; with a mouse, pointing at a feature is enough.
+  const hover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  items.forEach((btn, i) => {
+    btn.addEventListener('click', () => pick(i));
+    if (hover) btn.addEventListener('mouseenter', () => pick(i));
+  });
+})();
+
+/* ── "Try it" demo: tap items, see your total. Fixed receipt, no network. ──
+   Tax is 10% and tip 20% of the items, and every price is a multiple of 10 cents, so each
+   item's tax and tip are whole cents and no rounding rule is involved. */
+(function () {
+  const stage = document.getElementById('demo');
+  if (!stage) return;
+  const items = [...stage.querySelectorAll('button.demo-item')];
+  const total = document.getElementById('demo-total');
+  const brk = document.getElementById('demo-break');
+  const done = document.getElementById('demo-done');
+  const owe = document.getElementById('demo-owe');
+  const again = document.getElementById('demo-again');
+  const fmt = (c) => '$' + (c / 100).toFixed(2);
+  const sums = () => {
+    const sub = items.filter((b) => b.getAttribute('aria-pressed') === 'true')
+      .reduce((n, b) => n + Number(b.dataset.cents), 0);
+    return { sub, tax: sub / 10, tip: sub / 5, tot: sub + sub / 10 + sub / 5 };
+  };
+  // The payer's dashboard beside it. Sam (the payer) and Jake each claimed one item and are marked paid.
+  const OTHERS = { items: 2, cents: 4810 }, ALL_ITEMS = 6, BILL = 13000, RING = 169.65;
+  const $ = (id) => document.getElementById(id);
+  const finish = $('demo-finish');
+  const isPaid = () => finish.dataset.paid === 'true';
+  const dash = (flash) => {
+    if (!$('dash')) return;
+    const s = sums();
+    const pressed = items.map((b) => b.getAttribute('aria-pressed') === 'true');
+    const mine = pressed.filter(Boolean).length;
+    const claimed = OTHERS.items + mine, open = ALL_ITEMS - claimed;
+    const cover = BILL - OTHERS.cents - s.tot;           // what nobody has claimed, tax and tip included
+    const paid = isPaid();
+    const isDone = stage.dataset.done === 'true';
+    $('dash-count').textContent = claimed + '/' + ALL_ITEMS;
+    $('dash-ring').setAttribute('stroke-dashoffset', (RING * (1 - claimed / ALL_ITEMS)).toFixed(2));
+    $('dash-collected').textContent = fmt(OTHERS.cents + (paid ? s.tot : 0));
+    $('dash-paidback').textContent = paid ? 'All 2 paid you back' : '1 of 2 paid you back';
+    document.querySelectorAll('#dash .dash-urow[data-u]').forEach((row, i) => { row.hidden = pressed[i]; });
+    $('dash-utax').textContent = fmt(cover - cover / 1.3);
+    $('dash-unclaimed').hidden = open === 0;
+    $('dash-bar').hidden = open === 0;
+    $('dash-cover-note').textContent = 'If nobody claims them, you cover the ' + fmt(cover) + ' (tax and tip included) and the split closes.';
+    $('dash-cover-btn').textContent = 'Close split \u00B7 you cover ' + fmt(cover);
+    $('dash-alex-sub').textContent = mine === 1 ? '1 item' : mine + ' items';
+    $('dash-alex-amt').textContent = fmt(s.tot);
+    $('dash-alex-amt').classList.toggle('struck', paid);
+    // Status chip, as the app shows it: Claiming while picking, Unpaid once done, Paid once marked paid.
+    const status = paid ? 'paid' : isDone ? 'unpaid' : 'claiming';
+    $('dash-alex-status').dataset.status = status;
+    $('dash-alex-status').querySelector('span').textContent = status === 'paid' ? 'Paid' : status === 'unpaid' ? 'Unpaid' : 'Claiming';
+    // Alex's details: the items he has claimed so far, as the payer would see them.
+    const name = (b) => b.querySelector('.demo-nm').textContent;
+    const picked = items.filter((b, i) => pressed[i]);
+    $('dash-alex-items').innerHTML = picked.length === 0 ? '<div class="dd-empty">Nothing claimed yet</div>'
+      : picked.map((b) => '<div class="dd-item"><span>' + name(b) + '</span><span class="num">' + fmt(Number(b.dataset.cents)) + '</span></div>').join('');
+    $('dash-alex-dsub').textContent = fmt(s.sub);
+    $('dash-alex-dtax').textContent = fmt(s.tax);
+    $('dash-alex-dtip').textContent = fmt(s.tip);
+    $('dash-alex-dtot').textContent = fmt(s.tot);
+    $('dash-alex-dpaid').hidden = !paid;
+    // Summary and the "Everyone paid" line.
+    const list = (a) => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+    const left = items.filter((b, i) => !pressed[i]).map(name);
+    const who = paid ? 'Everyone has paid you back.'
+      : mine === 0 ? 'Alex hasn\u2019t claimed anything yet.' : 'Alex still owes you ' + fmt(s.tot) + '.';
+    const what = left.length === 0 ? 'Every item is claimed.'
+      : 'The ' + list(left) + (left.length === 1 ? ' is' : ' are') + ' unclaimed.';
+    $('dash-summary').textContent = who + ' ' + what;
+    const all = $('dash-allpaid');
+    all.hidden = !(paid && open > 0);
+    all.textContent = 'Everyone paid \u00B7 ' + (open === 1 ? '1 item' : open + ' items') + ' nobody claimed';
+    if (flash) {
+      const row = $('dash-alex');
+      row.classList.add('flash');
+      setTimeout(() => row.classList.remove('flash'), 60);
+    }
+  };
+  // Participant rows open and close, like the app's.
+  const toggle = (row, open) => {
+    const det = $(row.getAttribute('aria-controls'));
+    const next = open === undefined ? row.getAttribute('aria-expanded') !== 'true' : open;
+    row.setAttribute('aria-expanded', next ? 'true' : 'false');
+    det.hidden = !next;
+  };
+  document.querySelectorAll('#dash-people .dash-row').forEach((row) => row.addEventListener('click', () => toggle(row)));
+  // Open Alex's row and bring it into view inside the dashboard (it scrolls, like the app).
+  const showAlex = () => {
+    const box = $('dash-scroll');
+    if (!box) return;
+    toggle($('dash-alex'), true);
+    box.scrollTop = box.scrollHeight;
+  };
+  const render = (flash) => {
+    const s = sums();
+    total.textContent = fmt(s.tot);
+    brk.textContent = 'Items ' + fmt(s.sub) + ' + Tax ' + fmt(s.tax) + ' + Tip ' + fmt(s.tip);
+    done.disabled = s.sub === 0;
+    dash(flash === true);
+  };
+  items.forEach((b) => b.addEventListener('click', () => {
+    b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    render(true);
+    showAlex();
+  }));
+  done.addEventListener('click', () => {
+    $('demo-owe').textContent = fmt(sums().tot);
+    stage.dataset.done = 'true';
+    dash(true);
+    showAlex();
+    $('demo-paid').focus();
+  });
+  $('demo-paid').addEventListener('click', () => {
+    finish.dataset.paid = 'true';
+    $('demo-finish-title').textContent = 'Paid. Sam can see it.';
+    $('demo-finish-sub').textContent = 'That took one link and no download.';
+    dash(true);
+    showAlex();
+    again.focus();
+  });
+  again.addEventListener('click', () => {
+    items.forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    stage.dataset.done = 'false';
+    finish.dataset.paid = 'false';
+    $('demo-finish-title').innerHTML = 'You owe Sam <span class="num" id="demo-owe">$0.00</span>';
+    $('demo-finish-sub').textContent = 'Your items, plus your share of tax and tip. Pay Sam however you like, then mark it as paid.';
+    document.querySelectorAll('#dash-people .dash-row').forEach((row) => toggle(row, false));
+    if ($('dash-scroll')) $('dash-scroll').scrollTop = 0;
+    render();
+  });
+  render();
 })();
 
 /* ── "Or just tell it" looping demo ─────────────────────── */

@@ -11,7 +11,6 @@ const FAILED = 'Couldn’t sign you up. Try again.';
 const INVALID = 'Please enter a valid email address.';
 
 const FORMS = [
-  { name: 'hero', form: 'hero-form', success: 'hero-success', error: 'hero-form-error', source: 'hero' },
   { name: 'final CTA', form: 'cta-form', success: 'cta-success', error: 'cta-form-error', source: 'footer-cta' },
 ];
 
